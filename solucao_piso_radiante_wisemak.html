@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wisemak | Piso Radiante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0a0a;--card:#171717;--line:rgba(255,255,255,.08);--text:#fff;--muted:rgba(255,255,255,.72);--muted-2:rgba(255,255,255,.52);--max:1160px}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}
+    a{text-decoration:none;color:inherit}.container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;font-weight:600;border:1px solid transparent}
+    .btn-light{background:#fff;color:#0a0a0a}.btn-ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+    .tag{display:inline-flex;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+    header{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.76);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo img{height:42px}.nav-links{display:flex;gap:18px;align-items:center;color:var(--muted);font-size:14px}
+    .hero{padding:108px 0 54px;background:radial-gradient(circle at 50% 0%, rgba(59,130,246,.16), transparent 28%),linear-gradient(180deg,#090909 0%,#0b0b0b 100%)}
+    .hero h1{font-size:clamp(42px,7vw,88px);line-height:.95;letter-spacing:-.06em;margin:18px 0}.hero p{max-width:760px;color:var(--muted);font-size:18px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    section{padding:64px 0}.section-head{max-width:760px;margin-bottom:24px}.section-head h2{font-size:clamp(30px,4vw,52px);letter-spacing:-.05em;margin:12px 0}.section-head p{margin:0;color:var(--muted);font-size:18px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{padding:24px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid var(--line)}
+    .card h3,.card h4{margin:0 0 10px;letter-spacing:-.03em}.card p,.card li{color:var(--muted)} ul{margin:0;padding-left:18px}
+    .video-shell{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start}.video-thumb{display:block;aspect-ratio:16/9;border-radius:24px;background:url("https://img.youtube.com/vi/cQ-RycAyNX0/hqdefault.jpg") center/cover no-repeat;border:1px solid var(--line);position:relative;overflow:hidden}
+    .video-thumb::after{content:"▶ Ver episodio";position:absolute;left:18px;bottom:18px;padding:10px 14px;border-radius:999px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.12);font-weight:700}
+    @media (max-width:900px){.grid,.video-shell{grid-template-columns:1fr}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="configurador_instalacao_primeiro_wisemak.html"><img src="Wisemak Logo.png" alt="Wisemak"></a>
+      <nav class="nav-links">
+        <a href="configurador_instalacao_primeiro_wisemak.html">Voltar ao site</a>
+        <a href="configurador_instalacao_primeiro_wisemak.html#configurador" class="btn btn-light">Abrir configurador</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="tag">Solução dedicada</span>
+        <h1>Piso Radiante</h1>
+        <p>Uma solução pensada para conforto contínuo, integração discreta e leitura premium da climatização da casa. Aqui pode perceber melhor quando faz sentido, o que esperar e que conteúdo já existe sobre esta tecnologia.</p>
+        <div class="actions">
+          <a class="btn btn-light" href="configurador_instalacao_primeiro_wisemak.html#configurador">Configurar esta solução</a>
+          <a class="btn btn-ghost" href="#conteudo">Ver conteúdo</a>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <div class="grid">
+          <article class="card"><h3>O que é</h3><p>Sistema de emissão térmica embutido no pavimento, pensado para aquecimento de base muito confortável e leitura visual totalmente limpa.</p></article>
+          <article class="card"><h3>Quando faz sentido</h3><p>Obra nova ou remodelação profunda, projetos onde se valoriza conforto, inércia térmica e integração arquitetónica sem equipamentos visíveis.</p></article>
+          <article class="card"><h3>O que deve avaliar</h3><p>Tipo de obra, tempo de resposta, necessidade de arrefecimento e a melhor combinação com bomba de calor, ventiloconvectores ou VMC com bateria.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="conteudo">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Conteúdo</span>
+          <h2>Vídeos e contexto real</h2>
+          <p>Esta página pode crescer com descritivos, vídeos e comparações específicas desta solução.</p>
+        </div>
+        <div class="video-shell">
+          <a class="video-thumb" href="https://www.youtube.com/watch?v=cQ-RycAyNX0" target="_blank" rel="noopener"></a>
+          <div class="card">
+            <h3>Bomba de calor + piso radiante</h3>
+            <p>Vídeo já disponível para mostrar comportamento, consumo e conforto desta combinação em contexto mais real.</p>
+            <ul>
+              <li>Conforto elevado e distribuição homogénea</li>
+              <li>Integração discreta em projetos residenciais</li>
+              <li>Base forte para aprofundar comparações futuras</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
