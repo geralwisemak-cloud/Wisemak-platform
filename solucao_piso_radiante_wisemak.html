@@ -8,71 +8,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared-header.css">
+  <link rel="stylesheet" href="guide-page.css">
   <script src="shared-header.js" defer></script>
-  <style>
-    :root{--bg:#0a0a0a;--card:#171717;--line:rgba(255,255,255,.08);--text:#fff;--muted:rgba(255,255,255,.72);--muted-2:rgba(255,255,255,.52);--max:1160px}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}
-    a{text-decoration:none;color:inherit}.container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;font-weight:600;border:1px solid transparent}
-    .btn-light{background:#fff;color:#0a0a0a}.btn-ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
-    .tag{display:inline-flex;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78)}
-    header{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.76);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo img{height:42px}.nav-links{display:flex;gap:18px;align-items:center;color:var(--muted);font-size:14px}
-    .hero{padding:108px 0 54px;background:radial-gradient(circle at 50% 0%, rgba(59,130,246,.16), transparent 28%),linear-gradient(180deg,#090909 0%,#0b0b0b 100%)}
-    .hero h1{font-size:clamp(42px,7vw,88px);line-height:.95;letter-spacing:-.06em;margin:18px 0}.hero p{max-width:760px;color:var(--muted);font-size:18px}
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-    section{padding:64px 0}.section-head{max-width:760px;margin-bottom:24px}.section-head h2{font-size:clamp(30px,4vw,52px);letter-spacing:-.05em;margin:12px 0}.section-head p{margin:0;color:var(--muted);font-size:18px}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{padding:24px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid var(--line)}
-    .card h3,.card h4{margin:0 0 10px;letter-spacing:-.03em}.card p,.card li{color:var(--muted)} ul{margin:0;padding-left:18px}
-    .video-shell{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start}.video-thumb{display:block;aspect-ratio:16/9;border-radius:24px;background:url("https://img.youtube.com/vi/cQ-RycAyNX0/hqdefault.jpg") center/cover no-repeat;border:1px solid var(--line);position:relative;overflow:hidden}
-    .video-thumb::after{content:"▶ Ver episodio";position:absolute;left:18px;bottom:18px;padding:10px 14px;border-radius:999px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.12);font-weight:700}
-    @media (max-width:900px){.grid,.video-shell{grid-template-columns:1fr}.nav-links{display:none}}
-  </style>
 </head>
 <body>
   <header id="site-header"></header>
   <main>
-    <section class="hero">
-      <div class="container">
-        <span class="tag">Solução dedicada</span>
-        <h1>Piso Radiante</h1>
-        <p>Uma solução pensada para conforto contínuo, integração discreta e leitura premium da climatização da casa. Aqui pode perceber melhor quando faz sentido, o que esperar e que conteúdo já existe sobre esta tecnologia.</p>
-        <div class="actions">
-          <a class="btn btn-light" href="configurador_instalacao_primeiro_wisemak.html#configurador">Configurar esta solução</a>
-          <a class="btn btn-ghost" href="#conteudo">Ver conteúdo</a>
-        </div>
+    <section class="hero"><div class="container"><div class="hero-shell"><h1>Escolha o seu piso radiante passo a passo</h1><p>Perceba melhor a solução, compare os pontos essenciais e avance com mais confiança antes de pedir proposta à equipa Wisemak.</p><div class="hero-actions"><a class="btn btn-light" href="#guide">Começar guia</a></div></div></div></section>
+    <section id="guide"><div class="container guide-grid">
+      <aside class="guide-sidebar">
+        <div class="side-card"><h3>Resumo do guia</h3><div class="summary-list">
+          <div class="summary-item"><span>Obra</span><strong id="summary-work">Por escolher</strong></div>
+          <div class="summary-item"><span>Objetivo</span><strong id="summary-goal">Por escolher</strong></div>
+          <div class="summary-item"><span>Fonte de calor</span><strong id="summary-source">Por escolher</strong></div>
+          <div class="summary-item"><span>Arrefecimento</span><strong id="summary-cooling">Por escolher</strong></div>
+          <div class="summary-item"><span>Prioridade</span><strong id="summary-priority">Por escolher</strong></div>
+        </div></div>
+        <div class="side-card"><h3>Estado da lead</h3><p style="margin:0 0 14px;color:var(--muted)">A equipa recebe logo o contexto da obra, a leitura do conforto e a fonte de calor pretendida.</p><div class="status-pill" id="guide-status">Guide iniciado</div></div>
+      </aside>
+      <div class="guide-content">
+        <section class="intro-card"><h2>Configurador Wisemak</h2><p>Este guia ajuda a filtrar se o piso radiante é mesmo a solução certa para a casa e como deve ser enquadrado na proposta.</p></section>
+        <article class="stage" id="step-work"><div class="stage-head"><span class="stage-index">1</span><div class="stage-title"><strong>Que tipo de obra é</strong><span>Obra nova ou remodelação</span></div><span class="tag">Base</span></div><p>O piso radiante faz muito mais sentido quando existe obra nova ou uma intervenção profunda que permita integrar o sistema corretamente.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="work" data-value="Obra nova"><strong>Obra nova</strong></button><button class="choice-btn" type="button" data-field="work" data-value="Remodelação profunda"><strong>Remodelação profunda</strong></button><button class="choice-btn" type="button" data-field="work" data-value="Reabilitação parcial"><strong>Reabilitação parcial</strong></button><button class="choice-btn" type="button" data-field="work" data-value="Preciso de ajuda a perceber a viabilidade"><strong>Preciso de ajuda a perceber</strong></button></div></article>
+        <article class="stage" id="step-goal"><div class="stage-head"><span class="stage-index">2</span><div class="stage-title"><strong>O que espera do sistema</strong><span>Aquecimento ou climatização anual</span></div><span class="tag">Uso</span></div><p>É importante perceber se o cliente quer apenas aquecimento de base ou se pretende também trabalhar arrefecimento com o sistema certo.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="goal" data-value="Aquecimento muito confortável"><strong>Apenas aquecimento</strong></button><button class="choice-btn" type="button" data-field="goal" data-value="Aquecimento e arrefecimento controlado"><strong>Aquecimento e arrefecimento</strong></button><button class="choice-btn" type="button" data-field="goal" data-value="Conforto premium em toda a casa"><strong>Conforto premium</strong></button><button class="choice-btn" type="button" data-field="goal" data-value="Preciso de ajuda a definir o objetivo"><strong>Preciso de ajuda a definir</strong></button></div><div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-goal">Avançar</button></div></article>
+        <article class="stage" id="step-source"><div class="stage-head"><span class="stage-index">3</span><div class="stage-title"><strong>Com que fonte de calor quer trabalhar</strong><span>Leitura técnica principal</span></div><span class="tag">Sistema</span></div><p>Na maioria dos casos, o piso radiante lê-se melhor com bomba de calor, mas também pode ser enquadrado com outras fontes em certos projetos.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="source" data-value="Bomba de calor"><strong>Bomba de calor</strong></button><button class="choice-btn" type="button" data-field="source" data-value="Caldeira"><strong>Caldeira</strong></button><button class="choice-btn" type="button" data-field="source" data-value="Ainda não defini a fonte"><strong>Ainda não defini</strong></button><button class="choice-btn" type="button" data-field="source" data-value="Quero recomendação da Wisemak"><strong>Quero recomendação</strong></button></div></article>
+        <article class="stage" id="step-cooling"><div class="stage-head"><span class="stage-index">4</span><div class="stage-title"><strong>Quer arrefecimento associado</strong><span>Decisão importante no desenho da solução</span></div><span class="tag">Frio</span></div><p>Se existir interesse em arrefecimento, pode fazer sentido complementar o sistema com ventiloconvectores ou outras soluções, dependendo da casa.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="cooling" data-value="Nao preciso de arrefecimento"><strong>Não preciso</strong></button><button class="choice-btn" type="button" data-field="cooling" data-value="Quero arrefecimento com apoio complementar"><strong>Quero arrefecimento</strong></button><button class="choice-btn" type="button" data-field="cooling" data-value="Piso radiante + ventiloconvectores"><strong>Quero solução mista</strong></button><button class="choice-btn" type="button" data-field="cooling" data-value="Preciso de ajuda a perceber as limitações"><strong>Preciso de ajuda a perceber</strong></button></div></article>
+        <article class="stage" id="step-priority"><div class="stage-head"><span class="stage-index">5</span><div class="stage-title"><strong>O que pesa mais na decisão</strong><span>Leitura comercial do projeto</span></div><span class="tag">Escolha</span></div><p>Conforto homogéneo, estética limpa, eficiência ou integração com outras soluções: este passo ajuda a equipa a calibrar a proposta.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="priority" data-value="Conforto máximo"><strong>Conforto máximo</strong></button><button class="choice-btn" type="button" data-field="priority" data-value="Integração invisível"><strong>Integração invisível</strong></button><button class="choice-btn" type="button" data-field="priority" data-value="Eficiência global"><strong>Eficiência global</strong></button><button class="choice-btn" type="button" data-field="priority" data-value="Preciso de equilíbrio entre tudo"><strong>Quero equilíbrio</strong></button></div><div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-priority">Avançar</button></div></article>
+        <div class="form-card" id="step-form"><span class="tag">Lead</span><h3>6. Enviar para a equipa Wisemak</h3><p>O pedido segue com o enquadramento técnico e comercial principal desta solução.</p><div class="form-grid"><input id="lead-name" type="text" placeholder="Nome"><input id="lead-email" type="email" placeholder="Email"><input id="lead-phone" type="tel" placeholder="Telefone"><div></div><textarea id="lead-message" class="full" placeholder="Se quiser, acrescente detalhes sobre a casa, a obra ou dúvidas adicionais."></textarea></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-light" type="button" id="submit-btn">Enviar formulário</button><a class="btn btn-ghost" href="#step-work">Rever escolhas</a></div><div class="feedback" id="feedback"></div></div>
       </div>
-    </section>
-    <section>
-      <div class="container">
-        <div class="grid">
-          <article class="card"><h3>O que é</h3><p>Sistema de emissão térmica embutido no pavimento, pensado para aquecimento de base muito confortável e leitura visual totalmente limpa.</p></article>
-          <article class="card"><h3>Quando faz sentido</h3><p>Obra nova ou remodelação profunda, projetos onde se valoriza conforto, inércia térmica e integração arquitetónica sem equipamentos visíveis.</p></article>
-          <article class="card"><h3>O que deve avaliar</h3><p>Tipo de obra, tempo de resposta, necessidade de arrefecimento e a melhor combinação com bomba de calor, ventiloconvectores ou VMC com bateria.</p></article>
-        </div>
-      </div>
-    </section>
-    <section id="conteudo">
-      <div class="container">
-        <div class="section-head">
-          <span class="tag">Conteúdo</span>
-          <h2>Vídeos e contexto real</h2>
-          <p>Esta página pode crescer com descritivos, vídeos e comparações específicas desta solução.</p>
-        </div>
-        <div class="video-shell">
-          <a class="video-thumb" href="https://www.youtube.com/watch?v=cQ-RycAyNX0" target="_blank" rel="noopener"></a>
-          <div class="card">
-            <h3>Bomba de calor + piso radiante</h3>
-            <p>Vídeo já disponível para mostrar comportamento, consumo e conforto desta combinação em contexto mais real.</p>
-            <ul>
-              <li>Conforto elevado e distribuição homogénea</li>
-              <li>Integração discreta em projetos residenciais</li>
-              <li>Base forte para aprofundar comparações futuras</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div></section>
   </main>
+  <footer><div class="container">Guia de piso radiante preparado para qualificar leads antes da proposta.</div></footer>
+  <script>
+    const WEB3FORMS_ACCESS_KEY='SUBSTITUIR_WEB3FORMS_ACCESS_KEY'; const state={work:'',goal:'',source:'',cooling:'',priority:''}; const sum={work:document.getElementById('summary-work'),goal:document.getElementById('summary-goal'),source:document.getElementById('summary-source'),cooling:document.getElementById('summary-cooling'),priority:document.getElementById('summary-priority'),status:document.getElementById('guide-status')}; let t=null;
+    function s(id){const e=document.getElementById(id); if(!e) return; window.scrollTo({top:Math.max(0,e.getBoundingClientRect().top+window.scrollY-92),behavior:'smooth'}); e.classList.add('flash'); clearTimeout(t); t=setTimeout(()=>e.classList.remove('flash'),900);}
+    function u(){sum.work.textContent=state.work||'Por escolher'; sum.goal.textContent=state.goal||'Por escolher'; sum.source.textContent=state.source||'Por escolher'; sum.cooling.textContent=state.cooling||'Por escolher'; sum.priority.textContent=state.priority||'Por escolher'; const c=Object.values(state).filter(Boolean).length; sum.status.textContent=c===5?'Lead pronta para envio':`Guide preenchido ${c}/5`;}
+    document.querySelectorAll('.choice-btn').forEach(btn=>btn.addEventListener('click',()=>{const {field,value}=btn.dataset; state[field]=value; document.querySelectorAll(`.choice-btn[data-field="${field}"]`).forEach(i=>i.classList.toggle('active',i===btn)); u(); if(field==='work') setTimeout(()=>s('step-goal'),220); if(field==='source') setTimeout(()=>s('step-cooling'),220);}));
+    document.getElementById('advance-goal').addEventListener('click',()=>s('step-source')); document.getElementById('advance-priority').addEventListener('click',()=>s('step-form'));
+    document.getElementById('submit-btn').addEventListener('click',async()=>{const name=document.getElementById('lead-name').value.trim(),email=document.getElementById('lead-email').value.trim(),phone=document.getElementById('lead-phone').value.trim(),message=document.getElementById('lead-message').value.trim(),f=document.getElementById('feedback'); if(!name||!email){f.style.display='block';f.innerHTML='<strong>Falta informação</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>';return;} if(Object.values(state).filter(Boolean).length<5){f.style.display='block';f.innerHTML='<strong>Faltam escolhas</strong><p style="margin:8px 0 0;color:var(--muted)">Complete os passos principais do guia antes de enviar.</p>';return;} if(WEB3FORMS_ACCESS_KEY==='SUBSTITUIR_WEB3FORMS_ACCESS_KEY'){f.style.display='block';f.innerHTML='<strong>Falta ligar o envio automático</strong><p style="margin:8px 0 0;color:var(--muted)">Substitua <code>WEB3FORMS_ACCESS_KEY</code> pela chave real do Web3Forms.</p>';return;} const fd=new FormData(); fd.set('access_key',WEB3FORMS_ACCESS_KEY); fd.set('subject','Lead Piso Radiante Wisemak'); fd.set('from_name','Wisemak Piso Radiante'); fd.set('name',name); fd.set('email',email); fd.set('phone',phone||'-'); fd.set('mensagem_cliente',message||'-'); fd.set('solucao','Piso Radiante'); Object.entries(state).forEach(([k,v])=>fd.set(k,v)); f.style.display='block'; f.innerHTML='<strong>A enviar guia</strong><p style="margin:8px 0 0;color:var(--muted)">Estamos a enviar as escolhas do cliente para a equipa Wisemak.</p>'; try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}); const j=await r.json(); f.innerHTML=j.success?'<strong>Guide enviado</strong><p style="margin:8px 0 0;color:var(--muted)">A equipa Wisemak vai receber a lead e responder o mais rapidamente possível.</p>':`<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">${j.message||'Nao foi possível enviar a lead.'}</p>`;}catch{f.innerHTML='<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">Nao foi possível contactar o serviço de envio.</p>';}}); u();
+  </script>
 </body>
 </html>

@@ -1,5 +1,190 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Wisemak | Bomba de Calor para Climatização</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="shared-header.css"><script src="shared-header.js" defer></script><style>:root{--bg:#0a0a0a;--line:rgba(255,255,255,.08);--text:#fff;--muted:rgba(255,255,255,.72);--max:1160px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}a{text-decoration:none;color:inherit}.container{width:min(var(--max),calc(100% - 32px));margin:0 auto}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;font-weight:600;border:1px solid transparent}.btn-light{background:#fff;color:#0a0a0a}.tag{display:inline-flex;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78)}.hero{padding:108px 0 54px;background:radial-gradient(circle at 50% 0%, rgba(59,130,246,.16), transparent 28%),linear-gradient(180deg,#090909 0%,#0b0b0b 100%)}.hero h1{font-size:clamp(42px,7vw,88px);line-height:.95;letter-spacing:-.06em;margin:18px 0}.hero p{max-width:760px;color:var(--muted);font-size:18px}.card{padding:24px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid var(--line)}section{padding:64px 0}</style></head>
-<body><header id="site-header"></header><main><section class="hero"><div class="container"><span class="tag">Climatização</span><h1>Bomba de Calor para Climatização</h1><p>A categoria principal para sistemas centralizados de climatização residencial, normalmente combinada com piso radiante, ventiloconvectores ou outras emissões.</p></div></section><section><div class="container"><div class="card"><h3>Base para conteúdo dedicado</h3><p>Aqui pode entrar a explicação da tecnologia, vídeos, comparações entre emissores e os cenários onde a bomba de calor faz mais sentido.</p></div></div></section></main></body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wisemak | Bomba de Calor para Climatizacao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared-header.css">
+  <link rel="stylesheet" href="guide-page.css">
+  <script src="shared-header.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-shell">
+          <h1>Escolha a sua bomba de calor para climatizacao passo a passo</h1>
+          <p>Perceba melhor a solução, compare os pontos essenciais e avance com mais confiança antes de pedir proposta à equipa Wisemak.</p>
+          <div class="hero-actions"><a class="btn btn-light" href="#guide">Começar guia</a></div>
+        </div>
+      </div>
+    </section>
+    <section id="guide">
+      <div class="container guide-grid">
+        <aside class="guide-sidebar">
+          <div class="side-card">
+            <h3>Resumo do guia</h3>
+            <div class="summary-list">
+              <div class="summary-item"><span>Habitação</span><strong id="summary-home">Por escolher</strong></div>
+              <div class="summary-item"><span>Objetivo</span><strong id="summary-goal">Por escolher</strong></div>
+              <div class="summary-item"><span>Emissão</span><strong id="summary-emitter">Por escolher</strong></div>
+              <div class="summary-item"><span>Prioridade</span><strong id="summary-priority">Por escolher</strong></div>
+              <div class="summary-item"><span>Instalação</span><strong id="summary-context">Por escolher</strong></div>
+            </div>
+          </div>
+          <div class="side-card">
+            <h3>Estado da lead</h3>
+            <p style="margin:0 0 14px;color:var(--muted)">A equipa recebe logo o enquadramento da fonte de calor, tipo de emissão e contexto da obra.</p>
+            <div class="status-pill" id="guide-status">Guide iniciado</div>
+          </div>
+        </aside>
+        <div class="guide-content">
+          <section class="intro-card">
+            <h2>Configurador Wisemak</h2>
+            <p>Use esta página para perceber que combinação faz mais sentido com bomba de calor e deixar à equipa uma lead já muito mais trabalhada.</p>
+          </section>
+
+          <article class="stage" id="step-home">
+            <div class="stage-head"><span class="stage-index">1</span><div class="stage-title"><strong>Tipo de habitação</strong><span>Comece pelo enquadramento da casa</span></div><span class="tag">Base</span></div>
+            <p>A bomba de calor muda de leitura entre moradia, apartamento e obra mais compacta. Este primeiro passo ajuda a enquadrar a solução.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="home" data-value="Moradia"><strong>Moradia</strong></button>
+              <button class="choice-btn" type="button" data-field="home" data-value="Apartamento"><strong>Apartamento</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-goal">
+            <div class="stage-head"><span class="stage-index">2</span><div class="stage-title"><strong>O que quer da climatização</strong><span>Aquecimento, arrefecimento ou ambos</span></div><span class="tag">Uso</span></div>
+            <p>Este ponto ajuda a perceber se estamos a falar de uma solução apenas para aquecimento ou de um sistema completo de climatização anual.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="goal" data-value="Aquecimento"><strong>Apenas aquecimento</strong></button>
+              <button class="choice-btn" type="button" data-field="goal" data-value="Aquecimento e arrefecimento"><strong>Aquecimento e arrefecimento</strong></button>
+              <button class="choice-btn" type="button" data-field="goal" data-value="Quero tambem AQS"><strong>Climatização + AQS</strong></button>
+              <button class="choice-btn" type="button" data-field="goal" data-value="Preciso de ajuda a definir o objetivo"><strong>Preciso de ajuda a definir</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-emitter">
+            <div class="stage-head"><span class="stage-index">3</span><div class="stage-title"><strong>Como quer distribuir o calor e o frio</strong><span>Tipo de emissão</span></div><span class="tag">Sistema</span></div>
+            <p>A bomba de calor ganha leituras muito diferentes conforme trabalha com piso radiante, ventiloconvectores, radiadores ou sistema misto.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="emitter" data-value="Piso radiante"><strong>Piso radiante</strong></button>
+              <button class="choice-btn" type="button" data-field="emitter" data-value="Ventiloconvectores"><strong>Ventiloconvectores</strong></button>
+              <button class="choice-btn" type="button" data-field="emitter" data-value="Radiadores"><strong>Radiadores</strong></button>
+              <button class="choice-btn" type="button" data-field="emitter" data-value="Sistema misto"><strong>Sistema misto</strong></button>
+            </div>
+            <div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-emitter">Avançar</button></div>
+          </article>
+
+          <article class="stage" id="step-priority">
+            <div class="stage-head"><span class="stage-index">4</span><div class="stage-title"><strong>O que pesa mais na decisão</strong><span>Prioridade do cliente</span></div><span class="tag">Escolha</span></div>
+            <p>Este passo ajuda a equipa a perceber se a proposta deve puxar mais por conforto, eficiência, resposta rápida ou integração visual.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="priority" data-value="Conforto máximo"><strong>Conforto máximo</strong></button>
+              <button class="choice-btn" type="button" data-field="priority" data-value="Eficiência e consumo"><strong>Eficiência e consumo</strong></button>
+              <button class="choice-btn" type="button" data-field="priority" data-value="Resposta rápida"><strong>Resposta rápida</strong></button>
+              <button class="choice-btn" type="button" data-field="priority" data-value="Integração discreta"><strong>Integração discreta</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-context">
+            <div class="stage-head"><span class="stage-index">5</span><div class="stage-title"><strong>Contexto da instalação</strong><span>Em que ponto está a obra</span></div><span class="tag">Obra</span></div>
+            <p>É importante perceber se estamos perante obra nova, remodelação, substituição de caldeira ou aproveitamento de distribuição existente.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="context" data-value="Obra nova"><strong>Obra nova</strong></button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Remodelação ou reabilitação"><strong>Remodelação / reabilitação</strong></button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Substituição de caldeira"><strong>Substituição de caldeira</strong></button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Já tenho distribuição existente"><strong>Já tenho distribuição</strong></button>
+            </div>
+            <div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-context">Avançar</button></div>
+          </article>
+
+          <div class="form-card" id="step-form">
+            <span class="tag">Lead</span>
+            <h3>6. Enviar para a equipa Wisemak</h3>
+            <p>O pedido segue com as escolhas principais para a equipa perceber logo o tipo de solução a propor.</p>
+            <div class="form-grid">
+              <input id="lead-name" type="text" placeholder="Nome">
+              <input id="lead-email" type="email" placeholder="Email">
+              <input id="lead-phone" type="tel" placeholder="Telefone">
+              <div></div>
+              <textarea id="lead-message" class="full" placeholder="Se quiser, acrescente notas sobre a casa, a instalação ou dúvidas adicionais."></textarea>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button class="btn btn-light" type="button" id="submit-btn">Enviar formulário</button>
+              <a class="btn btn-ghost" href="#step-home">Rever escolhas</a>
+            </div>
+            <div class="feedback" id="feedback"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container">Guia de bomba de calor de climatização preparado para qualificar leads antes da proposta.</div></footer>
+  <script>
+    const WEB3FORMS_ACCESS_KEY = 'SUBSTITUIR_WEB3FORMS_ACCESS_KEY';
+    const state = { home:'', goal:'', emitter:'', priority:'', context:'' };
+    const summary = {
+      home: document.getElementById('summary-home'),
+      goal: document.getElementById('summary-goal'),
+      emitter: document.getElementById('summary-emitter'),
+      priority: document.getElementById('summary-priority'),
+      context: document.getElementById('summary-context'),
+      status: document.getElementById('guide-status')
+    };
+    let timer = null;
+    function scrollToStage(id){
+      const el = document.getElementById(id); if(!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 92;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      el.classList.add('flash'); clearTimeout(timer); timer = setTimeout(() => el.classList.remove('flash'), 900);
+    }
+    function update(){
+      summary.home.textContent = state.home || 'Por escolher';
+      summary.goal.textContent = state.goal || 'Por escolher';
+      summary.emitter.textContent = state.emitter || 'Por escolher';
+      summary.priority.textContent = state.priority || 'Por escolher';
+      summary.context.textContent = state.context || 'Por escolher';
+      const completed = Object.values(state).filter(Boolean).length;
+      summary.status.textContent = completed === 5 ? 'Lead pronta para envio' : `Guide preenchido ${completed}/5`;
+    }
+    document.querySelectorAll('.choice-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const { field, value } = btn.dataset;
+        state[field] = value;
+        document.querySelectorAll(`.choice-btn[data-field="${field}"]`).forEach(item => item.classList.toggle('active', item === btn));
+        update();
+        if(field === 'home') setTimeout(() => scrollToStage('step-goal'), 220);
+        if(field === 'goal') setTimeout(() => scrollToStage('step-emitter'), 220);
+        if(field === 'priority') setTimeout(() => scrollToStage('step-context'), 220);
+      });
+    });
+    document.getElementById('advance-emitter').addEventListener('click', () => scrollToStage('step-priority'));
+    document.getElementById('advance-context').addEventListener('click', () => scrollToStage('step-form'));
+    document.getElementById('submit-btn').addEventListener('click', async () => {
+      const name = document.getElementById('lead-name').value.trim();
+      const email = document.getElementById('lead-email').value.trim();
+      const phone = document.getElementById('lead-phone').value.trim();
+      const message = document.getElementById('lead-message').value.trim();
+      const feedback = document.getElementById('feedback');
+      if(!name || !email){ feedback.style.display='block'; feedback.innerHTML='<strong>Falta informação</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>'; return; }
+      if(Object.values(state).filter(Boolean).length < 5){ feedback.style.display='block'; feedback.innerHTML='<strong>Faltam escolhas</strong><p style="margin:8px 0 0;color:var(--muted)">Complete os passos principais do guia antes de enviar.</p>'; return; }
+      if(WEB3FORMS_ACCESS_KEY === 'SUBSTITUIR_WEB3FORMS_ACCESS_KEY'){ feedback.style.display='block'; feedback.innerHTML='<strong>Falta ligar o envio automático</strong><p style="margin:8px 0 0;color:var(--muted)">Substitua <code>WEB3FORMS_ACCESS_KEY</code> pela chave real do Web3Forms.</p>'; return; }
+      const fd = new FormData();
+      fd.set('access_key', WEB3FORMS_ACCESS_KEY); fd.set('subject', 'Lead Bomba de Calor Climatizacao Wisemak'); fd.set('from_name', 'Wisemak Bomba de Calor Climatizacao');
+      fd.set('name', name); fd.set('email', email); fd.set('phone', phone || '-'); fd.set('mensagem_cliente', message || '-'); fd.set('solucao', 'Bomba de Calor para Climatizacao');
+      Object.entries(state).forEach(([k,v]) => fd.set(k, v));
+      feedback.style.display='block'; feedback.innerHTML='<strong>A enviar guia</strong><p style="margin:8px 0 0;color:var(--muted)">Estamos a enviar as escolhas do cliente para a equipa Wisemak.</p>';
+      try{
+        const r = await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}); const j = await r.json();
+        feedback.innerHTML = j.success ? '<strong>Guide enviado</strong><p style="margin:8px 0 0;color:var(--muted)">A equipa Wisemak vai receber a lead e responder o mais rapidamente possível.</p>' : `<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">${j.message || 'Nao foi possível enviar a lead.'}</p>`;
+      } catch { feedback.innerHTML='<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">Nao foi possível contactar o serviço de envio.</p>'; }
+    });
+    update();
+  </script>
+</body>
 </html>

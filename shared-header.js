@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
               <p>Soluções para água quente sanitária e alternativas complementares.</p>
               <div class="solutions-links">
                 <a href="solucao_bomba_calor_aqs_wisemak.html"><span>Bomba de Calor AQS</span><span>→</span></a>
-                <a href="solucoes_aqs_wisemak.html#solar"><span>Solar Térmico</span><span>→</span></a>
-                <a href="solucoes_aqs_wisemak.html#termo"><span>Termoacumulador</span><span>→</span></a>
-                <a href="solucoes_aqs_wisemak.html#esquentador-gn"><span>Esquentador GN</span><span>→</span></a>
-                <a href="solucoes_aqs_wisemak.html#esquentador-glp"><span>Esquentador de botija</span><span>→</span></a>
+                <a href="solucao_solar_termico_wisemak.html"><span>Solar Térmico</span><span>→</span></a>
+                <a href="solucao_termoacumulador_wisemak.html"><span>Termoacumulador</span><span>→</span></a>
+                <a href="solucao_esquentador_gn_wisemak.html"><span>Esquentador GN</span><span>→</span></a>
+                <a href="solucao_esquentador_botija_wisemak.html"><span>Esquentador de botija</span><span>→</span></a>
               </div>
             </div>
             <div class="solutions-col">
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <a href="solucao_piso_radiante_wisemak.html"><span>Piso Radiante</span><span>→</span></a>
                 <a href="solucao_ventiloconvectores_wisemak.html"><span>Ventiloconvectores</span><span>→</span></a>
                 <a href="solucao_radiadores_wisemak.html"><span>Radiadores</span><span>→</span></a>
-                <a href="solucoes_climatizacao_wisemak.html#caldeira"><span>Caldeira</span><span>→</span></a>
+                <a href="solucao_caldeira_wisemak.html"><span>Caldeira</span><span>→</span></a>
               </div>
             </div>
             <div class="solutions-col">
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
               <p>Qualidade do ar interior, VMC e soluções complementares.</p>
               <div class="solutions-links">
                 <a href="solucao_vmc_wisemak.html"><span>VMC Duplo Fluxo</span><span>→</span></a>
-                <a href="solucoes_ventilacao_wisemak.html#simples"><span>VMC simples fluxo</span><span>→</span></a>
-                <a href="solucoes_ventilacao_wisemak.html#bateria"><span>VMC com bateria de água</span><span>→</span></a>
+                <a href="solucao_vmc_simples_fluxo_wisemak.html"><span>VMC simples fluxo</span><span>→</span></a>
+                <a href="solucao_vmc_bateria_agua_wisemak.html"><span>VMC com bateria de água</span><span>→</span></a>
               </div>
             </div>
           </div>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wisemak | Solar Termico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared-header.css">
+  <script src="shared-header.js" defer></script>
+  <style>
+    :root{
+      --bg:#080808;
+      --line:rgba(255,255,255,.08);
+      --text:#fff;
+      --muted:rgba(255,255,255,.72);
+      --muted-2:rgba(255,255,255,.48);
+      --blue:#3b82f6;
+      --blue-soft:rgba(59,130,246,.16);
+      --amber-soft:rgba(245,158,11,.16);
+      --green-soft:rgba(34,197,94,.14);
+      --max:1220px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,system-ui,sans-serif;
+      line-height:1.5;
+      background:
+        radial-gradient(circle at 60% -10%, rgba(245,158,11,.18), transparent 26%),
+        linear-gradient(180deg,#050505 0%, #0a0a0a 100%);
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:999px;
+      font-weight:600;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:.2s ease;
+      font:inherit;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-light{background:#fff;color:#0a0a0a}
+    .btn-ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#fff}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.78);
+    }
+    .hero{padding:110px 0 52px}
+    .hero-shell{
+      padding:34px;
+      border-radius:36px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+        radial-gradient(circle at 100% 0%, rgba(245,158,11,.16), transparent 36%);
+      border:1px solid var(--line);
+      box-shadow:0 24px 80px rgba(0,0,0,.28);
+    }
+    .hero h1{
+      margin:18px 0 14px;
+      font-size:clamp(44px,7vw,86px);
+      line-height:.94;
+      letter-spacing:-.06em;
+      max-width:11ch;
+    }
+    .hero p{
+      max-width:780px;
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    main section{padding:26px 0}
+    .guide-grid{
+      display:grid;
+      grid-template-columns:340px minmax(0,1fr);
+      gap:22px;
+      align-items:start;
+    }
+    .guide-sidebar{position:sticky;top:96px;display:grid;gap:16px}
+    .side-card,.intro-card,.stage,.form-card{
+      padding:24px 26px;
+      border-radius:28px;
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.025));
+      border:1px solid var(--line);
+    }
+    .side-card h3,.form-card h3{margin:0 0 16px;font-size:28px;letter-spacing:-.04em}
+    .summary-list{display:grid;gap:10px}
+    .summary-item{
+      display:grid;
+      gap:4px;
+      padding:12px 0;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .summary-item:last-child{border-bottom:0;padding-bottom:0}
+    .summary-item span{
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+    }
+    .summary-item strong{font-size:17px}
+    .status-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--green-soft);
+      border:1px solid rgba(34,197,94,.26);
+      color:#dcfce7;
+      font-size:13px;
+      font-weight:700;
+    }
+    .guide-content{display:grid;gap:18px}
+    .intro-card h2{
+      margin:10px 0 12px;
+      font-size:clamp(32px,4.8vw,58px);
+      line-height:.97;
+      letter-spacing:-.05em;
+    }
+    .intro-card p,.stage > p,.form-card p{margin:0;color:var(--muted);font-size:18px}
+    .stage{
+      padding:26px 28px 28px;
+      border-radius:30px;
+    }
+    .stage-head{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:14px;
+      align-items:center;
+      margin-bottom:16px;
+    }
+    .stage-index{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      font-weight:800;
+      font-size:20px;
+    }
+    .stage-title{display:grid;gap:3px}
+    .stage-title strong{
+      font-size:clamp(26px,3vw,36px);
+      letter-spacing:-.04em;
+      line-height:1;
+    }
+    .stage-title span{color:var(--muted-2);font-size:13px}
+    .stack{display:grid;gap:14px}
+    .choice-row,.compact-grid,.form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+    .choice-btn{
+      appearance:none;
+      width:100%;
+      position:relative;
+      padding:16px 44px 16px 18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      text-align:left;
+      cursor:pointer;
+      transition:.22s ease;
+      min-height:82px;
+      display:flex;
+      align-items:center;
+    }
+    .choice-btn::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      right:14px;
+      transform:translateY(-50%);
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      border:1.5px solid rgba(255,255,255,.34);
+      background:transparent;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+      transition:.22s ease;
+    }
+    .choice-btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.16);
+      background:rgba(255,255,255,.07);
+    }
+    .choice-btn.active{
+      border-color:rgba(59,130,246,.9);
+      background:var(--blue-soft);
+      box-shadow:0 0 0 1px rgba(59,130,246,.24) inset;
+    }
+    .choice-btn.active::after{
+      border-color:rgba(59,130,246,.95);
+      background:radial-gradient(circle at 35% 35%, #faf7f2 0%, #d9d0c3 48%, #8b7f73 100%);
+      box-shadow:0 0 0 4px rgba(217,208,195,.10), 0 0 16px rgba(139,127,115,.14);
+    }
+    .choice-btn strong{display:block;margin:0;font-size:17px;letter-spacing:-.02em}
+    .field-card,.result-card,.note-card,.compare-grid{
+      padding:18px 20px;
+      border-radius:22px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .field-card label{
+      display:block;
+      margin-bottom:8px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+    }
+    .field-card input,.form-card input,.form-card textarea{
+      width:100%;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font:inherit;
+      outline:none;
+    }
+    .result-card{display:flex;flex-direction:column;justify-content:center;min-height:100%}
+    .result-card strong{font-size:40px;line-height:1;letter-spacing:-.06em}
+    .result-card span{margin-top:8px;color:var(--muted);font-size:15px}
+    .note-card{color:var(--muted);font-size:16px}
+    .note-card p{margin:0}
+    .note-card p + p{margin-top:10px}
+    .compare-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+      padding:0;
+      overflow:hidden;
+    }
+    .compare-col{
+      padding:20px;
+      border-right:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.015));
+    }
+    .compare-col:last-child{border-right:0}
+    .compare-col h4{margin:0 0 10px;font-size:24px;letter-spacing:-.04em}
+    .compare-col ul{margin:0;padding-left:18px;color:var(--muted)}
+    .compare-col li + li{margin-top:8px}
+    .stage-actions{display:flex;justify-content:flex-end;margin-top:16px}
+    .form-card{display:grid;gap:14px}
+    .form-grid .full{grid-column:1/-1}
+    .form-card textarea{min-height:120px;resize:vertical}
+    .feedback{
+      display:none;
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .stage.flash{
+      box-shadow:0 0 0 1px rgba(59,130,246,.28), 0 28px 80px rgba(0,0,0,.18);
+      transition:box-shadow .35s ease;
+    }
+    footer{padding:26px 0 56px;color:var(--muted-2);font-size:14px}
+    @media (max-width:1080px){
+      .guide-grid{grid-template-columns:1fr}
+      .guide-sidebar{position:static}
+    }
+    @media (max-width:760px){
+      .container{width:min(var(--max),calc(100% - 20px))}
+      .hero{padding-top:92px}
+      .hero-shell,.side-card,.intro-card,.stage,.form-card{padding:22px}
+      .choice-row,.compact-grid,.compare-grid,.form-grid{grid-template-columns:1fr}
+      .compare-col{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+      .compare-col:last-child{border-bottom:0}
+    }
+  </style>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-shell">
+          <h1>Escolha o seu sistema solar termico passo a passo</h1>
+          <p>Perceba melhor a solução, compare os pontos essenciais e avance com mais confiança antes de pedir proposta à equipa Wisemak.</p>
+          <div class="hero-actions">
+            <a class="btn btn-light" href="#solar-guide">Começar guia</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solar-guide">
+      <div class="container guide-grid">
+        <aside class="guide-sidebar">
+          <div class="side-card">
+            <h3>Resumo do guia</h3>
+            <div class="summary-list">
+              <div class="summary-item">
+                <span>Habitação</span>
+                <strong id="summary-home">Por escolher</strong>
+              </div>
+              <div class="summary-item">
+                <span>Pessoas</span>
+                <strong id="summary-people">4 pessoas</strong>
+              </div>
+              <div class="summary-item">
+                <span>Perfil de consumo</span>
+                <strong id="summary-profile">Por calcular</strong>
+              </div>
+              <div class="summary-item">
+                <span>Configuração</span>
+                <strong id="summary-layout">Por escolher</strong>
+              </div>
+              <div class="summary-item">
+                <span>Tecnologia</span>
+                <strong id="summary-tech">Por escolher</strong>
+              </div>
+              <div class="summary-item">
+                <span>Instalação</span>
+                <strong id="summary-context">Por escolher</strong>
+              </div>
+            </div>
+          </div>
+          <div class="side-card">
+            <h3>Estado da lead</h3>
+            <p style="margin:0 0 14px;color:var(--muted)">A lead final segue já com o enquadramento do tipo de sistema, nível de consumo e contexto real da obra.</p>
+            <div class="status-pill" id="guide-status">Guide iniciado</div>
+          </div>
+        </aside>
+
+        <div class="guide-content">
+          <section class="intro-card">
+            <h2>Configurador Wisemak</h2>
+            <p>Este guia foi pensado para informar o cliente sobre os pontos técnicos que realmente contam num Solar Térmico e, ao mesmo tempo, fechar um pedido muito mais útil para a proposta.</p>
+          </section>
+
+          <article class="stage" id="step-home">
+            <div class="stage-head">
+              <span class="stage-index">1</span>
+              <div class="stage-title">
+                <strong>Tipo de habitação</strong>
+                <span>Comece por enquadrar a casa</span>
+              </div>
+              <span class="tag">Base</span>
+            </div>
+            <p>O Solar Térmico tende a fazer mais sentido quando existe consumo significativo e capacidade para acumular mais energia renovável ao longo do tempo.</p>
+            <div class="choice-row" style="margin-top:16px">
+              <button class="choice-btn" type="button" data-field="home" data-value="Moradia">
+                <strong>Moradia</strong>
+              </button>
+              <button class="choice-btn" type="button" data-field="home" data-value="Apartamento">
+                <strong>Apartamento</strong>
+              </button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-people">
+            <div class="stage-head">
+              <span class="stage-index">2</span>
+              <div class="stage-title">
+                <strong>Quantas pessoas utilizam a casa</strong>
+                <span>Perfil de consumo</span>
+              </div>
+              <span class="tag">Consumo</span>
+            </div>
+            <p>Quanto maior for o consumo de AQS, maior tende a ser o interesse em acumular energia renovável com Solar Térmico, sobretudo em moradias e sistemas com depósitos grandes.</p>
+            <div class="stack" style="margin-top:16px">
+              <div class="compact-grid">
+                <div class="field-card">
+                  <label for="solar-people">Numero de pessoas</label>
+                  <input id="solar-people" type="number" min="1" max="10" step="1" value="4">
+                </div>
+                <div class="result-card">
+                  <strong id="solar-profile-result">Por calcular</strong>
+                  <span>Leitura do perfil</span>
+                </div>
+              </div>
+              <div class="note-card" id="solar-profile-note">Escolha primeiro o tipo de habitação e depois indique o numero de pessoas.</div>
+              <div class="stage-actions">
+                <button class="btn btn-ghost" type="button" id="advance-people">Avançar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="stage" id="step-layout">
+            <div class="stage-head">
+              <span class="stage-index">3</span>
+              <div class="stage-title">
+                <strong>Como quer o sistema montado</strong>
+                <span>Deposito em cima ou deposito em baixo</span>
+              </div>
+              <span class="tag">Sistema</span>
+            </div>
+            <p>Este passo ajuda a perceber se o cliente está mais alinhado com uma leitura `termossifao`, com o deposito no topo, ou com um sistema `forcado`, em que os painéis ficam em cima e o deposito fica em baixo.</p>
+            <div class="compare-grid">
+              <div class="compare-col">
+                <h4>Termossifao</h4>
+                <ul>
+                  <li>Leitura mais simples e integrada.</li>
+                  <li>Deposito e painéis ficam normalmente juntos na cobertura.</li>
+                  <li>Solução prática quando a integração visual não é problema.</li>
+                </ul>
+              </div>
+              <div class="compare-col">
+                <h4>Sistema forcado</h4>
+                <ul>
+                  <li>Painéis em cima e deposito no interior ou em zona técnica.</li>
+                  <li>Mais flexibilidade de implantação e integração.</li>
+                  <li>Leitura mais cuidada para casas com exigência estética ou técnica.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="choice-row" style="margin-top:16px">
+              <button class="choice-btn" type="button" data-field="layout" data-value="Termossifao">
+                <strong>Quero termossifao</strong>
+              </button>
+              <button class="choice-btn" type="button" data-field="layout" data-value="Sistema forcado com deposito em baixo">
+                <strong>Quero deposito em baixo</strong>
+              </button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-tech">
+            <div class="stage-head">
+              <span class="stage-index">4</span>
+              <div class="stage-title">
+                <strong>Fiabilidade do sistema</strong>
+                <span>Drainback ou sistema convencional</span>
+              </div>
+              <span class="tag">Tecnica</span>
+            </div>
+            <p>No Solar Térmico, a sobretemperatura e a dissipação de calor são pontos críticos. Por isso, importa explicar claramente a diferença entre `drainback` e um sistema convencional.</p>
+            <div class="compare-grid">
+              <div class="compare-col">
+                <h4>Drainback</h4>
+                <ul>
+                  <li>Leitura mais fiável e estável.</li>
+                  <li>Evita a deterioração periódica do fluido solar.</li>
+                  <li>Reduz muito a necessidade de manutenção recorrente.</li>
+                  <li>Durabilidade global superior da instalação.</li>
+                </ul>
+              </div>
+              <div class="compare-col">
+                <h4>Convencional</h4>
+                <ul>
+                  <li>Precisa de mais atenção à dissipação e à sobretemperatura.</li>
+                  <li>Exige manutenção periódica do fluido.</li>
+                  <li>Pode obrigar a dissipadores de calor em certos contextos.</li>
+                  <li>É importante ser bem dimensionado para não criar problemas futuros.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="choice-row" style="margin-top:16px">
+              <button class="choice-btn" type="button" data-field="tech" data-value="Prefiro sistema Drainback">
+                <strong>Prefiro Drainback</strong>
+              </button>
+              <button class="choice-btn" type="button" data-field="tech" data-value="Aceito sistema convencional bem dimensionado">
+                <strong>Aceito sistema convencional</strong>
+              </button>
+              <button class="choice-btn" type="button" data-field="tech" data-value="Quero evitar manutencao recorrente">
+                <strong>Quero evitar manutencao</strong>
+              </button>
+              <button class="choice-btn" type="button" data-field="tech" data-value="Preciso de ajuda a perceber a diferenca tecnica">
+                <strong>Preciso de ajuda a decidir</strong>
+              </button>
+            </div>
+            <div class="stage-actions">
+              <button class="btn btn-ghost" type="button" id="advance-tech">Avançar</button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-context">
+            <div class="stage-head">
+              <span class="stage-index">5</span>
+              <div class="stage-title">
+                <strong>Contexto da instalacao</strong>
+                <span>Como entra esta solucao na obra</span>
+              </div>
+              <span class="tag">Obra</span>
+            </div>
+            <p>Este ponto ajuda a equipa a perceber se estamos perante uma instalação nova, uma substituição de termossifão, uma substituição de Solar Térmico ou outro enquadramento real.</p>
+            <div class="choice-row" style="margin-top:16px">
+              <button class="choice-btn" type="button" data-field="context" data-value="Obra nova">
+                <strong>Obra nova</strong>
+              </button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Substituicao de termossifao">
+                <strong>Substituicao de termossifao</strong>
+              </button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Substituicao de sistema solar termico">
+                <strong>Substituicao de solar existente</strong>
+              </button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Remodelacao ou reabilitacao">
+                <strong>Remodelacao / reabilitacao</strong>
+              </button>
+            </div>
+            <div class="stage-actions">
+              <button class="btn btn-ghost" type="button" id="advance-context">Avançar</button>
+            </div>
+          </article>
+
+          <div class="form-card" id="step-form">
+            <span class="tag">Lead</span>
+            <h3>6. Enviar para a equipa Wisemak</h3>
+            <p>O pedido segue com todas as escolhas do guia para a equipa perceber logo o tipo de sistema pretendido e o contexto real da instalação.</p>
+            <div class="form-grid">
+              <input id="solar-name" type="text" placeholder="Nome">
+              <input id="solar-email" type="email" placeholder="Email">
+              <input id="solar-phone" type="tel" placeholder="Telefone">
+              <div></div>
+              <textarea id="solar-message" class="full" placeholder="Se quiser, acrescente detalhes sobre a cobertura, limitações da casa ou outras notas úteis."></textarea>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button class="btn btn-light" type="button" id="solar-submit-btn">Enviar formulário</button>
+              <a class="btn btn-ghost" href="#step-home">Rever escolhas</a>
+            </div>
+            <div class="feedback" id="solar-feedback"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">Guia de Solar Termico preparado para qualificar leads antes da proposta.</div>
+  </footer>
+
+  <script>
+    const WEB3FORMS_ACCESS_KEY = 'SUBSTITUIR_WEB3FORMS_ACCESS_KEY';
+    const guideState = {
+      home: '',
+      people: 4,
+      profile: '',
+      layout: '',
+      tech: '',
+      context: ''
+    };
+
+    const summaryEls = {
+      home: document.getElementById('summary-home'),
+      people: document.getElementById('summary-people'),
+      profile: document.getElementById('summary-profile'),
+      layout: document.getElementById('summary-layout'),
+      tech: document.getElementById('summary-tech'),
+      context: document.getElementById('summary-context'),
+      status: document.getElementById('guide-status')
+    };
+
+    const peopleInput = document.getElementById('solar-people');
+    const profileResult = document.getElementById('solar-profile-result');
+    const profileNote = document.getElementById('solar-profile-note');
+    let activeScrollTimer = null;
+
+    function scrollToStage(stageId){
+      const stage = document.getElementById(stageId);
+      if(!stage) return;
+      const top = stage.getBoundingClientRect().top + window.scrollY - 92;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      stage.classList.add('flash');
+      clearTimeout(activeScrollTimer);
+      activeScrollTimer = setTimeout(() => stage.classList.remove('flash'), 900);
+    }
+
+    function updateGuideStatus(){
+      const completed = Object.values({
+        home: guideState.home,
+        profile: guideState.profile,
+        layout: guideState.layout,
+        tech: guideState.tech,
+        context: guideState.context
+      }).filter(Boolean).length;
+
+      summaryEls.home.textContent = guideState.home || 'Por escolher';
+      summaryEls.people.textContent = `${guideState.people} pessoa${guideState.people > 1 ? 's' : ''}`;
+      summaryEls.profile.textContent = guideState.profile || 'Por calcular';
+      summaryEls.layout.textContent = guideState.layout || 'Por escolher';
+      summaryEls.tech.textContent = guideState.tech || 'Por escolher';
+      summaryEls.context.textContent = guideState.context || 'Por escolher';
+      summaryEls.status.textContent = completed === 5 ? 'Lead pronta para envio' : `Guide preenchido ${completed}/5`;
+    }
+
+    function refreshProfile(){
+      const people = Math.max(1, Number(peopleInput.value || 1));
+      guideState.people = people;
+
+      if(!guideState.home){
+        guideState.profile = '';
+        profileResult.textContent = 'Por calcular';
+        profileNote.textContent = 'Escolha primeiro o tipo de habitação e depois indique o numero de pessoas.';
+        updateGuideStatus();
+        return;
+      }
+
+      const dailyUse = people * 40;
+      let label = `${dailyUse} L/dia`;
+
+      if(guideState.home === 'Moradia' && people >= 5){
+        label = `Perfil muito forte · ${dailyUse} L/dia`;
+      } else if(guideState.home === 'Moradia' && people >= 4){
+        label = `Perfil forte · ${dailyUse} L/dia`;
+      } else if(guideState.home === 'Apartamento' && people <= 2){
+        label = `Perfil contido · ${dailyUse} L/dia`;
+      } else {
+        label = `Perfil equilibrado · ${dailyUse} L/dia`;
+      }
+
+      guideState.profile = label;
+      profileResult.textContent = `${dailyUse} L`;
+      profileNote.textContent = `Leitura estimada de consumo: ${label}. O Solar Termico tende a ganhar mais interesse quando existe consumo significativo e capacidade de acumulacao elevada.`;
+      updateGuideStatus();
+    }
+
+    function selectChoice(button){
+      const field = button.dataset.field;
+      const value = button.dataset.value;
+      if(!field) return;
+      guideState[field] = value;
+      document.querySelectorAll(`.choice-btn[data-field="${field}"]`).forEach(btn => btn.classList.toggle('active', btn === button));
+
+      if(field === 'home'){
+        refreshProfile();
+        setTimeout(() => scrollToStage('step-people'), 220);
+        return;
+      }
+
+      updateGuideStatus();
+
+      if(field === 'layout'){
+        setTimeout(() => scrollToStage('step-tech'), 220);
+      }
+    }
+
+    async function submitSolarLead(){
+      const name = document.getElementById('solar-name').value.trim();
+      const email = document.getElementById('solar-email').value.trim();
+      const phone = document.getElementById('solar-phone').value.trim();
+      const message = document.getElementById('solar-message').value.trim();
+      const feedback = document.getElementById('solar-feedback');
+
+      if(!name || !email){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Falta informação</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>';
+        return;
+      }
+
+      if(!guideState.home || !guideState.profile || !guideState.layout || !guideState.tech || !guideState.context){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Faltam escolhas</strong><p style="margin:8px 0 0;color:var(--muted)">Complete os passos principais do guia antes de enviar.</p>';
+        return;
+      }
+
+      if(WEB3FORMS_ACCESS_KEY === 'SUBSTITUIR_WEB3FORMS_ACCESS_KEY'){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Falta ligar o envio automático</strong><p style="margin:8px 0 0;color:var(--muted)">Substitua <code>WEB3FORMS_ACCESS_KEY</code> pela chave real do Web3Forms.</p>';
+        return;
+      }
+
+      const formData = new FormData();
+      formData.set('access_key', WEB3FORMS_ACCESS_KEY);
+      formData.set('subject', 'Lead Solar Termico Wisemak');
+      formData.set('from_name', 'Wisemak Solar Termico');
+      formData.set('name', name);
+      formData.set('email', email);
+      formData.set('phone', phone || '-');
+      formData.set('mensagem_cliente', message || '-');
+      formData.set('solucao', 'Solar Termico');
+      formData.set('tipo_habitacao', guideState.home);
+      formData.set('numero_pessoas', String(guideState.people));
+      formData.set('perfil_consumo', guideState.profile);
+      formData.set('configuracao_sistema', guideState.layout);
+      formData.set('preferencia_tecnica', guideState.tech);
+      formData.set('contexto_instalacao', guideState.context);
+
+      feedback.style.display = 'block';
+      feedback.innerHTML = '<strong>A enviar guia</strong><p style="margin:8px 0 0;color:var(--muted)">Estamos a enviar as escolhas do cliente para a equipa Wisemak.</p>';
+
+      try{
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+
+        if(result.success){
+          feedback.innerHTML = '<strong>Guide enviado</strong><p style="margin:8px 0 0;color:var(--muted)">A equipa Wisemak vai receber a lead com as escolhas feitas e responder o mais rapidamente possível.</p>';
+          document.getElementById('solar-name').value = '';
+          document.getElementById('solar-email').value = '';
+          document.getElementById('solar-phone').value = '';
+          document.getElementById('solar-message').value = '';
+          guideState.home = '';
+          guideState.people = 4;
+          guideState.profile = '';
+          guideState.layout = '';
+          guideState.tech = '';
+          guideState.context = '';
+          document.querySelectorAll('.choice-btn').forEach(btn => btn.classList.remove('active'));
+          peopleInput.value = 4;
+          profileResult.textContent = 'Por calcular';
+          profileNote.textContent = 'Escolha primeiro o tipo de habitação e depois indique o numero de pessoas.';
+          updateGuideStatus();
+          return;
+        }
+
+        feedback.innerHTML = `<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">${result.message || 'Nao foi possível enviar a lead neste momento.'}</p>`;
+      } catch (error){
+        feedback.innerHTML = '<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">Nao foi possível contactar o serviço de envio.</p>';
+      }
+    }
+
+    document.querySelectorAll('.choice-btn').forEach(button => {
+      button.addEventListener('click', () => selectChoice(button));
+    });
+    peopleInput.addEventListener('input', refreshProfile);
+    document.getElementById('advance-people').addEventListener('click', () => scrollToStage('step-layout'));
+    document.getElementById('advance-tech').addEventListener('click', () => scrollToStage('step-context'));
+    document.getElementById('advance-context').addEventListener('click', () => scrollToStage('step-form'));
+    document.getElementById('solar-submit-btn').addEventListener('click', submitSolarLead);
+
+    updateGuideStatus();
+  </script>
+</body>
+</html>

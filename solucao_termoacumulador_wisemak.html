@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wisemak | Termoacumulador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared-header.css">
+  <link rel="stylesheet" href="guide-page.css">
+  <script src="shared-header.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-shell">
+          <h1>Escolha o seu termoacumulador passo a passo</h1>
+          <p>Perceba rapidamente se esta e a solucao certa para a casa, qual a capacidade mais sensata e em que contexto faz mais sentido pedir proposta a equipa Wisemak.</p>
+          <div class="hero-actions"><a class="btn btn-light" href="#guide">Comecar guia</a></div>
+        </div>
+      </div>
+    </section>
+    <section id="guide">
+      <div class="container guide-grid">
+        <aside class="guide-sidebar">
+          <div class="side-card">
+            <h3>Resumo do guia</h3>
+            <div class="summary-list">
+              <div class="summary-item"><span>Habitacao</span><strong id="s-home">Por escolher</strong></div>
+              <div class="summary-item"><span>Pessoas</span><strong id="s-people">Por calcular</strong></div>
+              <div class="summary-item"><span>Capacidade</span><strong id="s-capacity">Por escolher</strong></div>
+              <div class="summary-item"><span>Objetivo</span><strong id="s-goal">Por escolher</strong></div>
+              <div class="summary-item"><span>Instalacao</span><strong id="s-context">Por escolher</strong></div>
+            </div>
+          </div>
+          <div class="side-card">
+            <h3>Estado da lead</h3>
+            <p style="margin:0 0 14px;color:var(--muted)">A equipa recebe logo a leitura de capacidade, uso e enquadramento da obra.</p>
+            <div class="status-pill" id="guide-status">Guide iniciado</div>
+          </div>
+        </aside>
+        <div class="guide-content">
+          <section class="intro-card">
+            <h2>Configurador Wisemak</h2>
+            <p>Este guia ajuda a separar um termoacumulador de recurso de uma decisao consciente para agua quente sanitária.</p>
+          </section>
+
+          <article class="stage" id="step-home">
+            <div class="stage-head"><span class="stage-index">1</span><div class="stage-title"><strong>Tipo de habitacao</strong><span>Primeiro enquadramento</span></div><span class="tag">Base</span></div>
+            <p>Moradia e apartamento mudam a leitura do espaco disponivel, do perfil de consumo e da solucao mais equilibrada.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="home" data-value="Moradia"><strong>Moradia</strong></button>
+              <button class="choice-btn" type="button" data-field="home" data-value="Apartamento"><strong>Apartamento</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-people">
+            <div class="stage-head"><span class="stage-index">2</span><div class="stage-title"><strong>Quantas pessoas usam AQS</strong><span>Dimensionamento base</span></div><span class="tag">Consumo</span></div>
+            <p>Este passo ajuda a dar uma primeira leitura da capacidade mais sensata para a casa.</p>
+            <div class="compact-grid">
+              <div class="field-card">
+                <label for="people">Numero de pessoas</label>
+                <input id="people" type="number" min="1" max="8" step="1" value="3">
+              </div>
+              <div class="result-card">
+                <strong id="people-result">3 pessoas</strong>
+                <span>Leitura inicial do agregado</span>
+              </div>
+            </div>
+            <div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-people">Avancar</button></div>
+          </article>
+
+          <article class="stage" id="step-capacity">
+            <div class="stage-head"><span class="stage-index">3</span><div class="stage-title"><strong>Capacidade que lhe parece fazer sentido</strong><span>Deposito e autonomia</span></div><span class="tag">Capacidade</span></div>
+            <p>Ajuda-nos a perceber se estamos a falar de uma solucao compacta, intermédia ou ja mais robusta para o perfil da casa.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="capacity" data-value="80 a 100 litros"><strong>80 a 100 L</strong></button>
+              <button class="choice-btn" type="button" data-field="capacity" data-value="120 a 150 litros"><strong>120 a 150 L</strong></button>
+              <button class="choice-btn" type="button" data-field="capacity" data-value="200 litros ou mais"><strong>200 L ou mais</strong></button>
+              <button class="choice-btn" type="button" data-field="capacity" data-value="Preciso de recomendacao da Wisemak"><strong>Quero recomendacao</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-goal">
+            <div class="stage-head"><span class="stage-index">4</span><div class="stage-title"><strong>O que pesa mais na decisao</strong><span>Leitura comercial</span></div><span class="tag">Escolha</span></div>
+            <p>Este passo ajuda a perceber se a prioridade esta no investimento inicial, simplicidade ou numa solucao provisoria.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="goal" data-value="Investimento inicial baixo"><strong>Investimento inicial</strong></button>
+              <button class="choice-btn" type="button" data-field="goal" data-value="Simplicidade de instalacao"><strong>Simplicidade</strong></button>
+              <button class="choice-btn" type="button" data-field="goal" data-value="Solucao provisoria ou de apoio"><strong>Solucao de apoio</strong></button>
+              <button class="choice-btn" type="button" data-field="goal" data-value="Preciso de ajuda a comparar com outras solucões"><strong>Preciso de ajuda</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-context">
+            <div class="stage-head"><span class="stage-index">5</span><div class="stage-title"><strong>Contexto da instalacao</strong><span>Em que ponto esta a casa</span></div><span class="tag">Obra</span></div>
+            <p>Importa perceber se o termoacumulador entra em obra nova, substituicao ou numa situacao de recurso.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="context" data-value="Obra nova"><strong>Obra nova</strong></button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Substituicao de esquentador"><strong>Substituicao de esquentador</strong></button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Substituicao de termoacumulador"><strong>Substituicao de termo</strong></button>
+              <button class="choice-btn" type="button" data-field="context" data-value="Preciso de uma solucao simples e rapida"><strong>Solucao simples e rapida</strong></button>
+            </div>
+            <div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-context">Avancar</button></div>
+          </article>
+
+          <div class="form-card" id="step-form">
+            <span class="tag">Lead</span>
+            <h3>6. Enviar para a equipa Wisemak</h3>
+            <p>O pedido segue com a leitura de capacidade, agregado e contexto da instalacao.</p>
+            <div class="form-grid">
+              <input id="lead-name" type="text" placeholder="Nome">
+              <input id="lead-email" type="email" placeholder="Email">
+              <input id="lead-phone" type="tel" placeholder="Telefone">
+              <div></div>
+              <textarea id="lead-message" class="full" placeholder="Se quiser, acrescente notas sobre o uso da agua quente ou duvidas adicionais."></textarea>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button class="btn btn-light" type="button" id="submit-btn">Enviar formulario</button>
+              <a class="btn btn-ghost" href="#step-home">Rever escolhas</a>
+            </div>
+            <div class="feedback" id="feedback"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container">Guia de termoacumulador preparado para qualificar leads antes da proposta.</div></footer>
+  <script>
+    const WEB3FORMS_ACCESS_KEY = 'SUBSTITUIR_WEB3FORMS_ACCESS_KEY';
+    const state = { home:'', people:'3 pessoas', capacity:'', goal:'', context:'' };
+    const sum = {
+      home: document.getElementById('s-home'),
+      people: document.getElementById('s-people'),
+      capacity: document.getElementById('s-capacity'),
+      goal: document.getElementById('s-goal'),
+      context: document.getElementById('s-context'),
+      status: document.getElementById('guide-status')
+    };
+    let timer = null;
+    function scrollToStage(id){ const el=document.getElementById(id); if(!el) return; window.scrollTo({ top:Math.max(0, el.getBoundingClientRect().top + window.scrollY - 92), behavior:'smooth' }); el.classList.add('flash'); clearTimeout(timer); timer=setTimeout(()=>el.classList.remove('flash'), 900); }
+    function update(){ sum.home.textContent=state.home||'Por escolher'; sum.people.textContent=state.people||'Por calcular'; sum.capacity.textContent=state.capacity||'Por escolher'; sum.goal.textContent=state.goal||'Por escolher'; sum.context.textContent=state.context||'Por escolher'; const c=[state.home,state.people,state.capacity,state.goal,state.context].filter(Boolean).length; sum.status.textContent=c===5?'Lead pronta para envio':`Guide preenchido ${c}/5`; }
+    document.getElementById('people').addEventListener('input',()=>{ const n=Math.max(1, Number(document.getElementById('people').value || 1)); state.people=`${n} pessoa${n>1?'s':''}`; document.getElementById('people-result').textContent=state.people; update(); });
+    document.querySelectorAll('.choice-btn').forEach(btn=>btn.addEventListener('click',()=>{ const { field, value } = btn.dataset; state[field]=value; document.querySelectorAll(`.choice-btn[data-field="${field}"]`).forEach(i=>i.classList.toggle('active', i===btn)); update(); if(field==='home') setTimeout(()=>scrollToStage('step-people'),220); if(field==='capacity') setTimeout(()=>scrollToStage('step-goal'),220); if(field==='goal') setTimeout(()=>scrollToStage('step-context'),220); }));
+    document.getElementById('advance-people').addEventListener('click',()=>scrollToStage('step-capacity'));
+    document.getElementById('advance-context').addEventListener('click',()=>scrollToStage('step-form'));
+    document.getElementById('submit-btn').addEventListener('click', async()=>{ const name=document.getElementById('lead-name').value.trim(), email=document.getElementById('lead-email').value.trim(), phone=document.getElementById('lead-phone').value.trim(), message=document.getElementById('lead-message').value.trim(), f=document.getElementById('feedback'); if(!name||!email){ f.style.display='block'; f.innerHTML='<strong>Falta informacao</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>'; return; } if([state.home,state.people,state.capacity,state.goal,state.context].filter(Boolean).length<5){ f.style.display='block'; f.innerHTML='<strong>Faltam escolhas</strong><p style="margin:8px 0 0;color:var(--muted)">Complete os passos principais do guia antes de enviar.</p>'; return; } if(WEB3FORMS_ACCESS_KEY==='SUBSTITUIR_WEB3FORMS_ACCESS_KEY'){ f.style.display='block'; f.innerHTML='<strong>Falta ligar o envio automatico</strong><p style="margin:8px 0 0;color:var(--muted)">Substitua <code>WEB3FORMS_ACCESS_KEY</code> pela chave real do Web3Forms.</p>'; return; } const fd=new FormData(); fd.set('access_key',WEB3FORMS_ACCESS_KEY); fd.set('subject','Lead Termoacumulador Wisemak'); fd.set('from_name','Wisemak Termoacumulador'); fd.set('name',name); fd.set('email',email); fd.set('phone',phone||'-'); fd.set('mensagem_cliente',message||'-'); fd.set('solucao','Termoacumulador'); Object.entries(state).forEach(([k,v])=>fd.set(k,v)); f.style.display='block'; f.innerHTML='<strong>A enviar guia</strong><p style="margin:8px 0 0;color:var(--muted)">Estamos a enviar as escolhas do cliente para a equipa Wisemak.</p>'; try { const r=await fetch('https://api.web3forms.com/submit',{ method:'POST', body:fd }); const j=await r.json(); f.innerHTML=j.success?'<strong>Guide enviado</strong><p style="margin:8px 0 0;color:var(--muted)">A equipa Wisemak vai receber a lead e responder o mais rapidamente possivel.</p>':`<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">${j.message||'Nao foi possivel enviar a lead.'}</p>`; } catch { f.innerHTML='<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">Nao foi possivel contactar o servico de envio.</p>'; } });
+    update();
+  </script>
+</body>
+</html>
