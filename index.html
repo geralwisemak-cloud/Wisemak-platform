@@ -405,9 +405,133 @@
     .card p,.card li{color:var(--muted)}
     .icon{width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:22px;margin-bottom:16px}
 
-    .funnel{display:grid;grid-template-columns:1fr;gap:18px;align-items:stretch}
-    .sticky-box{position:static}
+    .funnel{display:grid;grid-template-columns:320px minmax(0,1fr);gap:18px;align-items:start}
+    .sticky-box{position:sticky;top:96px;display:grid;gap:18px}
     .configurator-shell{display:grid;gap:18px}
+    .journey-box{
+      padding:20px;
+      border-radius:24px;
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+    .journey-box h3{
+      margin:0 0 10px;
+      font-size:28px;
+      letter-spacing:-.04em;
+    }
+    .journey-box p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+    .journey-steps{
+      display:grid;
+      gap:0;
+      margin-top:18px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      overflow:hidden;
+      background:rgba(255,255,255,.02);
+    }
+    .journey-step{
+      width:100%;
+      display:grid;
+      grid-template-columns:32px minmax(0,1fr);
+      gap:12px;
+      align-items:start;
+      padding:14px 16px;
+      border:0;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      background:transparent;
+      color:#fff;
+      text-align:left;
+      cursor:pointer;
+      transition:.24s ease;
+    }
+    .journey-step:last-child{border-bottom:0}
+    .journey-step:hover{
+      background:rgba(255,255,255,.06);
+    }
+    .journey-step-index{
+      width:32px;
+      height:32px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:-.02em;
+    }
+    .journey-step-copy{
+      min-width:0;
+      display:grid;
+      gap:5px;
+    }
+    .journey-step-copy strong{
+      font-size:15px;
+      letter-spacing:-.02em;
+      line-height:1.2;
+    }
+    .journey-step-copy span{
+      color:rgba(255,255,255,.58);
+      font-size:12px;
+      line-height:1.35;
+    }
+    .journey-step-state{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      justify-self:start;
+      margin-top:4px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      color:rgba(255,255,255,.7);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+    .journey-step.is-current{
+      background:rgba(59,130,246,.12);
+    }
+    .journey-step.is-current .journey-step-index{
+      background:rgba(59,130,246,.18);
+      border-color:rgba(59,130,246,.34);
+    }
+    .journey-step.is-current .journey-step-state{
+      background:rgba(59,130,246,.16);
+      border-color:rgba(59,130,246,.28);
+      color:#dbeafe;
+    }
+    .journey-step.is-complete{
+      background:rgba(34,197,94,.1);
+    }
+    .journey-step.is-complete .journey-step-index{
+      background:rgba(34,197,94,.16);
+      border-color:rgba(74,222,128,.24);
+    }
+    .journey-step.is-complete .journey-step-state{
+      background:rgba(34,197,94,.16);
+      border-color:rgba(74,222,128,.26);
+      color:#dcfce7;
+    }
+    .journey-foot{
+      margin-top:16px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:grid;
+      gap:6px;
+    }
+    .journey-foot strong{
+      font-size:16px;
+      letter-spacing:-.03em;
+    }
     .config-status{display:grid;grid-template-columns:1.12fr 1.12fr 1.12fr 1.85fr .95fr;gap:12px;padding:18px;border-radius:34px;background:
       radial-gradient(circle at 12% 0%, rgba(255,255,255,.2), transparent 24%),
       linear-gradient(180deg,#202020 0%,#111111 100%);border:1px solid rgba(255,255,255,.1);box-shadow:0 24px 80px rgba(0,0,0,.42)}
@@ -690,7 +814,7 @@
     footer{padding:34px 0 60px;color:var(--muted-2)}
     .footer-line{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:none;padding-top:24px}
 
-    @media (max-width:1100px){
+    @media (max-width:960px){
       .hero-kpis,.cards-4,.process-row{grid-template-columns:repeat(2,1fr)}
       .cards-3,.funnel,.quote-wrap,.cta-band,.quote-inline-fields{grid-template-columns:1fr}
       .sticky-box{position:static}
@@ -820,6 +944,11 @@
       .tech-item{grid-template-columns:minmax(0,1fr);gap:8px;padding:11px 14px}
       .tech-item span:last-child{text-align:left}
       .rating-dots{justify-content:flex-start}
+      .funnel{grid-template-columns:1fr}
+      .sticky-box{position:static}
+      .journey-box{padding:18px;border-radius:22px}
+      .journey-box h3{font-size:24px}
+      .journey-step{grid-template-columns:30px minmax(0,1fr);padding:13px 12px}
       .quote-wrap{grid-template-columns:1fr}
       .card{padding:18px;border-radius:24px}
       .field input,.field select,.field textarea{padding:14px}
@@ -1342,6 +1471,59 @@
         </div>
 
         <div class="funnel">
+          <aside class="sticky-box">
+            <div class="journey-box">
+              <h3>Resumo do configurador</h3>
+              <p>Acompanhe o caminho da solução e veja o que já ficou definido enquanto percorre o configurador.</p>
+              <div class="journey-steps">
+                <button class="journey-step" type="button" data-journey-target="base" data-journey-step="base">
+                  <span class="journey-step-index">0</span>
+                  <span class="journey-step-copy">
+                    <strong>Base da casa</strong>
+                    <span id="journey-base-detail">150 m² · 4 pessoas · 5 divisões</span>
+                    <span class="journey-step-state">Ativo</span>
+                  </span>
+                </button>
+                <button class="journey-step" type="button" data-journey-target="aqs" data-journey-step="aqs">
+                  <span class="journey-step-index">1</span>
+                  <span class="journey-step-copy">
+                    <strong>Água quente</strong>
+                    <span id="journey-aqs-detail">Por definir</span>
+                    <span class="journey-step-state">Por fazer</span>
+                  </span>
+                </button>
+                <button class="journey-step" type="button" data-journey-target="clima" data-journey-step="clima">
+                  <span class="journey-step-index">2</span>
+                  <span class="journey-step-copy">
+                    <strong>Climatização</strong>
+                    <span id="journey-clima-detail">Por definir</span>
+                    <span class="journey-step-state">Por fazer</span>
+                  </span>
+                </button>
+                <button class="journey-step" type="button" data-journey-target="vent" data-journey-step="vent">
+                  <span class="journey-step-index">3</span>
+                  <span class="journey-step-copy">
+                    <strong>Ventilação</strong>
+                    <span id="journey-vent-detail">Por definir</span>
+                    <span class="journey-step-state">Por fazer</span>
+                  </span>
+                </button>
+                <button class="journey-step" type="button" data-journey-target="summary" data-journey-step="summary">
+                  <span class="journey-step-index">4</span>
+                  <span class="journey-step-copy">
+                    <strong>Resumo final</strong>
+                    <span id="journey-summary-detail">0/3 áreas definidas</span>
+                    <span class="journey-step-state">À espera</span>
+                  </span>
+                </button>
+              </div>
+              <div class="journey-foot">
+                <strong id="journey-current-title">A começar</strong>
+                <p id="journey-current-helper">Defina o perfil da casa e escolha a primeira área para avançar.</p>
+              </div>
+            </div>
+          </aside>
+
           <div class="configurator-shell">
           <div class="config-status" id="config-status">
             <div class="status-input status-stack house-meta">
@@ -1787,7 +1969,7 @@
             </div>
           </div>
 
-          <aside class="card sticky-box">
+            <div class="card summary-box">
             <span class="tag">Resumo da solução</span>
             <div class="summary-tech-layout" style="margin-top:14px">
               <div class="summary-panel">
@@ -1829,7 +2011,8 @@
             <div class="summary-final-cta">
               <a href="#cotacao" class="btn btn-light">Receber proposta completa</a>
             </div>
-          </aside>
+            </div>
+          </div>
           </div>
         </div>
       </div>
@@ -2261,7 +2444,15 @@
     const centralResultBox = document.getElementById('central-result');
     const ventChoice = document.getElementById('vent-choice');
     const summaryBox = document.querySelector('.sticky-box');
-    const summaryHeading = document.querySelector('.sticky-box .tag');
+    const summaryHeading = document.querySelector('.summary-box .tag');
+    const journeySteps = document.querySelectorAll('[data-journey-step]');
+    const journeyBaseDetail = document.getElementById('journey-base-detail');
+    const journeyAqsDetail = document.getElementById('journey-aqs-detail');
+    const journeyClimaDetail = document.getElementById('journey-clima-detail');
+    const journeyVentDetail = document.getElementById('journey-vent-detail');
+    const journeySummaryDetail = document.getElementById('journey-summary-detail');
+    const journeyCurrentTitle = document.getElementById('journey-current-title');
+    const journeyCurrentHelper = document.getElementById('journey-current-helper');
 
     function setVentOptionActive(label){
       document.querySelectorAll('.option[data-group="vent"]').forEach(o => {
@@ -2380,13 +2571,16 @@
     let pendingSummaryReveal = false;
     let smoothScrollFrame = null;
     let smoothScrollRun = 0;
+    let currentConfigPanel = 'aqs';
 
     function openPanel(panelId){
+      currentConfigPanel = panelId;
       panelCards.forEach(card => {
         card.classList.toggle('current', card.dataset.panelCard === panelId);
       });
       panels.forEach(panel => panel.classList.remove('active'));
       document.getElementById('panel-' + panelId).classList.add('active');
+      updateConfiguratorJourney();
     }
 
     function cancelGuidedAdvance(){
@@ -2494,6 +2688,10 @@
       smoothScrollToElement(configStatus, { offset: 112, duration: 1180 });
     }
 
+    function focusSummaryBox(){
+      smoothScrollToElement(summaryBox, { offset: 112, duration: 1120 });
+    }
+
     function goToVentilationStep(){
       pendingSummaryReveal = false;
       focusVentilationEntry();
@@ -2509,6 +2707,85 @@
       if(panel){
         panel.classList.remove('panel-pulse');
         window.requestAnimationFrame(() => panel.classList.add('panel-pulse'));
+      }
+    }
+
+    function setJourneyStepState(key, options = {}){
+      const step = document.querySelector(`[data-journey-step="${key}"]`);
+      if(!step){
+        return;
+      }
+
+      const detailEl = step.querySelector('.journey-step-copy span');
+      const stateEl = step.querySelector('.journey-step-state');
+
+      step.classList.toggle('is-complete', Boolean(options.complete));
+      step.classList.toggle('is-current', Boolean(options.current));
+
+      if(detailEl && options.detail){
+        detailEl.textContent = options.detail;
+      }
+
+      if(stateEl){
+        if(options.current){
+          stateEl.textContent = 'Em curso';
+        } else if(options.complete){
+          stateEl.textContent = 'Concluído';
+        } else {
+          stateEl.textContent = options.pendingLabel || 'Por fazer';
+        }
+      }
+    }
+
+    function updateConfiguratorJourney(){
+      const houseProfile = getHouseProfile();
+      const climate = getClimateSelection();
+      const allAreasComplete = state.decisions.aqs && isClimateDecisionComplete() && state.decisions.vent;
+      const currentStep = allAreasComplete ? 'summary' : currentConfigPanel;
+      const completedAreas = [state.decisions.aqs, isClimateDecisionComplete(), state.decisions.vent].filter(Boolean).length;
+
+      setJourneyStepState('base', {
+        complete: true,
+        current: currentStep === 'base',
+        detail: `${houseProfile.area} m² · ${houseProfile.people} ${houseProfile.people === 1 ? 'pessoa' : 'pessoas'} · ${houseProfile.rooms} ${houseProfile.rooms === 1 ? 'divisão' : 'divisões'}`
+      });
+      setJourneyStepState('aqs', {
+        complete: state.decisions.aqs,
+        current: currentStep === 'aqs',
+        detail: state.decisions.aqs ? state.aqs.label : 'Por definir'
+      });
+      setJourneyStepState('clima', {
+        complete: isClimateDecisionComplete(),
+        current: currentStep === 'clima',
+        detail: isClimateDecisionComplete() ? getClimateDisplayLabel(climate, 'summary') : 'Por definir'
+      });
+      setJourneyStepState('vent', {
+        complete: state.decisions.vent,
+        current: currentStep === 'vent',
+        detail: state.decisions.vent ? getVentSummaryLabel() : 'Por definir'
+      });
+      setJourneyStepState('summary', {
+        complete: allAreasComplete,
+        current: currentStep === 'summary',
+        detail: allAreasComplete ? 'Pronto para rever e pedir proposta' : `${completedAreas}/3 áreas definidas`,
+        pendingLabel: 'À espera'
+      });
+
+      if(currentStep === 'summary'){
+        journeyCurrentTitle.textContent = 'Resumo pronto para rever';
+        journeyCurrentHelper.textContent = 'Já definiu água quente, climatização e ventilação. Agora pode validar a solução completa.';
+      } else if(currentStep === 'clima'){
+        journeyCurrentTitle.textContent = 'Está na climatização';
+        journeyCurrentHelper.textContent = 'Feche a parte da climatização para o caminho continuar de forma natural até à ventilação.';
+      } else if(currentStep === 'vent'){
+        journeyCurrentTitle.textContent = 'Está na ventilação';
+        journeyCurrentHelper.textContent = 'Este é o último grande passo antes do resumo final da solução.';
+      } else if(currentStep === 'aqs'){
+        journeyCurrentTitle.textContent = 'Está a começar pela água quente';
+        journeyCurrentHelper.textContent = 'A água quente ajuda a dar a primeira leitura da solução e do perfil da casa.';
+      } else {
+        journeyCurrentTitle.textContent = 'Base da casa definida';
+        journeyCurrentHelper.textContent = 'O perfil da habitação já está enquadrado. Falta escolher as três áreas da solução.';
       }
     }
 
@@ -3592,6 +3869,7 @@
       updateVentResult();
       updateTechnicalBox(state.aqs, climate, state.vent);
       updateSelectionVisuals(state.aqs, climate, state.vent);
+      updateConfiguratorJourney();
       updateVentilationLockState();
 
       const climateMode = state.clima.master;
@@ -3705,6 +3983,31 @@
         box.innerHTML = '<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">Não foi possível contactar o serviço de envio automático.</p>';
       }
     }
+
+    document.querySelectorAll('[data-journey-target]').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.dataset.journeyTarget;
+        if(target === 'base'){
+          smoothScrollToElement(configStatus, { offset: 112, duration: 980 });
+          return;
+        }
+        if(target === 'aqs'){
+          focusAqsChoice();
+          return;
+        }
+        if(target === 'clima'){
+          focusClimateEntry();
+          return;
+        }
+        if(target === 'vent'){
+          focusVentilationEntry();
+          return;
+        }
+        if(target === 'summary'){
+          focusSummaryBox();
+        }
+      });
+    });
 
     async function submitQuickLead(){
       const name = document.getElementById('quick-name').value.trim();

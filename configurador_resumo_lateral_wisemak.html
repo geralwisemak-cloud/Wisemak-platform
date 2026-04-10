@@ -481,6 +481,9 @@
       font-size:12px;
       line-height:1.35;
     }
+    .journey-step-copy .journey-placeholder{
+      color:rgba(255,255,255,.34);
+    }
     .journey-step-state{
       display:inline-flex;
       align-items:center;
@@ -791,18 +794,58 @@
     .field textarea{min-height:120px;resize:vertical}
     .field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(255,255,255,.35)}
     .quote-result{padding:18px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);margin-top:18px}
+    .summary-final-cta{
+      margin-top:28px;
+      padding-top:24px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:flex-end;
+    }
+    .summary-final-cta .btn{
+      min-width:280px;
+      justify-content:center;
+    }
 
-    .episodes-shell{padding:28px;border-radius:32px;background:linear-gradient(180deg,#131313,#0e0e0e);border:1px solid rgba(255,255,255,.08)}
-    .episodes-row{display:flex;gap:16px;overflow:auto;padding-bottom:8px;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
-    .episodes-row::-webkit-scrollbar{display:none}
-    .episode{min-width:290px;max-width:290px;border-radius:24px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.08);transition:.28s ease;cursor:pointer;scroll-snap-align:start}
-    .episode:hover{transform:translateY(-6px) scale(1.01)}
-    .episode-cover{aspect-ratio:16/9;background:linear-gradient(135deg,#202020,#0f172a 55%,#111);position:relative;padding:18px;display:flex;align-items:flex-end}
-    .episode-cover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(0,0,0,.55) 100%)}
-    .episode-tag{position:absolute;top:16px;left:16px;z-index:2;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-    .episode-title{position:relative;z-index:2;font-size:22px;font-weight:800;line-height:1;letter-spacing:-.04em}
-    .episode-body{padding:18px}
-    .episode-body p{margin:0 0 14px;color:var(--muted);font-size:14px}
+    .episodes-shell{padding:28px;border-radius:32px;background:
+      radial-gradient(circle at 16% 0%,rgba(239,68,68,.16),transparent 26%),
+      radial-gradient(circle at 92% 12%,rgba(59,130,246,.12),transparent 24%),
+      linear-gradient(180deg,#141414,#070707);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+    .episodes-feature{min-height:300px;border-radius:28px;overflow:hidden;position:relative;display:grid;align-items:end;padding:34px;margin-bottom:22px;background:
+      radial-gradient(circle at 72% 22%,rgba(255,255,255,.16),transparent 16%),
+      radial-gradient(circle at 82% 52%,rgba(59,130,246,.18),transparent 28%),
+      linear-gradient(135deg,#101010 0%,#181818 46%,#050505 100%);border:1px solid rgba(255,255,255,.09)}
+    .episodes-feature::before{content:"";position:absolute;inset:0;background:
+      linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.18) 74%,rgba(0,0,0,.62) 100%),
+      linear-gradient(180deg,rgba(0,0,0,.02) 0%,rgba(0,0,0,.72) 100%)}
+    .episodes-feature::after{content:"W";position:absolute;right:34px;top:20px;font-size:clamp(120px,18vw,260px);font-weight:900;line-height:.8;letter-spacing:-.14em;color:rgba(255,255,255,.035);transform:skewX(-8deg)}
+    .episodes-feature-content{position:relative;z-index:1;max-width:620px}
+    .episodes-feature h3{margin:10px 0 12px;font-size:clamp(34px,4.8vw,68px);line-height:.9;letter-spacing:-.07em;text-wrap:balance}
+    .episodes-feature p{margin:0 0 22px;color:rgba(255,255,255,.74);font-size:16px;line-height:1.55;max-width:54ch}
+    .episodes-feature-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:rgba(255,255,255,.72);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    .episodes-feature-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .episodes-library-tools{display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:14px;align-items:center;margin:0 0 18px}
+    .episodes-search{display:flex;align-items:center;gap:10px;padding:13px 16px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+    .episodes-search span{color:rgba(255,255,255,.42);font-size:15px}
+    .episodes-search input{width:100%;border:0;outline:none;background:transparent;color:#fff;font:inherit;font-weight:700}
+    .episodes-search input::placeholder{color:rgba(255,255,255,.36)}
+    .episodes-filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .episode-filter{padding:11px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.72);font-weight:800;font-size:12px;letter-spacing:.03em;cursor:pointer;transition:.22s ease}
+    .episode-filter:hover,.episode-filter.active{background:#fff;color:#0a0a0a;border-color:#fff}
+    .episodes-row-title{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .episodes-row-title h3{margin:0;font-size:22px;letter-spacing:-.04em}
+    .episodes-row-title span{color:var(--muted-2);font-size:13px}
+    .episodes-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding:0}
+    .episode{min-width:0;max-width:none;border-radius:18px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.08);transition:.28s ease;cursor:pointer;position:relative}
+    .episode:hover{transform:translateY(-8px) scale(1.025);z-index:3;border-color:rgba(255,255,255,.2);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+    .episode.is-hidden{display:none}
+    .episode-cover{aspect-ratio:16/9;background:linear-gradient(135deg,#202020,#0f172a 55%,#111);position:relative;padding:12px;display:flex;align-items:flex-end;background-size:cover;background-position:center}
+    .episode-cover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 18%,rgba(0,0,0,.78) 100%)}
+    .episode-tag{position:absolute;top:12px;left:12px;z-index:2;padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.12);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .episode-title{position:relative;z-index:2;font-size:15px;font-weight:900;line-height:.98;letter-spacing:-.04em}
+    .episode-body{padding:12px;min-height:126px}
+    .episode-body p{margin:0 0 12px;color:var(--muted);font-size:11px;line-height:1.42}
+    .episodes-empty{display:none;margin-top:14px;padding:18px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--muted)}
+    .episodes-empty.is-visible{display:block}
     .play{display:inline-flex;align-items:center;gap:8px;font-weight:700}
 
     .cta-band{padding:34px;border-radius:30px;background:linear-gradient(135deg,#f3f4f6,#ffffff);color:#0a0a0a;display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center}
@@ -840,6 +883,14 @@
       .hero-actions{justify-content:flex-start;gap:10px;margin-top:24px}
       .hero-actions .btn{width:100%;padding:15px 18px}
       .hero-actions .btn-ghost{background:rgba(255,255,255,.08)}
+      .episodes-shell{padding:16px;border-radius:24px}
+      .episodes-feature{min-height:360px;padding:22px;border-radius:22px}
+      .episodes-feature h3{font-size:clamp(34px,12vw,54px)}
+      .episodes-feature-actions .btn{width:100%;justify-content:center}
+      .episodes-library-tools{grid-template-columns:1fr}
+      .episodes-filters{justify-content:flex-start}
+      .episodes-row-title{align-items:flex-start;flex-direction:column}
+      .episodes-row{grid-template-columns:1fr}
       .hero-kpis,.cards-4,.cards-3,.process-row,.options,.climate-mode-switch{grid-template-columns:1fr}
       .hero-kpis{
         display:flex;
@@ -1338,9 +1389,413 @@
       }
     }
 
+    .configurator-side-summary-page #configurador .container{width:min(1480px,calc(100% - 32px))}
+    .configurator-side-summary-page .funnel{
+      grid-template-columns:320px minmax(0,1fr);
+      gap:18px;
+      align-items:start;
+    }
+    .configurator-side-summary-page .sticky-box{
+      position:sticky;
+      top:96px;
+      display:grid;
+      gap:18px;
+      align-self:start;
+    }
+    .configurator-side-summary-page .configurator-shell{
+      display:grid;
+      gap:18px;
+      min-width:0;
+    }
+    .configurator-side-summary-page .config-status{
+      grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+      gap:14px;
+      padding:16px;
+      border-radius:30px;
+      align-items:stretch;
+    }
+    .configurator-side-summary-page .status-stack{grid-column:auto}
+    .configurator-side-summary-page .people-meta{grid-column:auto}
+    .configurator-side-summary-page .status-card,
+    .configurator-side-summary-page .status-input{
+      min-height:122px;
+      border-radius:22px;
+      padding:16px;
+    }
+    .configurator-side-summary-page .config-main.card{
+      padding:24px;
+      border-radius:28px;
+    }
+    .configurator-side-summary-page .summary-tech-layout{
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      gap:16px;
+    }
+    .configurator-side-summary-page .summary-panel,
+    .configurator-side-summary-page .tech-box{
+      padding:16px;
+      border-radius:22px;
+    }
+    @media (max-width:1180px){
+      .configurator-side-summary-page .funnel{
+        grid-template-columns:280px minmax(0,1fr);
+      }
+      .configurator-side-summary-page .config-status{
+        grid-template-columns:1fr;
+      }
+      .configurator-side-summary-page .summary-tech-layout{
+        grid-template-columns:1fr;
+      }
+    }
+    @media (max-width:960px){
+      .configurator-side-summary-page #configurador .container{width:min(1480px,calc(100% - 20px))}
+      .configurator-side-summary-page .funnel{
+        grid-template-columns:1fr;
+      }
+      .configurator-side-summary-page .sticky-box{
+        position:static;
+      }
+      .configurator-side-summary-page .config-status{
+        grid-template-columns:1fr;
+      }
+      .configurator-side-summary-page .config-main.card{
+        padding:16px;
+      }
+      .configurator-side-summary-page .summary-tech-layout{
+        grid-template-columns:1fr;
+      }
+    }
+
+    .configurator-side-summary-page .status-stack .stack-fields{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      align-items:start;
+    }
+    .configurator-side-summary-page .status-stack .stack-field{
+      align-content:start;
+    }
+    .configurator-side-summary-page #panel-aqs .solution-rail{
+      gap:18px;
+    }
+    .configurator-side-summary-page #panel-aqs .solution-rail-head p{
+      max-width:760px;
+    }
+    .configurator-side-summary-page #panel-aqs .solution-carousel{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      overflow:visible;
+      padding:0;
+      scroll-snap-type:none;
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich{
+      flex:none;
+      min-width:0;
+      padding:14px 16px;
+      border-radius:20px;
+      min-height:auto;
+      gap:8px;
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-top{
+      margin-bottom:0;
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-copy{
+      margin-bottom:0;
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-copy h4{
+      margin:0 0 3px;
+      font-size:22px;
+      line-height:1.06;
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-copy p{
+      margin:0;
+      font-size:13px;
+      line-height:1.35;
+      color:rgba(255,255,255,.62);
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-specs{
+      gap:0;
+      margin-top:2px;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(255,255,255,.025);
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-spec{
+      padding:8px 12px;
+      border-top:1px solid rgba(255,255,255,.06);
+      gap:12px;
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-spec:first-child{
+      border-top:0;
+    }
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-spec span:first-child,
+    .configurator-side-summary-page #panel-aqs .option.option-rich .option-spec span:last-child{
+      font-size:12px;
+      line-height:1.25;
+    }
+    .configurator-side-summary-page #panel-aqs .option-footer{
+      margin-top:2px;
+    }
+    .configurator-side-summary-page #panel-aqs .option-price{
+      gap:2px;
+    }
+    .configurator-side-summary-page #panel-aqs .option-price span[id$="invest"]{
+      font-size:30px;
+      line-height:.95;
+    }
+    .configurator-side-summary-page #climate-indep-block .solution-carousel{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      overflow:visible;
+      padding:0;
+      scroll-snap-type:none;
+    }
+    .configurator-side-summary-page #climate-indep-block .option.option-rich{
+      flex:none;
+      min-width:0;
+      padding:14px 16px;
+      border-radius:20px;
+      min-height:auto;
+      gap:8px;
+    }
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-top,
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-copy{
+      margin-bottom:0;
+    }
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-copy h4{
+      margin:0 0 3px;
+      font-size:22px;
+      line-height:1.06;
+    }
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-copy p{
+      margin:0;
+      font-size:13px;
+      line-height:1.35;
+      color:rgba(255,255,255,.62);
+    }
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-specs{
+      gap:0;
+      margin-top:2px;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(255,255,255,.025);
+    }
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-spec{
+      padding:8px 12px;
+      border-top:1px solid rgba(255,255,255,.06);
+      gap:12px;
+    }
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-spec:first-child{
+      border-top:0;
+    }
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-spec span:first-child,
+    .configurator-side-summary-page #climate-indep-block .option.option-rich .option-spec span:last-child{
+      font-size:12px;
+      line-height:1.25;
+    }
+    .configurator-side-summary-page #climate-indep-block .option-video{
+      gap:8px;
+      margin-top:4px;
+    }
+    .configurator-side-summary-page #climate-indep-block .option-video-thumb{
+      aspect-ratio:16/8.5;
+      border-radius:16px;
+    }
+    .configurator-side-summary-page #climate-indep-block .option-video-note{
+      font-size:11px;
+      line-height:1.35;
+    }
+    .configurator-side-summary-page #panel-vent .solution-carousel{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      overflow:visible;
+      padding:0;
+      scroll-snap-type:none;
+    }
+    .configurator-side-summary-page #panel-vent .option.option-rich{
+      flex:none;
+      min-width:0;
+      padding:14px 16px;
+      border-radius:20px;
+      min-height:auto;
+      gap:8px;
+    }
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-top,
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-copy{
+      margin-bottom:0;
+    }
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-copy h4{
+      margin:0 0 3px;
+      font-size:22px;
+      line-height:1.06;
+    }
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-copy p{
+      margin:0;
+      font-size:13px;
+      line-height:1.35;
+      color:rgba(255,255,255,.62);
+    }
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-specs{
+      gap:0;
+      margin-top:2px;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(255,255,255,.025);
+    }
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-spec{
+      padding:8px 12px;
+      border-top:1px solid rgba(255,255,255,.06);
+      gap:12px;
+    }
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-spec:first-child{
+      border-top:0;
+    }
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-spec span:first-child,
+    .configurator-side-summary-page #panel-vent .option.option-rich .option-spec span:last-child{
+      font-size:12px;
+      line-height:1.25;
+    }
+    .configurator-side-summary-page #climate-central-block .central-flow{
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    .configurator-side-summary-page #climate-central-block .central-col{
+      padding:16px;
+      border-radius:20px;
+    }
+    .configurator-side-summary-page #climate-central-block .central-step{
+      width:28px;
+      height:28px;
+      margin-bottom:10px;
+      font-size:12px;
+    }
+    .configurator-side-summary-page #climate-central-block .central-col h4{
+      margin:0 0 8px;
+      font-size:22px;
+      letter-spacing:-.03em;
+      line-height:1.08;
+    }
+    .configurator-side-summary-page #climate-central-block .central-helper{
+      margin:0 0 10px;
+      font-size:12px;
+      line-height:1.4;
+    }
+    .configurator-side-summary-page .central-options-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+    .configurator-side-summary-page #climate-central-block .mini-option{
+      margin-bottom:0;
+      padding:14px 40px 14px 14px;
+      border-radius:16px;
+    }
+    .configurator-side-summary-page #climate-central-block .mini-option::after{
+      top:16px;
+      right:12px;
+      width:14px;
+      height:14px;
+    }
+    .configurator-side-summary-page #climate-central-block .mini-option strong{
+      margin-bottom:3px;
+      font-size:15px;
+      line-height:1.2;
+    }
+    .configurator-side-summary-page #climate-central-block .mini-option span{
+      font-size:12px;
+      line-height:1.35;
+    }
+    .configurator-side-summary-page #climate-central-block .central-result{
+      padding:18px;
+      border-radius:20px;
+    }
+    .configurator-side-summary-page #climate-central-block .central-result .combo-name{
+      font-size:20px;
+      line-height:1.05;
+    }
+    .configurator-side-summary-page #climate-central-block .central-result .combo-desc{
+      font-size:13px;
+      line-height:1.45;
+      margin-bottom:14px;
+    }
+    .configurator-side-summary-page #climate-central-block .central-result .combo-cost{
+      padding:12px 0;
+    }
+    .configurator-side-summary-page #climate-central-block .central-result .combo-cost strong{
+      font-size:28px;
+    }
+    .configurator-side-summary-page #climate-central-block .central-video-thumb{
+      aspect-ratio:16/8.5;
+      border-radius:16px;
+    }
+    .configurator-side-summary-page #climate-central-block .central-next p{
+      margin:0 0 10px;
+      color:rgba(255,255,255,.66);
+      font-size:13px;
+      line-height:1.4;
+    }
+    .configurator-side-summary-page #cotacao .container{
+      width:min(1480px,calc(100% - 32px));
+    }
+    .configurator-side-summary-page #cotacao .quote-wrap{
+      grid-template-columns:1fr;
+    }
+    .configurator-side-summary-page #cotacao #lead-form{
+      width:100%;
+      max-width:none;
+    }
+    .configurator-side-summary-page #cotacao .quote-inline-fields{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+    .configurator-side-summary-page #cotacao .quote-summary-inline{
+      grid-template-columns:minmax(0,1fr) auto;
+      align-items:center;
+    }
+    .configurator-side-summary-page #cotacao .quote-result{
+      margin-top:0;
+    }
+    @media (max-width:1180px){
+      .configurator-side-summary-page .status-stack .stack-fields{
+        grid-template-columns:1fr;
+      }
+      .configurator-side-summary-page #panel-aqs .solution-carousel{
+        grid-template-columns:1fr;
+      }
+      .configurator-side-summary-page #climate-indep-block .solution-carousel,
+      .configurator-side-summary-page #panel-vent .solution-carousel,
+      .configurator-side-summary-page .central-options-grid{
+        grid-template-columns:1fr;
+      }
+      .configurator-side-summary-page #cotacao .quote-inline-fields{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .configurator-side-summary-page #cotacao .quote-summary-inline{
+        grid-template-columns:1fr;
+      }
+      .summary-final-cta{
+        justify-content:stretch;
+      }
+      .summary-final-cta .btn{
+        width:100%;
+      }
+      .episodes-row{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+    }
+    @media (max-width:760px){
+      .configurator-side-summary-page .episodes-row{
+        grid-template-columns:1fr;
+      }
+    }
+
   </style>
 </head>
-<body class="car-configurator-page">
+<body class="configurator-side-summary-page">
   <header>
     <div class="container nav">
       <a class="logo" href="#top" aria-label="Wisemak home"><img src="Wisemak Logo.png" alt="Wisemak"></a>
@@ -1519,7 +1974,7 @@
               </div>
               <div class="journey-foot">
                 <strong id="journey-current-title">A começar</strong>
-                <p id="journey-current-helper">Defina o perfil da casa e escolha a primeira área para avançar.</p>
+                <p id="journey-current-helper">Confirme a base da casa e depois avance pelas soluções até fechar o resumo final.</p>
               </div>
             </div>
           </aside>
@@ -1532,7 +1987,7 @@
                 <div class="stack-field">
                   <span>Área da casa m²</span>
                   <div class="input-stepper">
-                    <input id="house-area" type="number" min="40" step="5" value="150" placeholder="Ex.: 150">
+                    <input id="house-area" type="number" min="40" step="5" value="" placeholder="Exemplo: 150 m²">
                     <div class="stepper-controls">
                       <button class="stepper-btn" type="button" data-step-target="house-area" data-step-dir="up">+</button>
                       <button class="stepper-btn" type="button" data-step-target="house-area" data-step-dir="down">-</button>
@@ -1542,7 +1997,7 @@
                 <div class="stack-field">
                   <span>Divisões a climatizar</span>
                   <div class="input-stepper">
-                    <input id="house-rooms" type="number" min="1" step="1" value="5" placeholder="Ex.: 5">
+                    <input id="house-rooms" type="number" min="1" step="1" value="" placeholder="Exemplo: 5">
                     <div class="stepper-controls">
                       <button class="stepper-btn" type="button" data-step-target="house-rooms" data-step-dir="up">+</button>
                       <button class="stepper-btn" type="button" data-step-target="house-rooms" data-step-dir="down">-</button>
@@ -1555,7 +2010,7 @@
             <div class="status-input people-meta">
               <label for="house-people">N.º de pessoas</label>
               <div class="input-stepper">
-                <input id="house-people" type="number" min="1" step="1" value="4" placeholder="Ex.: 4">
+                <input id="house-people" type="number" min="1" step="1" value="" placeholder="Exemplo: 4">
                 <div class="stepper-controls">
                   <button class="stepper-btn" type="button" data-step-target="house-people" data-step-dir="up">+</button>
                   <button class="stepper-btn" type="button" data-step-target="house-people" data-step-dir="down">-</button>
@@ -1563,41 +2018,14 @@
               </div>
               <small>Influência direta no AQS e no consumo estimado.</small>
             </div>
-            <div class="status-card" id="status-aqs" data-panel-card="aqs">
-              <strong>Água Quente</strong>
-              <span id="status-aqs-text">Por definir</span>
-              <small>Escolha a solução AQS</small>
-              <div class="status-card-action">
-                <span class="status-card-action-label">selecionar</span>
-                <span class="status-card-action-dot" aria-hidden="true"></span>
-              </div>
-            </div>
-            <div class="status-card" id="status-clima" data-panel-card="clima">
-              <strong>Climatização</strong>
-              <span id="status-clima-text">Por definir</span>
-              <small>Ative ou ignore esta área</small>
-              <div class="status-card-action">
-                <span class="status-card-action-label">selecionar</span>
-                <span class="status-card-action-dot" aria-hidden="true"></span>
-              </div>
-            </div>
-            <div class="status-card" id="status-vent" data-panel-card="vent">
-              <strong>Ventilação</strong>
-              <span id="status-vent-text">Por definir</span>
-              <small>Escolha o tipo de ventilação</small>
-              <div class="status-card-action">
-                <span class="status-card-action-label">selecionar</span>
-                <span class="status-card-action-dot" aria-hidden="true"></span>
-              </div>
-            </div>
           </div>
 
           <div class="card config-main">
             <div class="panel" id="panel-intro">
               <div class="panel-intro">
                 <div>
-                  <strong>Comece por escolher uma área para configurar.</strong>
-                  <p>Selecione Água Quente, Climatização ou Ventilação no painel acima para abrir as soluções e montar a sua simulação passo a passo.</p>
+                  <strong>Comece pela água quente e avance por etapas.</strong>
+                  <p>O configurador mostra primeiro a base da casa e depois organiza a solução em água quente, climatização, ventilação e resumo final.</p>
                 </div>
               </div>
             </div>
@@ -1755,11 +2183,11 @@
                     <div class="solution-rail">
                       <div class="solution-rail-head">
                         <div>
-                          <div class="solution-step">1</div>
-                          <h4>Escolha a solução</h4>
-                          <p>As soluções aparecem já como cards completos, com leitura de cobertura, resposta e integração visual.</p>
-                        </div>
-                      </div>
+                    <div class="solution-step">1</div>
+                    <h4>Escolha a solução</h4>
+                    <p>As soluções aparecem lado a lado, já com dados técnicos, leitura de investimento e vídeo quando existir.</p>
+                  </div>
+                </div>
                       <div class="solution-carousel">
                         <article class="option option-rich" data-group="clima-indep" data-value="AC Split Mural" data-month="25" data-start="850">
                     <span class="option-select-dot" aria-hidden="true"></span>
@@ -1850,13 +2278,15 @@
                         <div class="central-step">1</div>
                         <h4>Fonte de calor</h4>
                         <p class="central-helper">Escolha a base do sistema que vai alimentar a climatização da casa.</p>
-                        <div class="mini-option" data-central-group="fonte" data-central-value="bc">
-                          <strong>Bomba de Calor</strong>
-                          <span>Aerotermia eficiente, preparada para aquecimento e arrefecimento.</span>
-                        </div>
-                        <div class="mini-option" data-central-group="fonte" data-central-value="caldeira">
-                          <strong>Caldeira</strong>
-                          <span>Boa opção para reabilitações com gás disponível e distribuição existente.</span>
+                        <div class="central-options-grid">
+                          <div class="mini-option" data-central-group="fonte" data-central-value="bc">
+                            <strong>Bomba de Calor</strong>
+                            <span>Aerotermia eficiente, preparada para aquecimento e arrefecimento.</span>
+                          </div>
+                          <div class="mini-option" data-central-group="fonte" data-central-value="caldeira">
+                            <strong>Caldeira</strong>
+                            <span>Boa opção para reabilitações com gás disponível e distribuição existente.</span>
+                          </div>
                         </div>
                       </div>
 
@@ -1864,29 +2294,31 @@
                         <div class="central-step">2</div>
                         <h4>Distribuidor de calor</h4>
                         <p class="central-helper">Defina como o calor ou frio será distribuído pelos espaços.</p>
-                        <div class="mini-option" data-central-group="dist" data-central-value="existente">
-                          <strong>Não preciso, já tenho</strong>
-                          <span>Use esta opção se a casa já tiver radiadores, ventiloconvectores ou outra distribuição pronta a aproveitar.</span>
-                        </div>
-                        <div class="mini-option" data-central-group="dist" data-central-value="piso-radiante">
-                          <strong>Piso Radiante</strong>
-                          <span>Conforto elevado e integração discreta em obra nova ou remodelação profunda.</span>
-                        </div>
-                        <div class="mini-option" data-central-group="dist" data-central-value="piso-radiante-ventilo-frio">
-                          <strong>Piso Radiante + Ventiloconvectores</strong>
-                          <span>Piso radiante para aquecimento e ventiloconvectores para arrefecimento rápido e controlo por zona.</span>
-                        </div>
-                        <div class="mini-option" data-central-group="dist" data-central-value="vmc-bateria-agua">
-                          <strong>Piso Radiante + VMC com bateria de água</strong>
-                          <span>Piso radiante para aquecimento com VMC de duplo fluxo e bateria de água para apoio no ar tratado.</span>
-                        </div>
-                        <div class="mini-option" data-central-group="dist" data-central-value="radiadores">
-                          <strong>Radiadores</strong>
-                          <span>Solução clássica e objetiva para aquecimento por divisão.</span>
-                        </div>
-                        <div class="mini-option" data-central-group="dist" data-central-value="ventiloconvectores">
-                          <strong>Ventiloconvectores</strong>
-                          <span>Aquecem e arrefecem com boa resposta e controlo.</span>
+                        <div class="central-options-grid">
+                          <div class="mini-option" data-central-group="dist" data-central-value="existente">
+                            <strong>Não preciso, já tenho</strong>
+                            <span>Aproveita a distribuição já existente em casa.</span>
+                          </div>
+                          <div class="mini-option" data-central-group="dist" data-central-value="piso-radiante">
+                            <strong>Piso Radiante</strong>
+                            <span>Conforto elevado e integração discreta.</span>
+                          </div>
+                          <div class="mini-option" data-central-group="dist" data-central-value="piso-radiante-ventilo-frio">
+                            <strong>Piso Radiante + Ventiloconvectores</strong>
+                            <span>Combinação equilibrada para aquecimento e arrefecimento.</span>
+                          </div>
+                          <div class="mini-option" data-central-group="dist" data-central-value="vmc-bateria-agua">
+                            <strong>Piso Radiante + VMC com bateria de água</strong>
+                            <span>Solução integrada para conforto e tratamento do ar.</span>
+                          </div>
+                          <div class="mini-option" data-central-group="dist" data-central-value="radiadores">
+                            <strong>Radiadores</strong>
+                            <span>Aquecimento por divisão com leitura mais clássica.</span>
+                          </div>
+                          <div class="mini-option" data-central-group="dist" data-central-value="ventiloconvectores">
+                            <strong>Ventiloconvectores</strong>
+                            <span>Aquecem e arrefecem com resposta rápida.</span>
+                          </div>
                         </div>
                       </div>
 
@@ -2074,32 +2506,93 @@
       <div class="container">
         <div class="section-head">
           <span class="tag">Wisemak Episodes</span>
-          <h2>Uma biblioteca de conteúdo com linguagem de streaming</h2>
-          <p>Em vez de um bloco banal de vídeos, a página funciona como uma plataforma premium de episódios. Ideal para educar e gerar confiança.</p>
+          <h2>Veja antes de decidir</h2>
+          <p>Episódios curtos para perceber soluções, consumos, conforto e instalação antes de pedir proposta.</p>
         </div>
         <div class="episodes-shell">
+          <article class="episodes-feature">
+            <div class="episodes-feature-content">
+              <div class="episodes-feature-meta">
+                <span>Em destaque</span>
+                <span>Climatização</span>
+                <span>Wisemak Episodes</span>
+              </div>
+              <h3>Bomba de calor + ventiloconvectores</h3>
+              <p>Um episódio para perceber resposta, conforto, integração e os pontos que mudam totalmente a leitura de uma proposta.</p>
+              <div class="episodes-feature-actions">
+                <button class="btn btn-light" type="button" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">▶ Ver episódio</button>
+                <a href="#configurador" class="btn btn-ghost">Configurar solução</a>
+              </div>
+            </div>
+          </article>
+          <div class="episodes-library-tools">
+            <label class="episodes-search" for="episodes-search">
+              <span>⌕</span>
+              <input id="episodes-search" type="search" placeholder="Pesquisar por piso radiante, VMC, ventiloconvectores...">
+            </label>
+            <div class="episodes-filters" aria-label="Categorias de vídeo">
+              <button class="episode-filter active" type="button" data-episode-filter="all">Todos</button>
+              <button class="episode-filter" type="button" data-episode-filter="aqs">AQS</button>
+              <button class="episode-filter" type="button" data-episode-filter="clima">Climatização</button>
+              <button class="episode-filter" type="button" data-episode-filter="comparativos">Comparativos</button>
+              <button class="episode-filter" type="button" data-episode-filter="obra">Obra</button>
+            </div>
+          </div>
+          <div class="episodes-row-title">
+            <h3>Biblioteca Wisemak</h3>
+            <span>Procure por solução ou categoria</span>
+          </div>
           <div class="episodes-row">
-            <article class="episode" onclick="window.open('https://www.youtube.com/watch?v=cQ-RycAyNX0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.72)),url('https://img.youtube.com/vi/cQ-RycAyNX0/hqdefault.jpg');background-size:cover;background-position:center;"><span class="episode-tag">AQS</span><div class="episode-title">Bomba de calor<br>+ Piso Radiante</div></div>
-              <div class="episode-body"><p>O que muda no consumo, na instalação e no conforto quando comparada com alternativas tradicionais.</p><span class="play">▶ Ver episódio</span></div>
+            <article class="episode" data-episode-card data-category="clima comparativos" data-search="caldeira avariou caldeira condensacao bomba calor compensa mais comparativo" onclick="window.open('https://www.youtube.com/watch?v=E59jlCIeH4Q', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/E59jlCIeH4Q/hqdefault.jpg');"><span class="episode-tag">Comparativo</span><div class="episode-title">Caldeira ou<br>bomba de calor?</div></div>
+              <div class="episode-body"><p>A tua caldeira avariou? Comparação entre caldeira de condensação e bomba de calor.</p><span class="play">▶ Ver episódio</span></div>
             </article>
-            <article class="episode" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.72)),url('https://img.youtube.com/vi/PGuqKFGyXi4/hqdefault.jpg');background-size:cover;background-position:center;"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Ventiloconvectores</div></div>
+            <article class="episode" data-episode-card data-category="aqs comparativos" data-search="equipamento agua quente sanitaria aqs escolher sistema" onclick="window.open('https://www.youtube.com/watch?v=vPsqnx52cho', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/vPsqnx52cho/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Escolher água<br>quente sanitária</div></div>
+              <div class="episode-body"><p>Como escolher o equipamento de água quente sanitária mais adequado para a casa.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="clima" data-search="ar condicionado mural ac split solucao economica climatizar casa" onclick="window.open('https://www.youtube.com/watch?v=KRkQr3-7cRY', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/KRkQr3-7cRY/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Ar condicionado<br>mural</div></div>
+              <div class="episode-body"><p>A solução mais económica para climatizar uma casa com leitura simples e instalação direta.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="obra comparativos" data-search="moradia confortavel solucoes quanto podem custar obra casa" onclick="window.open('https://www.youtube.com/watch?v=Ux9qJnY8MrE', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/Ux9qJnY8MrE/hqdefault.jpg');"><span class="episode-tag">Obra</span><div class="episode-title">A moradia<br>confortável</div></div>
+              <div class="episode-body"><p>Quais as soluções possíveis numa moradia e quanto podem custar.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="capacidade acumulacao litros bomba calor quantos litros pessoas aqs" onclick="window.open('https://www.youtube.com/watch?v=OTS8QweFkLI', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/OTS8QweFkLI/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Capacidade de<br>acumulação</div></div>
+              <div class="episode-body"><p>Quantos litros deve ter a bomba de calor para água quente, em função do uso.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="deposito acumulacao agua garantia inox vitrificado aqs" onclick="window.open('https://www.youtube.com/watch?v=nX9DaC1c4U0', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/nX9DaC1c4U0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Depósito de<br>acumulação</div></div>
+              <div class="episode-body"><p>O que muda no depósito de acumulação de água e na garantia do equipamento.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="dimensoes bomba calor tamanho espaco instalacao" onclick="window.open('https://www.youtube.com/watch?v=bmpiQ-JMTs0', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/bmpiQ-JMTs0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Dimensões da<br>bomba de calor</div></div>
+              <div class="episode-body"><p>Qual o tamanho típico e o espaço necessário para instalar a solução.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="clima" data-search="bomba calor ventiloconvectores clima climatizacao aquecimento arrefecimento" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/PGuqKFGyXi4/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Ventiloconvectores</div></div>
               <div class="episode-body"><p>Os pontos que normalmente ninguém explica e que mudam totalmente o valor real de uma proposta.</p><span class="play">▶ Ver episódio</span></div>
             </article>
-            <article class="episode">
-              <div class="episode-cover" style="background:linear-gradient(135deg,#202020,#14532d 55%,#111)"><span class="episode-tag">Ventilação</span><div class="episode-title">Porque a VMC<br>faz diferença</div></div>
-              <div class="episode-body"><p>Qualidade do ar, humidade, conforto e porque esta decisão afeta a casa inteira.</p><span class="play">▶ Ver episódio</span></div>
+            <article class="episode" data-episode-card data-category="aqs" data-search="cop rendimento consumo bomba calor agua quente aqs" onclick="window.open('https://www.youtube.com/watch?v=Qd4SZsPGHuc', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/Qd4SZsPGHuc/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">COP, rendimento<br>e consumo</div></div>
+              <div class="episode-body"><p>Como o COP influencia o consumo de uma bomba de calor para água quente.</p><span class="play">▶ Ver episódio</span></div>
             </article>
-            <article class="episode">
-              <div class="episode-cover" style="background:linear-gradient(135deg,#202020,#7c2d12 55%,#111)"><span class="episode-tag">Clima</span><div class="episode-title">Multi-Split ou<br>sistema central?</div></div>
-              <div class="episode-body"><p>Quando faz sentido escolher uma solução mais distribuída e quando vale subir de nível.</p><span class="play">▶ Ver episódio</span></div>
+            <article class="episode" data-episode-card data-category="aqs" data-search="ruido bomba calor agua quente barulho db split monobloco" onclick="window.open('https://www.youtube.com/watch?v=8b1NgEzy_Xg', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/8b1NgEzy_Xg/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Ruído da<br>bomba de calor</div></div>
+              <div class="episode-body"><p>A bomba de calor para água quente faz muito barulho? Comparação e contexto.</p><span class="play">▶ Ver episódio</span></div>
             </article>
-            <article class="episode">
-              <div class="episode-cover" style="background:linear-gradient(135deg,#202020,#4c1d95 55%,#111)"><span class="episode-tag">Erros</span><div class="episode-title">Os erros mais caros<br>antes da instalação</div></div>
-              <div class="episode-body"><p>Decisões precipitadas, comparações injustas e omissões comuns que criam problemas depois.</p><span class="play">▶ Ver episódio</span></div>
+            <article class="episode" data-episode-card data-category="aqs" data-search="monobloco split bomba calor agua quente guia escolha" onclick="window.open('https://www.youtube.com/watch?v=xKExVpAShA0', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/xKExVpAShA0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Monobloco<br>ou split?</div></div>
+              <div class="episode-body"><p>Primeiro passo do guia de escolha de uma bomba de calor para água quente.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs clima" data-search="bomba calor piso radiante aqs climatizacao conforto" onclick="window.open('https://www.youtube.com/watch?v=cQ-RycAyNX0', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/cQ-RycAyNX0/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Piso Radiante</div></div>
+              <div class="episode-body"><p>O que muda no consumo, na instalação e no conforto quando comparada com alternativas tradicionais.</p><span class="play">▶ Ver episódio</span></div>
             </article>
           </div>
+          <div class="episodes-empty" id="episodes-empty">Não encontrámos episódios para essa pesquisa. Experimente procurar por “piso radiante”, “COP” ou “ar condicionado”.</div>
         </div>
       </div>
     </section>
@@ -2413,6 +2906,11 @@
       },
       vent: { label: 'Não incluído', month: 0, start: 0 },
       ventSelectionSource: 'none',
+      baseConfirmed: {
+        area: false,
+        people: false,
+        rooms: false
+      },
       decisions: {
         aqs: false,
         clima: false,
@@ -2443,7 +2941,7 @@
     const centralDistStep = document.getElementById('central-dist-step');
     const centralResultBox = document.getElementById('central-result');
     const ventChoice = document.getElementById('vent-choice');
-    const summaryBox = document.querySelector('.sticky-box');
+    const summaryBox = document.querySelector('.summary-box');
     const summaryHeading = document.querySelector('.summary-box .tag');
     const journeySteps = document.querySelectorAll('[data-journey-step]');
     const journeyBaseDetail = document.getElementById('journey-base-detail');
@@ -2689,7 +3187,7 @@
     }
 
     function focusSummaryBox(){
-      smoothScrollToElement(summaryBox, { offset: 112, duration: 1120 });
+      smoothScrollToElement(summaryHeading || summaryBox, { offset: 112, duration: 1120 });
     }
 
     function goToVentilationStep(){
@@ -2716,14 +3214,18 @@
         return;
       }
 
-      const detailEl = step.querySelector('.journey-step-copy span');
+      const detailEl = step.querySelector('.journey-step-copy > span:not(.journey-step-state)');
       const stateEl = step.querySelector('.journey-step-state');
 
       step.classList.toggle('is-complete', Boolean(options.complete));
       step.classList.toggle('is-current', Boolean(options.current));
 
-      if(detailEl && options.detail){
-        detailEl.textContent = options.detail;
+      if(detailEl){
+        if(options.detailHTML){
+          detailEl.innerHTML = options.detailHTML;
+        } else if(options.detail){
+          detailEl.textContent = options.detail;
+        }
       }
 
       if(stateEl){
@@ -2741,13 +3243,31 @@
       const houseProfile = getHouseProfile();
       const climate = getClimateSelection();
       const allAreasComplete = state.decisions.aqs && isClimateDecisionComplete() && state.decisions.vent;
-      const currentStep = allAreasComplete ? 'summary' : currentConfigPanel;
       const completedAreas = [state.decisions.aqs, isClimateDecisionComplete(), state.decisions.vent].filter(Boolean).length;
+      const baseComplete = state.baseConfirmed.area && state.baseConfirmed.people && state.baseConfirmed.rooms;
+      let currentStep = 'base';
+      if(!baseComplete){
+        currentStep = 'base';
+      } else if(!state.decisions.aqs){
+        currentStep = 'aqs';
+      } else if(!isClimateDecisionComplete()){
+        currentStep = 'clima';
+      } else if(!state.decisions.vent){
+        currentStep = 'vent';
+      } else if(allAreasComplete){
+        currentStep = 'summary';
+      } else {
+        currentStep = currentConfigPanel;
+      }
+      const areaDetail = state.baseConfirmed.area ? `${houseProfile.area} m²` : `<span class="journey-placeholder">${houseProfile.area} m²</span>`;
+      const peopleDetail = state.baseConfirmed.people ? `${houseProfile.people} ${houseProfile.people === 1 ? 'pessoa' : 'pessoas'}` : `<span class="journey-placeholder">${houseProfile.people} ${houseProfile.people === 1 ? 'pessoa' : 'pessoas'}</span>`;
+      const roomsDetail = state.baseConfirmed.rooms ? `${houseProfile.rooms} ${houseProfile.rooms === 1 ? 'divisão' : 'divisões'}` : `<span class="journey-placeholder">${houseProfile.rooms} ${houseProfile.rooms === 1 ? 'divisão' : 'divisões'}</span>`;
 
       setJourneyStepState('base', {
-        complete: true,
+        complete: baseComplete,
         current: currentStep === 'base',
-        detail: `${houseProfile.area} m² · ${houseProfile.people} ${houseProfile.people === 1 ? 'pessoa' : 'pessoas'} · ${houseProfile.rooms} ${houseProfile.rooms === 1 ? 'divisão' : 'divisões'}`
+        detailHTML: `${areaDetail} · ${peopleDetail} · ${roomsDetail}`,
+        pendingLabel: 'Por rever'
       });
       setJourneyStepState('aqs', {
         complete: state.decisions.aqs,
@@ -2781,11 +3301,11 @@
         journeyCurrentTitle.textContent = 'Está na ventilação';
         journeyCurrentHelper.textContent = 'Este é o último grande passo antes do resumo final da solução.';
       } else if(currentStep === 'aqs'){
-        journeyCurrentTitle.textContent = 'Está a começar pela água quente';
-        journeyCurrentHelper.textContent = 'A água quente ajuda a dar a primeira leitura da solução e do perfil da casa.';
+        journeyCurrentTitle.textContent = 'Agora escolha a água quente';
+        journeyCurrentHelper.textContent = 'Depois da base da casa, escolha se quer incluir AQS e qual a solução mais adequada.';
       } else {
-        journeyCurrentTitle.textContent = 'Base da casa definida';
-        journeyCurrentHelper.textContent = 'O perfil da habitação já está enquadrado. Falta escolher as três áreas da solução.';
+        journeyCurrentTitle.textContent = baseComplete ? 'Base da casa definida' : 'Falta rever a base da casa';
+        journeyCurrentHelper.textContent = baseComplete ? 'O perfil da habitação já está enquadrado. Falta escolher as três áreas da solução.' : 'Preencha área, número de pessoas e divisões a climatizar para concluir a base da casa.';
       }
     }
 
@@ -2929,6 +3449,9 @@
     }
 
     function syncConfiguratorInputs(){
+      state.baseConfirmed.area = areaInput.value.trim() !== '';
+      state.baseConfirmed.people = peopleInput.value.trim() !== '';
+      state.baseConfirmed.rooms = roomsInput.value.trim() !== '';
       updateCentralResult();
       updateSummary();
     }
@@ -3658,10 +4181,16 @@
 
       states.forEach(item => {
         const card = document.getElementById('status-' + item.key);
-        document.getElementById('status-' + item.key + '-text').textContent = item.text;
-        card.querySelector('small').textContent = item.helper;
+        const textEl = document.getElementById('status-' + item.key + '-text');
+        if(!card || !textEl){
+          return;
+        }
+        textEl.textContent = item.text;
+        const helperEl = card.querySelector('small');
+        if(helperEl){
+          helperEl.textContent = item.helper;
+        }
         card.classList.toggle('complete-' + item.key, item.selected);
-
       });
     }
 
@@ -4115,10 +4644,48 @@
       });
     }
 
+    const episodeSearch = document.getElementById('episodes-search');
+    const episodeCards = document.querySelectorAll('[data-episode-card]');
+    const episodeFilters = document.querySelectorAll('[data-episode-filter]');
+    const episodesEmpty = document.getElementById('episodes-empty');
+    let activeEpisodeFilter = 'all';
+
+    function filterEpisodes(){
+      const query = (episodeSearch?.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      episodeCards.forEach(card => {
+        const categories = (card.dataset.category || '').split(/\s+/);
+        const searchText = [
+          card.dataset.search || '',
+          card.textContent || ''
+        ].join(' ').toLowerCase();
+        const matchesCategory = activeEpisodeFilter === 'all' || categories.includes(activeEpisodeFilter);
+        const matchesSearch = !query || searchText.includes(query);
+        const visible = matchesCategory && matchesSearch;
+        card.classList.toggle('is-hidden', !visible);
+        if(visible){
+          visibleCount += 1;
+        }
+      });
+
+      episodesEmpty?.classList.toggle('is-visible', visibleCount === 0);
+    }
+
+    episodeSearch?.addEventListener('input', filterEpisodes);
+    episodeFilters.forEach(button => {
+      button.addEventListener('click', () => {
+        activeEpisodeFilter = button.dataset.episodeFilter || 'all';
+        episodeFilters.forEach(filter => filter.classList.toggle('active', filter === button));
+        filterEpisodes();
+      });
+    });
+
     [areaInput, peopleInput, roomsInput].forEach(input => {
       input.addEventListener('input', syncConfiguratorInputs);
     });
 
+    filterEpisodes();
     updateCentralResult();
     updateSummary();
     updateVentilationLockState();

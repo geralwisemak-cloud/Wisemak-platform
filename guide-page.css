@@ -91,6 +91,7 @@ main section{padding:26px 0}
   border:1px solid var(--line);
 }
 .side-card h3,.form-card h3{margin:0 0 16px;font-size:28px;letter-spacing:-.04em}
+.guide-sidebar .side-card:has(#guide-status){display:none}
 .summary-list{display:grid;gap:10px}
 .summary-item{
   display:grid;
