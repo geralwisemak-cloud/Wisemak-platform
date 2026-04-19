@@ -18,8 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <a href="solucao_bomba_calor_aqs_wisemak.html"><span>Bomba de Calor AQS</span><span>→</span></a>
                 <a href="solucao_solar_termico_wisemak.html"><span>Solar Térmico</span><span>→</span></a>
                 <a href="solucao_termoacumulador_wisemak.html"><span>Termoacumulador</span><span>→</span></a>
-                <a href="solucao_esquentador_gn_wisemak.html"><span>Esquentador GN</span><span>→</span></a>
-                <a href="solucao_esquentador_botija_wisemak.html"><span>Esquentador de botija</span><span>→</span></a>
+                <a href="solucao_esquentador_gn_wisemak.html"><span>Esquentador</span><span>→</span></a>
               </div>
             </div>
             <div class="solutions-col">

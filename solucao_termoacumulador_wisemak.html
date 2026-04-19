@@ -112,7 +112,7 @@
                 </div>
                 <div class="result-card">
                   <strong id="energy-cost">Por calcular</strong>
-                  <span>Custo anual estimado</span>
+                  <span id="energy-person-cost">Consumo por pessoa/ano em euros</span>
                 </div>
               </div>
               <div class="metric-strip">
@@ -364,6 +364,7 @@
         state.annualCost = '';
         state.adjustedKwh = '';
         document.getElementById('energy-cost').textContent = 'Por calcular';
+        document.getElementById('energy-person-cost').textContent = 'Consumo por pessoa/ano em euros';
         document.getElementById('recommended-liters').textContent = state.liters ? `${state.liters} L` : '-';
         document.getElementById('energy-impact').textContent = state.energy || '-';
         document.getElementById('monthly-cost').textContent = '-';
@@ -375,6 +376,7 @@
       state.adjustedKwh = Math.round(state.baseKwh * classFactor);
       state.annualCost = Math.round(state.adjustedKwh * price);
       document.getElementById('energy-cost').textContent = formatEuro(state.annualCost);
+      document.getElementById('energy-person-cost').textContent = `${formatEuro(state.annualCost / state.people)} por pessoa/ano`;
       document.getElementById('recommended-liters').textContent = `${state.liters} L`;
       document.getElementById('energy-impact').textContent = state.energy === 'Classe B' ? 'Classe B' : state.energy === 'Inferior a B' ? 'Mais perdas' : 'Referência B';
       document.getElementById('monthly-cost').textContent = `${Math.round(state.annualCost / 12)}€/mês`;
