@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared-header.css">
   <script src="shared-header.js" defer></script>
+  <script src="shared-locations.js" defer></script>
   <style>
     :root{
       --bg:#080808;
@@ -662,6 +663,7 @@
               <input id="solar-name" type="text" placeholder="Nome">
               <input id="solar-email" type="email" placeholder="Email">
               <input id="solar-phone" type="tel" placeholder="Telefone">
+              <select id="solar-district" data-location-district data-location-key="solar"></select><select id="solar-municipality" data-location-municipality data-location-key="solar" disabled></select><input id="solar-location" type="hidden">
               <div></div>
               <textarea id="solar-message" class="full" placeholder="Se quiser, acrescente detalhes sobre a cobertura, limitações da casa ou outras notas úteis."></textarea>
             </div>
@@ -789,12 +791,19 @@
       const name = document.getElementById('solar-name').value.trim();
       const email = document.getElementById('solar-email').value.trim();
       const phone = document.getElementById('solar-phone').value.trim();
+      const location = document.getElementById('solar-location').value.trim();
       const message = document.getElementById('solar-message').value.trim();
       const feedback = document.getElementById('solar-feedback');
 
       if(!name || !email){
         feedback.style.display = 'block';
         feedback.innerHTML = '<strong>Falta informação</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>';
+        return;
+      }
+
+      if(!location){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Falta local da instalação</strong><p style="margin:8px 0 0;color:var(--muted)">Selecione o distrito e o concelho onde será feita a instalação.</p>';
         return;
       }
 
@@ -817,6 +826,7 @@
       formData.set('name', name);
       formData.set('email', email);
       formData.set('phone', phone || '-');
+      formData.set('local_instalacao', location);
       formData.set('mensagem_cliente', message || '-');
       formData.set('solucao', 'Solar Termico');
       formData.set('tipo_habitacao', guideState.home);

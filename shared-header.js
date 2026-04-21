@@ -26,10 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <p>Principais soluções residenciais de climatização e emissão.</p>
               <div class="solutions-links">
                 <a href="solucao_bomba_calor_climatizacao_wisemak.html"><span>Bomba de Calor</span><span>→</span></a>
-                <a href="solucao_ar_condicionado_wisemak.html#split"><span>AC Split Mural</span><span>→</span></a>
-                <a href="solucao_ar_condicionado_wisemak.html#multi"><span>AC Multi Split</span><span>→</span></a>
-                <a href="solucao_ar_condicionado_wisemak.html#conduta"><span>AC de Conduta</span><span>→</span></a>
-                <a href="solucao_ar_condicionado_wisemak.html#cassete"><span>AC Cassete</span><span>→</span></a>
+                <a href="solucao_ar_condicionado_wisemak.html"><span>AC</span><span>→</span></a>
                 <a href="solucao_piso_radiante_wisemak.html"><span>Piso Radiante</span><span>→</span></a>
                 <a href="solucao_ventiloconvectores_wisemak.html"><span>Ventiloconvectores</span><span>→</span></a>
                 <a href="solucao_radiadores_wisemak.html"><span>Radiadores</span><span>→</span></a>

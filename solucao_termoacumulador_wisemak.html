@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="shared-header.css">
   <link rel="stylesheet" href="guide-page.css">
   <script src="shared-header.js" defer></script>
+  <script src="shared-locations.js" defer></script>
 </head>
 <body>
   <header id="site-header"></header>
@@ -214,7 +215,7 @@
             <div class="form-grid">
               <input id="lead-name" type="text" placeholder="Nome">
               <input id="lead-email" type="email" placeholder="Email">
-              <input id="lead-phone" type="tel" placeholder="Telefone">
+              <input id="lead-phone" type="tel" placeholder="Telefone"><select id="lead-district" data-location-district data-location-key="lead"></select><select id="lead-municipality" data-location-municipality data-location-key="lead" disabled></select><input id="lead-location" type="hidden">
               <div></div>
               <textarea id="lead-message" class="full" placeholder="Se quiser, acrescente notas sobre a instalação, qualidade da água ou dúvidas adicionais."></textarea>
             </div>
@@ -453,6 +454,7 @@
       const name = document.getElementById('lead-name').value.trim();
       const email = document.getElementById('lead-email').value.trim();
       const phone = document.getElementById('lead-phone').value.trim();
+      const location = document.getElementById('lead-location').value.trim();
       const message = document.getElementById('lead-message').value.trim();
       const width = document.getElementById('width').value.trim();
       const depth = document.getElementById('depth').value.trim();
@@ -462,6 +464,12 @@
       if(!name || !email){
         feedback.style.display = 'block';
         feedback.innerHTML = '<strong>Falta informação</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>';
+        return;
+      }
+
+      if(!location){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Falta local da instalação</strong><p style="margin:8px 0 0;color:var(--muted)">Selecione o distrito e o concelho onde será feita a instalação.</p>';
         return;
       }
 
@@ -484,6 +492,7 @@
       fd.set('name', name);
       fd.set('email', email);
       fd.set('phone', phone || '-');
+      fd.set('local_instalacao', location);
       fd.set('mensagem_cliente', message || '-');
       fd.set('solucao', 'Termoacumulador');
       fd.set('tipo_habitacao', state.home);

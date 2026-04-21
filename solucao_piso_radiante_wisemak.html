@@ -10,41 +10,491 @@
   <link rel="stylesheet" href="shared-header.css">
   <link rel="stylesheet" href="guide-page.css">
   <script src="shared-header.js" defer></script>
+  <script src="shared-locations.js" defer></script>
 </head>
 <body>
   <header id="site-header"></header>
   <main>
-    <section class="hero"><div class="container"><div class="hero-shell"><h1>Escolha o seu piso radiante passo a passo</h1><p>Perceba melhor a solução, compare os pontos essenciais e avance com mais confiança antes de pedir proposta à equipa Wisemak.</p><div class="hero-actions"><a class="btn btn-light" href="#guide">Começar guia</a></div></div></div></section>
-    <section id="guide"><div class="container guide-grid">
-      <aside class="guide-sidebar">
-        <div class="side-card"><h3>Resumo do configurador</h3><div class="summary-list">
-          <div class="summary-item"><span>Obra</span><strong id="summary-work">Por escolher</strong></div>
-          <div class="summary-item"><span>Objetivo</span><strong id="summary-goal">Por escolher</strong></div>
-          <div class="summary-item"><span>Fonte de calor</span><strong id="summary-source">Por escolher</strong></div>
-          <div class="summary-item"><span>Arrefecimento</span><strong id="summary-cooling">Por escolher</strong></div>
-          <div class="summary-item"><span>Prioridade</span><strong id="summary-priority">Por escolher</strong></div>
-        </div></div>
-        <div class="side-card"><h3>Estado da lead</h3><p style="margin:0 0 14px;color:var(--muted)">A equipa recebe logo o contexto da obra, a leitura do conforto e a fonte de calor pretendida.</p><div class="status-pill" id="guide-status">Guide iniciado</div></div>
-      </aside>
-      <div class="guide-content">
-        <section class="intro-card"><h2>Configurador Wisemak</h2><p>Este guia ajuda a filtrar se o piso radiante é mesmo a solução certa para a casa e como deve ser enquadrado na proposta.</p></section>
-        <article class="stage" id="step-work"><div class="stage-head"><span class="stage-index">1</span><div class="stage-title"><strong>Que tipo de obra é</strong><span>Obra nova ou remodelação</span></div><span class="tag">Base</span></div><p>O piso radiante faz muito mais sentido quando existe obra nova ou uma intervenção profunda que permita integrar o sistema corretamente.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="work" data-value="Obra nova"><strong>Obra nova</strong></button><button class="choice-btn" type="button" data-field="work" data-value="Remodelação profunda"><strong>Remodelação profunda</strong></button><button class="choice-btn" type="button" data-field="work" data-value="Reabilitação parcial"><strong>Reabilitação parcial</strong></button><button class="choice-btn" type="button" data-field="work" data-value="Preciso de ajuda a perceber a viabilidade"><strong>Preciso de ajuda a perceber</strong></button></div></article>
-        <article class="stage" id="step-goal"><div class="stage-head"><span class="stage-index">2</span><div class="stage-title"><strong>O que espera do sistema</strong><span>Aquecimento ou climatização anual</span></div><span class="tag">Uso</span></div><p>É importante perceber se o cliente quer apenas aquecimento de base ou se pretende também trabalhar arrefecimento com o sistema certo.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="goal" data-value="Aquecimento muito confortável"><strong>Apenas aquecimento</strong></button><button class="choice-btn" type="button" data-field="goal" data-value="Aquecimento e arrefecimento controlado"><strong>Aquecimento e arrefecimento</strong></button><button class="choice-btn" type="button" data-field="goal" data-value="Conforto premium em toda a casa"><strong>Conforto premium</strong></button><button class="choice-btn" type="button" data-field="goal" data-value="Preciso de ajuda a definir o objetivo"><strong>Preciso de ajuda a definir</strong></button></div><div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-goal">Avançar</button></div></article>
-        <article class="stage" id="step-source"><div class="stage-head"><span class="stage-index">3</span><div class="stage-title"><strong>Com que fonte de calor quer trabalhar</strong><span>Leitura técnica principal</span></div><span class="tag">Sistema</span></div><p>Na maioria dos casos, o piso radiante lê-se melhor com bomba de calor, mas também pode ser enquadrado com outras fontes em certos projetos.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="source" data-value="Bomba de calor"><strong>Bomba de calor</strong></button><button class="choice-btn" type="button" data-field="source" data-value="Caldeira"><strong>Caldeira</strong></button><button class="choice-btn" type="button" data-field="source" data-value="Ainda não defini a fonte"><strong>Ainda não defini</strong></button><button class="choice-btn" type="button" data-field="source" data-value="Quero recomendação da Wisemak"><strong>Quero recomendação</strong></button></div></article>
-        <article class="stage" id="step-cooling"><div class="stage-head"><span class="stage-index">4</span><div class="stage-title"><strong>Quer arrefecimento associado</strong><span>Decisão importante no desenho da solução</span></div><span class="tag">Frio</span></div><p>Se existir interesse em arrefecimento, pode fazer sentido complementar o sistema com ventiloconvectores ou outras soluções, dependendo da casa.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="cooling" data-value="Nao preciso de arrefecimento"><strong>Não preciso</strong></button><button class="choice-btn" type="button" data-field="cooling" data-value="Quero arrefecimento com apoio complementar"><strong>Quero arrefecimento</strong></button><button class="choice-btn" type="button" data-field="cooling" data-value="Piso radiante + ventiloconvectores"><strong>Quero solução mista</strong></button><button class="choice-btn" type="button" data-field="cooling" data-value="Preciso de ajuda a perceber as limitações"><strong>Preciso de ajuda a perceber</strong></button></div></article>
-        <article class="stage" id="step-priority"><div class="stage-head"><span class="stage-index">5</span><div class="stage-title"><strong>O que pesa mais na decisão</strong><span>Leitura comercial do projeto</span></div><span class="tag">Escolha</span></div><p>Conforto homogéneo, estética limpa, eficiência ou integração com outras soluções: este passo ajuda a equipa a calibrar a proposta.</p><div class="choice-row"><button class="choice-btn" type="button" data-field="priority" data-value="Conforto máximo"><strong>Conforto máximo</strong></button><button class="choice-btn" type="button" data-field="priority" data-value="Integração invisível"><strong>Integração invisível</strong></button><button class="choice-btn" type="button" data-field="priority" data-value="Eficiência global"><strong>Eficiência global</strong></button><button class="choice-btn" type="button" data-field="priority" data-value="Preciso de equilíbrio entre tudo"><strong>Quero equilíbrio</strong></button></div><div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-priority">Avançar</button></div></article>
-        <div class="form-card" id="step-form"><span class="tag">Lead</span><h3>6. Enviar para a equipa Wisemak</h3><p>O pedido segue com o enquadramento técnico e comercial principal desta solução.</p><div class="form-grid"><input id="lead-name" type="text" placeholder="Nome"><input id="lead-email" type="email" placeholder="Email"><input id="lead-phone" type="tel" placeholder="Telefone"><div></div><textarea id="lead-message" class="full" placeholder="Se quiser, acrescente detalhes sobre a casa, a obra ou dúvidas adicionais."></textarea></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-light" type="button" id="submit-btn">Enviar formulário</button><a class="btn btn-ghost" href="#step-work">Rever escolhas</a></div><div class="feedback" id="feedback"></div></div>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-shell">
+          <h1>Escolha o seu piso radiante passo a passo</h1>
+          <p>Defina a área, envie a planta, escolha o tipo de conforto, o revestimento e o contexto da obra antes de pedir proposta.</p>
+          <div class="hero-actions"><a class="btn btn-light" href="#guide">Começar guia</a></div>
+        </div>
       </div>
-    </div></section>
+    </section>
+
+    <section id="guide">
+      <div class="container guide-grid">
+        <aside class="guide-sidebar">
+          <div class="side-card">
+            <h3>Resumo do configurador</h3>
+            <div class="summary-list">
+              <div class="summary-item"><span>Casa</span><strong id="summary-home">Por preencher</strong></div>
+              <div class="summary-item"><span>Área</span><strong id="summary-area">Por calcular</strong></div>
+              <div class="summary-item"><span>Planta</span><strong id="summary-plan">Por enviar</strong></div>
+              <div class="summary-item"><span>Utilização</span><strong id="summary-use">Por escolher</strong></div>
+              <div class="summary-item"><span>Controlo</span><strong id="summary-zoning">Por escolher</strong></div>
+              <div class="summary-item"><span>Placa</span><strong id="summary-plate">Por escolher</strong></div>
+              <div class="summary-item"><span>Piso</span><strong id="summary-floor">Por escolher</strong></div>
+              <div class="summary-item"><span>Revestimento</span><strong id="summary-covering">Por escolher</strong></div>
+              <div class="summary-item"><span>Fonte</span><strong id="summary-source">Por escolher</strong></div>
+            </div>
+          </div>
+          <div class="side-card">
+            <h3>Estado da lead</h3>
+            <p style="margin:0 0 14px;color:var(--muted)">A equipa recebe área, planta, regime de utilização, zonamento, tipo de placa, piso, revestimento e localização.</p>
+            <div class="status-pill" id="guide-status">Guide iniciado</div>
+          </div>
+        </aside>
+
+        <div class="guide-content">
+          <section class="intro-card">
+            <h2>Configurador Wisemak</h2>
+            <p>O piso radiante precisa de projeto: área, planta e revestimento são decisivos para desenhar circuitos, coletores, controlo e compatibilidade com a fonte de calor.</p>
+          </section>
+
+          <article class="stage" id="step-home">
+            <div class="stage-head">
+              <span class="stage-index">1</span>
+              <div class="stage-title"><strong>Dados da casa</strong><span>Tipologia, contexto e área</span></div>
+              <span class="tag">Base</span>
+            </div>
+            <p>Comece por indicar se é moradia ou apartamento, se é obra nova ou remodelação e quantos metros quadrados pretende aquecer/climatizar.</p>
+            <div class="compact-grid">
+              <div class="field-card">
+                <label for="home-kind">Tipo de habitação</label>
+                <select id="home-kind">
+                  <option value="">Selecione</option>
+                  <option value="Moradia">Moradia</option>
+                  <option value="Apartamento">Apartamento</option>
+                </select>
+              </div>
+              <div class="field-card">
+                <label for="work-context">Contexto</label>
+                <select id="work-context">
+                  <option value="">Selecione</option>
+                  <option value="Obra nova">Obra nova</option>
+                  <option value="Remodelação profunda">Remodelação profunda</option>
+                  <option value="Reabilitação parcial">Reabilitação parcial</option>
+                  <option value="Ainda estou a estudar viabilidade">Ainda estou a estudar viabilidade</option>
+                </select>
+              </div>
+            </div>
+            <div class="compact-grid" style="margin-top:12px">
+              <div class="field-card">
+                <label for="heated-area">Área prevista</label>
+                <input id="heated-area" type="number" min="10" step="1" placeholder="m² de piso radiante">
+              </div>
+              <div class="result-card">
+                <strong id="area-result">Por calcular</strong>
+                <span id="area-note">A área é obrigatória para estimar projeto e material.</span>
+              </div>
+            </div>
+            <div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-home">Avançar</button></div>
+          </article>
+
+          <article class="stage" id="step-plan">
+            <div class="stage-head">
+              <span class="stage-index">2</span>
+              <div class="stage-title"><strong>Envie a planta do projeto</strong><span>Essencial para desenhar o sistema</span></div>
+              <span class="tag">Projeto</span>
+            </div>
+            <p>A planta ajuda a equipa Wisemak a perceber áreas úteis, divisões, zonas técnicas, coletores e possíveis limitações. Pode enviar PDF, imagem ou ficheiro técnico do projeto.</p>
+            <div class="compact-grid">
+              <div class="field-card">
+                <label for="plan-file">Upload da planta</label>
+                <input id="plan-file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf">
+              </div>
+              <div class="note-card">
+                <p><strong id="plan-file-name">Nenhum ficheiro selecionado.</strong></p>
+                <p>Se ainda não tiver a planta, pode avançar, mas a proposta fica menos precisa até a equipa receber o projeto.</p>
+              </div>
+            </div>
+            <div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-plan">Avançar</button></div>
+          </article>
+
+          <article class="stage" id="step-use">
+            <div class="stage-head">
+              <span class="stage-index">3</span>
+              <div class="stage-title"><strong>Quer piso radiante para quê?</strong><span>Quente ou quente e frio</span></div>
+              <span class="tag">Uso</span>
+            </div>
+            <p>O piso radiante é excelente para aquecimento. Para arrefecimento, o projeto tem de ser pensado com muito cuidado e, muitas vezes, complementado com ventiloconvectores ou controlo de humidade.</p>
+            <div class="choice-row" style="margin-top:16px">
+              <button class="choice-btn" type="button" data-field="use" data-value="Apenas aquecimento"><strong>Apenas aquecimento</strong></button>
+              <button class="choice-btn" type="button" data-field="use" data-value="Aquecimento e arrefecimento"><strong>Aquecimento e arrefecimento</strong></button>
+              <button class="choice-btn" type="button" data-field="use" data-value="Piso radiante + apoio para frio"><strong>Quente + apoio para frio</strong></button>
+              <button class="choice-btn" type="button" data-field="use" data-value="Preciso de ajuda a definir"><strong>Preciso de ajuda</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-zoning">
+            <div class="stage-head">
+              <span class="stage-index">4</span>
+              <div class="stage-title"><strong>Quer conforto definido por divisão?</strong><span>Controlo e termóstatos</span></div>
+              <span class="tag">Controlo</span>
+            </div>
+            <p>O controlo por divisão permite gerir temperaturas diferentes em quartos, sala e zonas de menor uso. Em quente e frio, nem todo o controlo é suficiente: é preciso considerar humidade, ponto de orvalho e segurança contra condensações.</p>
+            <button class="media-button" type="button" id="open-control-video" style="background-image:linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.58)), url('https://img.youtube.com/vi/PGuqKFGyXi4/maxresdefault.jpg');">
+              <span class="media-label">
+                <strong>Ver controlo em quente e frio</strong>
+                <span>Humidade, ponto de orvalho e limitações do arrefecimento</span>
+              </span>
+            </button>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="zoning" data-value="Controlo geral da casa"><strong>Controlo geral</strong></button>
+              <button class="choice-btn" type="button" data-field="zoning" data-value="Controlo por divisão"><strong>Por divisão</strong></button>
+              <button class="choice-btn" type="button" data-field="zoning" data-value="Controlo por zonas principais"><strong>Por zonas principais</strong></button>
+              <button class="choice-btn" type="button" data-field="zoning" data-value="Quero recomendação da Wisemak"><strong>Quero recomendação</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-plate">
+            <div class="stage-head">
+              <span class="stage-index">5</span>
+              <div class="stage-title"><strong>Que tipo de placa faz sentido?</strong><span>Resistência térmica, custo e obra</span></div>
+              <span class="tag">Placa</span>
+            </div>
+            <p>A placa influencia o custo, a rapidez de instalação, a altura disponível, a resposta térmica e a compatibilidade com a obra. A resistência térmica do conjunto deve ser bem enquadrada para o piso radiante trabalhar como deve ser.</p>
+            <button class="media-button" type="button" id="open-plate-video" style="background-image:linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.58)), url('https://img.youtube.com/vi/E59jlCIeH4Q/maxresdefault.jpg');">
+              <span class="media-label">
+                <strong>Ver tipos de placa</strong>
+                <span>Pitonada, lisa, autofixação e impacto no projeto</span>
+              </span>
+            </button>
+            <div class="choice-row" style="margin-top:16px">
+              <button class="choice-btn" type="button" data-field="plate" data-value="Placa pitonada"><strong>Placa pitonada</strong></button>
+              <button class="choice-btn" type="button" data-field="plate" data-value="Placa lisa com agrafos"><strong>Placa lisa</strong></button>
+              <button class="choice-btn" type="button" data-field="plate" data-value="Placa de autofixação"><strong>Placa de autofixação</strong></button>
+              <button class="choice-btn" type="button" data-field="plate" data-value="Quero recomendação da Wisemak"><strong>Quero recomendação</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-floor">
+            <div class="stage-head">
+              <span class="stage-index">6</span>
+              <div class="stage-title"><strong>Onde vai ficar o piso radiante?</strong><span>Piso térreo ou outros pisos</span></div>
+              <span class="tag">Piso</span>
+            </div>
+            <p>Saber se é piso térreo, piso intermédio ou cobertura ajuda a avaliar isolamento, perdas térmicas, altura disponível e compatibilidade construtiva.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="floor" data-value="Piso térreo"><strong>Piso térreo</strong></button>
+              <button class="choice-btn" type="button" data-field="floor" data-value="Piso intermédio"><strong>Piso intermédio</strong></button>
+              <button class="choice-btn" type="button" data-field="floor" data-value="Vários pisos"><strong>Vários pisos</strong></button>
+              <button class="choice-btn" type="button" data-field="floor" data-value="Ainda não sei"><strong>Ainda não sei</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-covering">
+            <div class="stage-head">
+              <span class="stage-index">7</span>
+              <div class="stage-title"><strong>Que revestimento está a pensar colocar?</strong><span>Acabamento final do pavimento</span></div>
+              <span class="tag">Revestimento</span>
+            </div>
+            <p>O revestimento influencia a transmissão de calor. Cerâmica e pedra respondem muito bem; madeira, laminado e multicamada exigem compatibilidade e limites de temperatura.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="covering" data-value="Cerâmica ou porcelânico"><strong>Cerâmica / porcelânico</strong></button>
+              <button class="choice-btn" type="button" data-field="covering" data-value="Pedra natural"><strong>Pedra natural</strong></button>
+              <button class="choice-btn" type="button" data-field="covering" data-value="Madeira"><strong>Madeira</strong></button>
+              <button class="choice-btn" type="button" data-field="covering" data-value="Laminado"><strong>Laminado</strong></button>
+              <button class="choice-btn" type="button" data-field="covering" data-value="Multicamada"><strong>Multicamada</strong></button>
+              <button class="choice-btn" type="button" data-field="covering" data-value="Parquet"><strong>Parquet</strong></button>
+              <button class="choice-btn" type="button" data-field="covering" data-value="Vinílico compatível"><strong>Vinílico compatível</strong></button>
+              <button class="choice-btn" type="button" data-field="covering" data-value="Ainda não defini"><strong>Ainda não defini</strong></button>
+            </div>
+          </article>
+
+          <article class="stage" id="step-source">
+            <div class="stage-head">
+              <span class="stage-index">8</span>
+              <div class="stage-title"><strong>Com que fonte quer trabalhar?</strong><span>Bomba de calor ou outra fonte</span></div>
+              <span class="tag">Sistema</span>
+            </div>
+            <p>O piso radiante trabalha muito bem com bomba de calor por usar temperaturas baixas. Se ainda não definiu a fonte, a equipa pode propor o enquadramento completo.</p>
+            <div class="choice-row">
+              <button class="choice-btn" type="button" data-field="source" data-value="Bomba de calor"><strong>Bomba de calor</strong></button>
+              <button class="choice-btn" type="button" data-field="source" data-value="Caldeira"><strong>Caldeira</strong></button>
+              <button class="choice-btn" type="button" data-field="source" data-value="Ainda não defini a fonte"><strong>Ainda não defini</strong></button>
+              <button class="choice-btn" type="button" data-field="source" data-value="Quero recomendação da Wisemak"><strong>Quero recomendação</strong></button>
+            </div>
+            <div class="stage-actions"><button class="btn btn-ghost" type="button" id="advance-source">Avançar</button></div>
+          </article>
+
+          <div class="form-card" id="step-form">
+            <span class="tag">Lead</span>
+            <h3>9. Enviar para a equipa Wisemak</h3>
+            <p>O pedido segue com área, planta, utilização, controlo por divisão, tipo de placa, piso, revestimento, fonte de calor e localização.</p>
+            <div class="form-grid">
+              <input id="lead-name" type="text" placeholder="Nome">
+              <input id="lead-email" type="email" placeholder="Email">
+              <input id="lead-phone" type="tel" placeholder="Telefone">
+              <select id="lead-district" data-location-district data-location-key="lead"></select>
+              <select id="lead-municipality" data-location-municipality data-location-key="lead" disabled></select>
+              <input id="lead-location" type="hidden">
+              <textarea id="lead-message" class="full" placeholder="Se quiser, acrescente detalhes sobre cotas, isolamento, coletores, zonas técnicas ou dúvidas adicionais."></textarea>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button class="btn btn-light" type="button" id="submit-btn">Enviar formulário</button>
+              <a class="btn btn-ghost" href="#step-home">Rever escolhas</a>
+            </div>
+            <div class="feedback" id="feedback"></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer><div class="container">Guia de piso radiante preparado para qualificar leads antes da proposta.</div></footer>
+
+  <div class="video-modal" id="video-modal" aria-hidden="true">
+    <div class="video-modal-card">
+      <div class="video-modal-head">
+        <strong id="video-title">Vídeo Wisemak</strong>
+        <button class="video-close" type="button" id="close-video-modal" aria-label="Fechar vídeo">×</button>
+      </div>
+      <div class="video-modal-frame" id="video-frame"></div>
+    </div>
+  </div>
+
   <script>
-    const WEB3FORMS_ACCESS_KEY='SUBSTITUIR_WEB3FORMS_ACCESS_KEY'; const state={work:'',goal:'',source:'',cooling:'',priority:''}; const sum={work:document.getElementById('summary-work'),goal:document.getElementById('summary-goal'),source:document.getElementById('summary-source'),cooling:document.getElementById('summary-cooling'),priority:document.getElementById('summary-priority'),status:document.getElementById('guide-status')}; let t=null;
-    function s(id){const e=document.getElementById(id); if(!e) return; window.scrollTo({top:Math.max(0,e.getBoundingClientRect().top+window.scrollY-92),behavior:'smooth'}); e.classList.add('flash'); clearTimeout(t); t=setTimeout(()=>e.classList.remove('flash'),900);}
-    function u(){sum.work.textContent=state.work||'Por escolher'; sum.goal.textContent=state.goal||'Por escolher'; sum.source.textContent=state.source||'Por escolher'; sum.cooling.textContent=state.cooling||'Por escolher'; sum.priority.textContent=state.priority||'Por escolher'; const c=Object.values(state).filter(Boolean).length; sum.status.textContent=c===5?'Lead pronta para envio':`Guide preenchido ${c}/5`;}
-    document.querySelectorAll('.choice-btn').forEach(btn=>btn.addEventListener('click',()=>{const {field,value}=btn.dataset; state[field]=value; document.querySelectorAll(`.choice-btn[data-field="${field}"]`).forEach(i=>i.classList.toggle('active',i===btn)); u(); if(field==='work') setTimeout(()=>s('step-goal'),220); if(field==='source') setTimeout(()=>s('step-cooling'),220);}));
-    document.getElementById('advance-goal').addEventListener('click',()=>s('step-source')); document.getElementById('advance-priority').addEventListener('click',()=>s('step-form'));
-    document.getElementById('submit-btn').addEventListener('click',async()=>{const name=document.getElementById('lead-name').value.trim(),email=document.getElementById('lead-email').value.trim(),phone=document.getElementById('lead-phone').value.trim(),message=document.getElementById('lead-message').value.trim(),f=document.getElementById('feedback'); if(!name||!email){f.style.display='block';f.innerHTML='<strong>Falta informação</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>';return;} if(Object.values(state).filter(Boolean).length<5){f.style.display='block';f.innerHTML='<strong>Faltam escolhas</strong><p style="margin:8px 0 0;color:var(--muted)">Complete os passos principais do guia antes de enviar.</p>';return;} if(WEB3FORMS_ACCESS_KEY==='SUBSTITUIR_WEB3FORMS_ACCESS_KEY'){f.style.display='block';f.innerHTML='<strong>Falta ligar o envio automático</strong><p style="margin:8px 0 0;color:var(--muted)">Substitua <code>WEB3FORMS_ACCESS_KEY</code> pela chave real do Web3Forms.</p>';return;} const fd=new FormData(); fd.set('access_key',WEB3FORMS_ACCESS_KEY); fd.set('subject','Lead Piso Radiante Wisemak'); fd.set('from_name','Wisemak Piso Radiante'); fd.set('name',name); fd.set('email',email); fd.set('phone',phone||'-'); fd.set('mensagem_cliente',message||'-'); fd.set('solucao','Piso Radiante'); Object.entries(state).forEach(([k,v])=>fd.set(k,v)); f.style.display='block'; f.innerHTML='<strong>A enviar guia</strong><p style="margin:8px 0 0;color:var(--muted)">Estamos a enviar as escolhas do cliente para a equipa Wisemak.</p>'; try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}); const j=await r.json(); f.innerHTML=j.success?'<strong>Guide enviado</strong><p style="margin:8px 0 0;color:var(--muted)">A equipa Wisemak vai receber a lead e responder o mais rapidamente possível.</p>':`<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">${j.message||'Nao foi possível enviar a lead.'}</p>`;}catch{f.innerHTML='<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">Nao foi possível contactar o serviço de envio.</p>';}}); u();
+    const WEB3FORMS_ACCESS_KEY = 'SUBSTITUIR_WEB3FORMS_ACCESS_KEY';
+    const VIDEO_MAP = {
+      control: {
+        title: 'Controlo do piso radiante em quente e frio',
+        embed: 'https://www.youtube-nocookie.com/embed/PGuqKFGyXi4?autoplay=1&rel=0'
+      },
+      plate: {
+        title: 'Tipos de placa para piso radiante',
+        embed: 'https://www.youtube-nocookie.com/embed/E59jlCIeH4Q?autoplay=1&rel=0'
+      }
+    };
+    const state = {
+      home: '',
+      context: '',
+      area: '',
+      planName: '',
+      use: '',
+      zoning: '',
+      plate: '',
+      floor: '',
+      covering: '',
+      source: ''
+    };
+    const summary = {
+      home: document.getElementById('summary-home'),
+      area: document.getElementById('summary-area'),
+      plan: document.getElementById('summary-plan'),
+      use: document.getElementById('summary-use'),
+      zoning: document.getElementById('summary-zoning'),
+      plate: document.getElementById('summary-plate'),
+      floor: document.getElementById('summary-floor'),
+      covering: document.getElementById('summary-covering'),
+      source: document.getElementById('summary-source'),
+      status: document.getElementById('guide-status')
+    };
+    const videoModal = document.getElementById('video-modal');
+    const videoFrame = document.getElementById('video-frame');
+    const videoTitle = document.getElementById('video-title');
+    let timer = null;
+
+    function scrollToStage(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - 92), behavior: 'smooth' });
+      el.classList.add('flash');
+      clearTimeout(timer);
+      timer = setTimeout(() => el.classList.remove('flash'), 900);
+    }
+
+    function setSummaryItemComplete(id, isComplete){
+      document.getElementById(id)?.closest('.summary-item')?.classList.toggle('is-complete', Boolean(isComplete));
+    }
+
+    function openVideoModal(key){
+      const config = VIDEO_MAP[key];
+      if(!config) return;
+      videoTitle.textContent = config.title;
+      videoFrame.innerHTML = `<iframe src="${config.embed}" title="${config.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      videoModal.classList.add('active');
+      videoModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal(){
+      videoModal.classList.remove('active');
+      videoModal.setAttribute('aria-hidden', 'true');
+      videoFrame.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    function updateArea(){
+      const area = Number(state.area || 0);
+      document.getElementById('area-result').textContent = area > 0 ? `${area.toLocaleString('pt-PT')} m²` : 'Por calcular';
+      document.getElementById('area-note').textContent = area > 0
+        ? `Base inicial para estimar circuitos, placa, tubo e coletores.`
+        : 'A área é obrigatória para estimar projeto e material.';
+    }
+
+    function update(){
+      const homeLabel = state.home && state.context ? `${state.home} · ${state.context}` : state.home || state.context || 'Por preencher';
+      const completed = [
+        state.home && state.context,
+        state.area,
+        state.planName,
+        state.use,
+        state.zoning,
+        state.plate,
+        state.floor,
+        state.covering,
+        state.source
+      ].filter(Boolean).length;
+
+      summary.home.textContent = homeLabel;
+      summary.area.textContent = state.area ? `${state.area} m²` : 'Por calcular';
+      summary.plan.textContent = state.planName || 'Por enviar';
+      summary.use.textContent = state.use || 'Por escolher';
+      summary.zoning.textContent = state.zoning || 'Por escolher';
+      summary.plate.textContent = state.plate || 'Por escolher';
+      summary.floor.textContent = state.floor || 'Por escolher';
+      summary.covering.textContent = state.covering || 'Por escolher';
+      summary.source.textContent = state.source || 'Por escolher';
+      summary.status.textContent = completed === 9 ? 'Lead pronta para envio' : `Guide preenchido ${completed}/9`;
+      summary.status.classList.toggle('is-complete', completed === 9);
+
+      setSummaryItemComplete('summary-home', state.home && state.context);
+      setSummaryItemComplete('summary-area', state.area);
+      setSummaryItemComplete('summary-plan', state.planName);
+      setSummaryItemComplete('summary-use', state.use);
+      setSummaryItemComplete('summary-zoning', state.zoning);
+      setSummaryItemComplete('summary-plate', state.plate);
+      setSummaryItemComplete('summary-floor', state.floor);
+      setSummaryItemComplete('summary-covering', state.covering);
+      setSummaryItemComplete('summary-source', state.source);
+      updateArea();
+    }
+
+    function selectChoice(button){
+      const { field, value } = button.dataset;
+      if(!field) return;
+      state[field] = value;
+      document.querySelectorAll(`.choice-btn[data-field="${field}"]`).forEach(item => item.classList.toggle('active', item === button));
+      update();
+      if(field === 'use') setTimeout(() => scrollToStage('step-zoning'), 220);
+      if(field === 'zoning') setTimeout(() => scrollToStage('step-plate'), 220);
+      if(field === 'plate') setTimeout(() => scrollToStage('step-floor'), 220);
+      if(field === 'floor') setTimeout(() => scrollToStage('step-covering'), 220);
+      if(field === 'covering') setTimeout(() => scrollToStage('step-source'), 220);
+    }
+
+    async function submitLead(){
+      const name = document.getElementById('lead-name').value.trim();
+      const email = document.getElementById('lead-email').value.trim();
+      const phone = document.getElementById('lead-phone').value.trim();
+      const location = document.getElementById('lead-location').value.trim();
+      const message = document.getElementById('lead-message').value.trim();
+      const planFile = document.getElementById('plan-file').files[0];
+      const feedback = document.getElementById('feedback');
+
+      if(!name || !email){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Falta informação</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>';
+        return;
+      }
+
+      if(!location){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Falta local da instalação</strong><p style="margin:8px 0 0;color:var(--muted)">Selecione o distrito e o concelho onde será feita a instalação.</p>';
+        return;
+      }
+
+      if(!state.home || !state.context || !state.area || !state.use || !state.zoning || !state.plate || !state.floor || !state.covering || !state.source){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Faltam escolhas</strong><p style="margin:8px 0 0;color:var(--muted)">Complete os passos principais do guia antes de enviar.</p>';
+        return;
+      }
+
+      if(WEB3FORMS_ACCESS_KEY === 'SUBSTITUIR_WEB3FORMS_ACCESS_KEY'){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Falta ligar o envio automático</strong><p style="margin:8px 0 0;color:var(--muted)">Substitua <code>WEB3FORMS_ACCESS_KEY</code> pela chave real do Web3Forms.</p>';
+        return;
+      }
+
+      const locationData = window.WisemakLocations?.get('lead') || {};
+      const fd = new FormData();
+      fd.set('access_key', WEB3FORMS_ACCESS_KEY);
+      fd.set('subject', 'Lead Piso Radiante Wisemak');
+      fd.set('from_name', 'Wisemak Piso Radiante');
+      fd.set('name', name);
+      fd.set('email', email);
+      fd.set('phone', phone || '-');
+      fd.set('local_instalacao', location);
+      fd.set('distrito', locationData.district || '-');
+      fd.set('concelho', locationData.municipality || '-');
+      fd.set('mensagem_cliente', message || '-');
+      fd.set('solucao', 'Piso Radiante');
+      fd.set('tipo_habitacao', state.home);
+      fd.set('contexto_obra', state.context);
+      fd.set('area_piso_radiante_m2', `${state.area} m²`);
+      fd.set('planta_enviada', state.planName || 'Não enviada');
+      fd.set('utilizacao', state.use);
+      fd.set('controlo_zonas', state.zoning);
+      fd.set('tipo_placa', state.plate);
+      fd.set('piso_instalacao', state.floor);
+      fd.set('revestimento', state.covering);
+      fd.set('fonte_calor', state.source);
+      if(planFile){
+        fd.append('attachment', planFile);
+      }
+
+      feedback.style.display = 'block';
+      feedback.innerHTML = '<strong>A enviar guia</strong><p style="margin:8px 0 0;color:var(--muted)">Estamos a enviar as escolhas e a planta para a equipa Wisemak.</p>';
+
+      try{
+        const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+        const result = await response.json();
+        feedback.innerHTML = result.success
+          ? '<strong>Guide enviado</strong><p style="margin:8px 0 0;color:var(--muted)">A equipa Wisemak vai receber a lead e responder o mais rapidamente possível.</p>'
+          : `<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">${result.message || 'Não foi possível enviar a lead.'}</p>`;
+      } catch (error){
+        feedback.innerHTML = '<strong>Falha no envio</strong><p style="margin:8px 0 0;color:var(--muted)">Não foi possível contactar o serviço de envio.</p>';
+      }
+    }
+
+    document.getElementById('home-kind').addEventListener('change', event => {
+      state.home = event.target.value;
+      update();
+    });
+    document.getElementById('work-context').addEventListener('change', event => {
+      state.context = event.target.value;
+      update();
+    });
+    document.getElementById('heated-area').addEventListener('input', event => {
+      state.area = event.target.value.trim();
+      update();
+    });
+    document.getElementById('plan-file').addEventListener('change', event => {
+      const file = event.target.files[0];
+      state.planName = file ? file.name : '';
+      document.getElementById('plan-file-name').textContent = file ? file.name : 'Nenhum ficheiro selecionado.';
+      update();
+    });
+    document.querySelectorAll('.choice-btn').forEach(button => button.addEventListener('click', () => selectChoice(button)));
+    document.getElementById('advance-home').addEventListener('click', () => scrollToStage('step-plan'));
+    document.getElementById('advance-plan').addEventListener('click', () => scrollToStage('step-use'));
+    document.getElementById('advance-source').addEventListener('click', () => scrollToStage('step-form'));
+    document.getElementById('open-control-video').addEventListener('click', () => openVideoModal('control'));
+    document.getElementById('open-plate-video').addEventListener('click', () => openVideoModal('plate'));
+    document.getElementById('close-video-modal').addEventListener('click', closeVideoModal);
+    videoModal.addEventListener('click', event => {
+      if(event.target === videoModal) closeVideoModal();
+    });
+    document.addEventListener('keydown', event => {
+      if(event.key === 'Escape' && videoModal.classList.contains('active')) closeVideoModal();
+    });
+    document.getElementById('submit-btn').addEventListener('click', submitLead);
+    update();
   </script>
 </body>
 </html>

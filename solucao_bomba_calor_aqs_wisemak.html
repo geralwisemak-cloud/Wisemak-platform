@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared-header.css">
   <script src="shared-header.js" defer></script>
+  <script src="shared-locations.js" defer></script>
   <style>
     :root{
       --bg:#080808;
@@ -1113,6 +1114,7 @@
               <input id="aqs-name" type="text" placeholder="Nome">
               <input id="aqs-email" type="email" placeholder="Email">
               <input id="aqs-phone" type="tel" placeholder="Telefone">
+              <select id="aqs-district" data-location-district data-location-key="aqs"></select><select id="aqs-municipality" data-location-municipality data-location-key="aqs" disabled></select><input id="aqs-location" type="hidden">
               <div></div>
               <textarea id="aqs-message" class="full" placeholder="Se quiser, acrescente detalhes sobre a casa, a instalação ou dúvidas adicionais."></textarea>
             </div>
@@ -1376,6 +1378,7 @@
       const name = document.getElementById('aqs-name').value.trim();
       const email = document.getElementById('aqs-email').value.trim();
       const phone = document.getElementById('aqs-phone').value.trim();
+      const location = document.getElementById('aqs-location').value.trim();
       const message = document.getElementById('aqs-message').value.trim();
       const width = document.getElementById('aqs-width').value.trim();
       const depth = document.getElementById('aqs-depth').value.trim();
@@ -1385,6 +1388,12 @@
       if(!name || !email){
         feedback.style.display = 'block';
         feedback.innerHTML = '<strong>Falta informação</strong><p style="margin:8px 0 0;color:var(--muted)">Preencha pelo menos nome e email para enviar o guia.</p>';
+        return;
+      }
+
+      if(!location){
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<strong>Falta local da instalação</strong><p style="margin:8px 0 0;color:var(--muted)">Selecione o distrito e o concelho onde será feita a instalação.</p>';
         return;
       }
 
@@ -1407,6 +1416,7 @@
       formData.set('name', name);
       formData.set('email', email);
       formData.set('phone', phone || '-');
+      formData.set('local_instalacao', location);
       formData.set('mensagem_cliente', message || '-');
       formData.set('solucao', 'Bomba de Calor AQS');
       formData.set('tipo_bomba', guideState.tipo_bomba);
@@ -1434,6 +1444,7 @@
           document.getElementById('aqs-name').value = '';
           document.getElementById('aqs-email').value = '';
           document.getElementById('aqs-phone').value = '';
+          document.getElementById('aqs-location').value = '';
           document.getElementById('aqs-message').value = '';
           document.getElementById('aqs-width').value = '';
           document.getElementById('aqs-depth').value = '';
