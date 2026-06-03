@@ -206,6 +206,9 @@
       color:#fff;
       outline:none;
     }
+    .field input:invalid{
+      border-color:rgba(250,204,21,.46);
+    }
     .field textarea{min-height:92px;resize:vertical}
     .choices{
       display:grid;
@@ -365,6 +368,60 @@
       font-size:15px;
       line-height:1.25;
     }
+    .lead-card{
+      display:grid;
+      gap:14px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .lead-card h3{
+      margin:0;
+      font-size:18px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+    .request-summary{
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+    }
+    .request-summary summary{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:13px;
+      color:#fff;
+      cursor:pointer;
+      list-style:none;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .request-summary summary::-webkit-details-marker{display:none}
+    .request-summary summary::after{
+      content:'+';
+      width:24px;
+      height:24px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      font-size:18px;
+      line-height:1;
+    }
+    .request-summary[open] summary::after{
+      content:'-';
+    }
+    .request-summary-body{
+      display:grid;
+      gap:9px;
+      padding:0 13px 13px;
+    }
     .actions{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -447,13 +504,16 @@
           </div>
         </div>
         <div class="field-grid">
-          <div class="field"><label for="house-area">Área da casa</label><input id="house-area" type="number" min="20" inputmode="numeric" placeholder="Exemplo: 150"></div>
-          <div class="field"><label for="house-people">N.º de pessoas</label><input id="house-people" type="number" min="1" inputmode="numeric" placeholder="Exemplo: 4"></div>
+          <div class="field"><label for="house-area">Área da casa</label><input id="house-area" type="number" min="20" inputmode="numeric" placeholder="Exemplo: 150" required></div>
+          <div class="field"><label for="house-people">N.º de pessoas</label><input id="house-people" type="number" min="1" inputmode="numeric" placeholder="Exemplo: 4" required></div>
           <div class="field"><label for="house-type">Tipo de imóvel</label><select id="house-type"><option>Moradia</option><option>Apartamento</option><option>Obra nova</option><option>Remodelação</option></select></div>
         </div>
-        <div class="actions">
-          <button class="btn btn-ghost" type="button" disabled>Anterior</button>
-          <button class="btn btn-light" type="button" data-next>Avançar</button>
+        <div>
+          <div class="actions">
+            <button class="btn btn-ghost" type="button" disabled>Anterior</button>
+            <button class="btn btn-light" type="button" data-next>Avançar</button>
+          </div>
+          <div class="toast" data-step-toast>Preencha a área da casa e o n.º de pessoas para continuar.</div>
         </div>
       </article>
 
@@ -563,11 +623,26 @@
           <div class="summary-row"><span>Climatização</span><strong id="summary-clima">Por escolher</strong></div>
           <div class="summary-row"><span>Detalhe da climatização</span><strong id="summary-clima-detail">Por escolher</strong></div>
           <div class="summary-row"><span>Ventilação</span><strong id="summary-vent">Por escolher</strong></div>
-          <div class="field"><label for="lead-note">Notas para a equipa</label><textarea id="lead-note" placeholder="Exemplo: quero perceber valores com instalação e prazos."></textarea></div>
+          <div class="lead-card">
+            <h3>Resumo enviado com o pedido</h3>
+            <details class="request-summary">
+              <summary>Ver detalhes do pedido</summary>
+              <div class="request-summary-body">
+                <div class="summary-row"><span>Solução AQS</span><strong id="lead-aqs">Por escolher</strong></div>
+                <div class="summary-row"><span>Solução Clima</span><strong id="lead-clima">Por escolher</strong></div>
+                <div class="summary-row"><span>Solução Ventilação</span><strong id="lead-vent">Por escolher</strong></div>
+                <div class="summary-row"><span>Intenção</span><strong>Proposta com instalação</strong></div>
+              </div>
+            </details>
+            <div class="field"><label for="lead-name">Nome</label><input id="lead-name" autocomplete="name" placeholder="O seu nome"></div>
+            <div class="field"><label for="lead-phone">Telefone</label><input id="lead-phone" inputmode="tel" autocomplete="tel" placeholder="912 345 678"></div>
+            <div class="field"><label for="lead-email">Email</label><input id="lead-email" type="email" autocomplete="email" placeholder="nome@email.com"></div>
+            <div class="field"><label for="lead-note">Notas para a equipa</label><textarea id="lead-note" placeholder="Exemplo: quero perceber valores com instalação e prazos."></textarea></div>
+          </div>
         </div>
         <div class="actions">
           <button class="btn btn-ghost" type="button" data-prev>Anterior</button>
-          <a class="btn btn-light" href="index.html#cotacao">Pedir proposta</a>
+          <button class="btn btn-light" type="button" data-submit-lead>Ser contactado</button>
         </div>
       </article>
     </section>
@@ -577,22 +652,40 @@
     const options = {
       aqs: [
         {
-          value: 'Bomba de Calor AQS',
+          value: 'Não incluído',
+          kicker: 'Opcional',
+          summary: 'Escolha esta opção se não pretende incluir água quente sanitária nesta simulação.',
+          details: [['Investimento', '0€'], ['Cobertura AQS', 'não incluída'], ['Próximo passo', 'validar restantes áreas']]
+        },
+        {
+          value: 'Bomba de Calor',
           kicker: 'Recomendado',
           summary: 'Mais eficiente no uso diario e melhor leitura de custo a longo prazo.',
           details: [['Investimento', 'a partir de 1.750€'], ['Consumo', 'baixo'], ['Ideal para', 'famílias e uso regular']]
         },
         {
-          value: 'Solar Térmico',
+          value: 'Sistema Solar Térmico',
           kicker: 'Eficiente',
           summary: 'Aproveita energia solar e reduz consumo anual com apoio ao sistema.',
           details: [['Investimento', 'a partir de 2.000€'], ['Consumo', 'muito baixo'], ['Ideal para', 'boa exposição solar']]
         },
         {
-          value: 'Termoacumulador',
+          value: 'Termoacumulador (Cilindro)',
           kicker: 'Simples',
           summary: 'Entrada mais acessível, instalação direta e decisão rápida.',
           details: [['Investimento', 'a partir de 380€'], ['Consumo', 'mais elevado'], ['Ideal para', 'orçamento inicial controlado']]
+        },
+        {
+          value: 'Esquentador de gás natural (rede)',
+          kicker: 'Rede',
+          summary: 'Solução a gás natural para reposição simples em casas com infraestrutura disponível.',
+          details: [['Investimento', 'a partir de 480€'], ['Consumo', 'médio'], ['Ideal para', 'gás natural disponível']]
+        },
+        {
+          value: 'Esquentador de gás de botija',
+          kicker: 'Botija',
+          summary: 'Solução a gás de botija para contextos sem rede, com maior custo de operação.',
+          details: [['Investimento', 'a partir de 480€'], ['Consumo', 'mais elevado'], ['Ideal para', 'casas sem rede de gás']]
         }
       ],
       clima: [
@@ -761,11 +854,15 @@
       const people = document.getElementById('house-people').value.trim();
       const type = document.getElementById('house-type').value;
       const house = [area ? `${area} m²` : '', people ? `${people} pessoas` : '', type].filter(Boolean).join(' · ');
+      const climateDetail = getClimateDetailSummary();
       document.getElementById('summary-house').textContent = house || 'Por preencher';
       document.getElementById('summary-aqs').textContent = state.aqs || 'Por escolher';
       document.getElementById('summary-clima').textContent = state.clima || 'Por escolher';
-      document.getElementById('summary-clima-detail').textContent = getClimateDetailSummary();
+      document.getElementById('summary-clima-detail').textContent = climateDetail;
       document.getElementById('summary-vent').textContent = state.vent || 'Por escolher';
+      document.getElementById('lead-aqs').textContent = state.aqs || 'Por escolher';
+      document.getElementById('lead-clima').textContent = [state.clima, climateDetail !== 'Não aplicável' ? climateDetail : ''].filter(Boolean).join(' · ') || 'Por escolher';
+      document.getElementById('lead-vent').textContent = state.vent || 'Por escolher';
     }
 
     function getClimateMode(){
@@ -800,6 +897,11 @@
     }
 
     function canAdvance(){
+      if(state.step === 0){
+        const area = document.getElementById('house-area');
+        const people = document.getElementById('house-people');
+        return area.checkValidity() && people.checkValidity();
+      }
       if(state.step === 1) return Boolean(state.aqs);
       if(state.step === 2) return Boolean(state.clima);
       if(state.step === 3 && getClimateMode() === 'indep') return Boolean(state.climaIndep);
@@ -861,6 +963,10 @@
 
       if(event.target.closest('[data-next]')){
         if(!canAdvance()){
+          if(state.step === 0){
+            document.getElementById('house-area').reportValidity();
+            document.getElementById('house-people').reportValidity();
+          }
           showToast();
           return;
         }
@@ -869,6 +975,11 @@
 
       if(event.target.closest('[data-prev]')){
         showStep(getPrevStep());
+      }
+
+      if(event.target.closest('[data-submit-lead]')){
+        window.alert('Pedido recebido. A equipa Wisemak vai entrar em contacto consigo brevemente.');
+        window.location.href = 'index.html';
       }
     });
 
