@@ -372,6 +372,29 @@
       display:grid;
       gap:14px;
     }
+    .price-summary-card{
+      display:grid;
+      gap:16px;
+      padding:18px;
+      border-radius:20px;
+      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+      border:1px solid rgba(255,255,255,.09);
+    }
+    .price-summary-card .estimate-kicker{
+      color:#93c5fd;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+    .price-summary-card small{
+      display:block;
+      margin-top:8px;
+      color:rgba(255,255,255,.62);
+      font-size:16px;
+      line-height:1.25;
+      font-weight:800;
+    }
     .summary-disclosure{
       border-radius:20px;
       background:rgba(255,255,255,.045);
@@ -408,7 +431,7 @@
     .summary-disclosure .tag{
       width:max-content;
     }
-    .solution-panel,.technical-panel{
+    .technical-panel{
       display:grid;
       gap:12px;
       margin:0 14px 14px;
@@ -416,28 +439,6 @@
       border-radius:18px;
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
-    }
-    .estimate-box{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-      padding:15px;
-      border-radius:17px;
-      background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .estimate-box small{
-      display:block;
-      color:rgba(255,255,255,.58);
-      font-weight:700;
-    }
-    .estimate-box .estimate-kicker{
-      margin-bottom:6px;
-      color:#93c5fd;
-      font-size:10px;
-      font-weight:900;
-      letter-spacing:.12em;
-      text-transform:uppercase;
     }
     .estimate-value{
       display:block;
@@ -450,12 +451,6 @@
     }
     .estimate-value.secondary{
       font-size:32px;
-    }
-    .note{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.45;
     }
     .technical-panel h3{
       margin:0;
@@ -764,33 +759,23 @@
           </div>
         </div>
         <div class="summary-box">
+          <div class="price-summary-card">
+            <div>
+              <span class="estimate-kicker">Cenário crítico</span>
+              <small>Custo energético estimado num mês crítico</small>
+              <strong class="estimate-value" id="solution-month">0€</strong>
+            </div>
+            <div>
+              <small>Investimento base</small>
+              <strong class="estimate-value secondary" id="solution-start">0€</strong>
+            </div>
+          </div>
           <div class="summary-row"><span>Casa</span><strong id="summary-house">Por preencher</strong></div>
           <div class="summary-row"><span>Água quente</span><strong id="summary-aqs">Por escolher</strong></div>
           <div class="summary-row"><span>Climatização</span><strong id="summary-clima">Por escolher</strong></div>
           <div class="summary-row"><span>Detalhe da climatização</span><strong id="summary-clima-detail">Por escolher</strong></div>
           <div class="summary-row"><span>Ventilação</span><strong id="summary-vent">Por escolher</strong></div>
           <div class="solution-summary-card">
-            <details class="summary-disclosure">
-              <summary><span class="tag">Resumo da solução</span></summary>
-              <div class="solution-panel">
-                <div class="summary-row"><span>Água quente</span><strong id="solution-aqs">Não incluído</strong></div>
-                <div class="summary-row"><span>Climatização</span><strong id="solution-clima">Não incluído</strong></div>
-                <div class="summary-row"><span>Ventilação</span><strong id="solution-vent">Não incluído</strong></div>
-                <div class="summary-row"><span>Perfil considerado</span><strong id="solution-profile">Por preencher</strong></div>
-                <div class="estimate-box">
-                  <div>
-                    <small class="estimate-kicker">Cenário crítico</small>
-                    <small>Custo energético estimado num mês crítico</small>
-                    <strong class="estimate-value" id="solution-month">0€</strong>
-                  </div>
-                  <div>
-                    <small>Investimento base</small>
-                    <strong class="estimate-value secondary" id="solution-start">0€</strong>
-                  </div>
-                </div>
-                <p class="note">Estimativa indicativa para qualificação comercial. A proposta final depende da visita técnica, tipologia e instalação necessária.</p>
-              </div>
-            </details>
             <details class="summary-disclosure">
               <summary><span class="tag">Leitura técnica da solução</span></summary>
               <div class="technical-panel">
@@ -1131,7 +1116,6 @@
       const area = Number(document.getElementById('house-area').value) || 0;
       const people = Number(document.getElementById('house-people').value) || 0;
       const rooms = Math.max(1, Math.round(area / 30) || 0);
-      const profile = [area ? `${area} m²` : '', people ? `${people} pessoas` : '', rooms ? `${rooms} ${rooms === 1 ? 'divisão' : 'divisões'}` : ''].filter(Boolean).join(' · ') || 'Por preencher';
       const aqs = AQS_METRICS[state.aqs] || AQS_METRICS['Não incluído'];
       const climate = getClimateMetrics();
       const vent = VENT_METRICS[state.vent] || VENT_METRICS['Sem ventilação'];
@@ -1139,10 +1123,6 @@
       const investment = aqs.start + climate.start + vent.start;
       const techParts = [aqs.tech, climate.tech, vent.tech].filter(Boolean);
 
-      document.getElementById('solution-aqs').textContent = aqs.label;
-      document.getElementById('solution-clima').textContent = climate.label;
-      document.getElementById('solution-vent').textContent = vent.label;
-      document.getElementById('solution-profile').textContent = profile;
       document.getElementById('solution-month').textContent = euro(criticalMonth);
       document.getElementById('solution-start').textContent = euro(investment);
       document.getElementById('tech-solution-name').textContent = techParts.join(' + ') || 'Sem soluções selecionadas';
