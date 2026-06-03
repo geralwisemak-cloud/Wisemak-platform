@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wisemak | Configurador Mobile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#090909;
+      --panel:#141414;
+      --panel-2:#1d1d1d;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.68);
+      --soft:rgba(255,255,255,.10);
+      --line:rgba(255,255,255,.10);
+      --blue:#60a5fa;
+      --green:#4ade80;
+      --yellow:#facc15;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 50% -8%, rgba(96,165,250,.18), transparent 32%),
+        linear-gradient(180deg,#0b0b0b 0%,#090909 100%);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    .shell{width:min(100% - 24px,560px);margin:0 auto}
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(9,9,9,.86);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .topbar-inner{
+      min-height:62px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .logo img{height:34px;width:auto;display:block}
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:rgba(255,255,255,.78);
+      font-size:13px;
+      font-weight:700;
+    }
+    .hero{
+      padding:24px 0 16px;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:30px;
+      padding:0 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      color:rgba(255,255,255,.74);
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+    h1{
+      margin:14px 0 10px;
+      max-width:10ch;
+      font-size:clamp(38px,13vw,58px);
+      line-height:.9;
+      letter-spacing:-.06em;
+    }
+    .hero p{
+      margin:0;
+      max-width:35ch;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .progress-panel{
+      position:sticky;
+      top:62px;
+      z-index:18;
+      padding:10px 0 12px;
+      background:linear-gradient(180deg,rgba(9,9,9,.96),rgba(9,9,9,.82));
+      backdrop-filter:blur(18px);
+    }
+    .progress-copy{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:9px;
+      color:rgba(255,255,255,.58);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .progress-track{
+      height:8px;
+      border-radius:999px;
+      overflow:hidden;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .progress-fill{
+      width:20%;
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,#ffffff,#93c5fd);
+      transition:.28s ease;
+    }
+    .steps{
+      padding:16px 0 112px;
+    }
+    .step-card{
+      display:none;
+      min-height:calc(100svh - 204px);
+      padding:18px;
+      border-radius:26px;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.08), transparent 32%),
+        linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:0 28px 80px rgba(0,0,0,.32);
+    }
+    .step-card.active{
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:18px;
+      animation:stepIn .22s ease;
+    }
+    @keyframes stepIn{
+      from{opacity:0;transform:translateY(8px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .step-head{
+      display:grid;
+      grid-template-columns:42px minmax(0,1fr);
+      gap:13px;
+      align-items:start;
+    }
+    .step-num{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:#fff;
+      color:#090909;
+      font-size:15px;
+      font-weight:900;
+    }
+    .step-head h2{
+      margin:0 0 6px;
+      font-size:27px;
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+    .step-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .field-grid{
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .field{
+      display:grid;
+      gap:7px;
+    }
+    .field label{
+      color:rgba(255,255,255,.58);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .field input,.field select,.field textarea{
+      width:100%;
+      min-height:50px;
+      padding:13px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:#101010;
+      color:#fff;
+      outline:none;
+    }
+    .field textarea{min-height:92px;resize:vertical}
+    .choices{
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .choice-card{
+      position:relative;
+      width:100%;
+      padding:15px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg,#181818,#101010);
+      color:#fff;
+      text-align:left;
+      cursor:pointer;
+      transition:.22s ease;
+    }
+    .choice-card.active{
+      border-color:#fff;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 36%),
+        linear-gradient(180deg,#242424,#161616);
+      box-shadow:0 18px 46px rgba(255,255,255,.10);
+    }
+    .choice-main{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 18px;
+      gap:14px;
+      align-items:start;
+    }
+    .choice-dot{
+      width:18px;
+      height:18px;
+      border-radius:999px;
+      border:1.5px solid rgba(255,255,255,.36);
+      margin-top:3px;
+    }
+    .choice-card.active .choice-dot{
+      background:#fff;
+      border-color:#fff;
+      box-shadow:0 0 0 5px rgba(255,255,255,.10);
+    }
+    .choice-kicker{
+      display:block;
+      margin-bottom:7px;
+      color:rgba(255,255,255,.48);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+    .choice-title{
+      display:block;
+      margin-bottom:5px;
+      font-size:19px;
+      font-weight:900;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+    .choice-summary{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+    }
+    .details-toggle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      width:100%;
+      margin-top:13px;
+      padding:10px 0 0;
+      border:0;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:transparent;
+      color:rgba(255,255,255,.72);
+      font-size:12px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .details-toggle span:last-child{
+      transition:.2s ease;
+    }
+    .choice-card.open .details-toggle span:last-child{
+      transform:rotate(45deg);
+    }
+    .choice-details{
+      display:none;
+      gap:8px;
+      margin-top:12px;
+    }
+    .choice-card.open .choice-details{
+      display:grid;
+    }
+    .detail-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:9px 11px;
+      border-radius:12px;
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.66);
+      font-size:12px;
+    }
+    .detail-row strong{
+      color:#fff;
+      text-align:right;
+    }
+    .summary-box{
+      display:grid;
+      gap:10px;
+      align-content:start;
+    }
+    .summary-row{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:5px;
+      padding:12px;
+      border-radius:15px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .summary-row span{
+      color:rgba(255,255,255,.48);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+    .summary-row strong{
+      font-size:15px;
+      line-height:1.25;
+    }
+    .actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      padding-top:4px;
+    }
+    .btn{
+      min-height:50px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:0 15px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .btn-light{background:#fff;color:#090909}
+    .btn-ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
+    .btn:disabled{opacity:.42;cursor:not-allowed}
+    .toast{
+      display:none;
+      margin-top:10px;
+      padding:12px;
+      border-radius:14px;
+      background:rgba(250,204,21,.12);
+      border:1px solid rgba(250,204,21,.24);
+      color:#fde68a;
+      font-size:13px;
+    }
+    .toast.visible{display:block}
+    @media (min-width:761px){
+      body{background:#090909}
+      .desktop-note{
+        display:block;
+        margin:28px auto 0;
+        padding:14px;
+        border-radius:16px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.10);
+        color:var(--muted);
+        font-size:14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="logo" href="index.html" aria-label="Wisemak"><img src="Wisemak Logo.png" alt="Wisemak"></a>
+      <a class="back-link" href="index.html">Voltar ao site</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <span class="tag">Configurador mobile</span>
+      <h1>Uma decisão de cada vez</h1>
+      <p>Fluxo sequencial para escolher água quente, climatização e ventilação sem ficar preso a uma grelha grande.</p>
+    </section>
+
+    <div class="progress-panel">
+      <div class="shell">
+        <div class="progress-copy">
+          <span id="progress-label">Passo 1 de 5</span>
+          <span id="progress-state">Base</span>
+        </div>
+        <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+    </div>
+
+    <section class="steps shell" id="mobile-configurator">
+      <article class="step-card active" data-step="0">
+        <div class="step-head">
+          <span class="step-num">1</span>
+          <div>
+            <h2>Base da casa</h2>
+            <p>Começamos pelo contexto mínimo para orientar as escolhas seguintes.</p>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field"><label for="house-area">Área da casa</label><input id="house-area" type="number" min="20" inputmode="numeric" placeholder="Exemplo: 150"></div>
+          <div class="field"><label for="house-people">N.º de pessoas</label><input id="house-people" type="number" min="1" inputmode="numeric" placeholder="Exemplo: 4"></div>
+          <div class="field"><label for="house-type">Tipo de imóvel</label><select id="house-type"><option>Moradia</option><option>Apartamento</option><option>Obra nova</option><option>Remodelação</option></select></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-ghost" type="button" disabled>Anterior</button>
+          <button class="btn btn-light" type="button" data-next>Avançar</button>
+        </div>
+      </article>
+
+      <article class="step-card" data-step="1">
+        <div class="step-head">
+          <span class="step-num">2</span>
+          <div>
+            <h2>Água quente</h2>
+            <p>Escolha uma solução AQS. A informação técnica fica recolhida e abre quando precisar.</p>
+          </div>
+        </div>
+        <div class="choices" data-choice-group="aqs"></div>
+        <div>
+          <div class="actions">
+            <button class="btn btn-ghost" type="button" data-prev>Anterior</button>
+            <button class="btn btn-light" type="button" data-next>Avançar</button>
+          </div>
+          <div class="toast" data-step-toast>Escolha uma opção para continuar.</div>
+        </div>
+      </article>
+
+      <article class="step-card" data-step="2">
+        <div class="step-head">
+          <span class="step-num">3</span>
+          <div>
+            <h2>Climatização</h2>
+            <p>Para mobile, a decisão fica mais decoupled: primeiro escolhe a lógica, depois refinamos noutro passo se fizer sentido.</p>
+          </div>
+        </div>
+        <div class="choices" data-choice-group="clima"></div>
+        <div>
+          <div class="actions">
+            <button class="btn btn-ghost" type="button" data-prev>Anterior</button>
+            <button class="btn btn-light" type="button" data-next>Avançar</button>
+          </div>
+          <div class="toast" data-step-toast>Escolha uma opção para continuar.</div>
+        </div>
+      </article>
+
+      <article class="step-card" data-step="3">
+        <div class="step-head">
+          <span class="step-num">4</span>
+          <div>
+            <h2>Ventilação</h2>
+            <p>Fechamos a qualidade do ar antes de mostrar o resumo final da solução.</p>
+          </div>
+        </div>
+        <div class="choices" data-choice-group="vent"></div>
+        <div>
+          <div class="actions">
+            <button class="btn btn-ghost" type="button" data-prev>Anterior</button>
+            <button class="btn btn-light" type="button" data-next>Ver resumo</button>
+          </div>
+          <div class="toast" data-step-toast>Escolha uma opção para continuar.</div>
+        </div>
+      </article>
+
+      <article class="step-card" data-step="4">
+        <div class="step-head">
+          <span class="step-num">5</span>
+          <div>
+            <h2>Resumo final</h2>
+            <p>Este é o pacote escolhido. A seguir a página pode ligar ao formulário real de proposta.</p>
+          </div>
+        </div>
+        <div class="summary-box">
+          <div class="summary-row"><span>Casa</span><strong id="summary-house">Por preencher</strong></div>
+          <div class="summary-row"><span>Água quente</span><strong id="summary-aqs">Por escolher</strong></div>
+          <div class="summary-row"><span>Climatização</span><strong id="summary-clima">Por escolher</strong></div>
+          <div class="summary-row"><span>Ventilação</span><strong id="summary-vent">Por escolher</strong></div>
+          <div class="field"><label for="lead-note">Notas para a equipa</label><textarea id="lead-note" placeholder="Exemplo: quero perceber valores com instalação e prazos."></textarea></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-ghost" type="button" data-prev>Anterior</button>
+          <a class="btn btn-light" href="index.html#cotacao">Pedir proposta</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const options = {
+      aqs: [
+        {
+          value: 'Bomba de Calor AQS',
+          kicker: 'Recomendado',
+          summary: 'Mais eficiente no uso diario e melhor leitura de custo a longo prazo.',
+          details: [['Investimento', 'a partir de 1.750€'], ['Consumo', 'baixo'], ['Ideal para', 'famílias e uso regular']]
+        },
+        {
+          value: 'Solar Térmico',
+          kicker: 'Eficiente',
+          summary: 'Aproveita energia solar e reduz consumo anual com apoio ao sistema.',
+          details: [['Investimento', 'a partir de 2.000€'], ['Consumo', 'muito baixo'], ['Ideal para', 'boa exposição solar']]
+        },
+        {
+          value: 'Termoacumulador',
+          kicker: 'Simples',
+          summary: 'Entrada mais acessível, instalação direta e decisão rápida.',
+          details: [['Investimento', 'a partir de 380€'], ['Consumo', 'mais elevado'], ['Ideal para', 'orçamento inicial controlado']]
+        }
+      ],
+      clima: [
+        {
+          value: 'Sem climatização',
+          kicker: 'Não incluir',
+          summary: 'Avança apenas com água quente e ventilação.',
+          details: [['Complexidade', 'mínima'], ['Obra', 'sem intervenção AVAC'], ['Próximo passo', 'validar restantes áreas']]
+        },
+        {
+          value: 'Climatização independente',
+          kicker: 'Decoupled',
+          summary: 'Soluções por divisão, como AC mural, com instalação mais direta.',
+          details: [['Controlo', 'por divisão'], ['Instalação', 'faseável'], ['Ideal para', 'intervenções rápidas']]
+        },
+        {
+          value: 'Climatização centralizada',
+          kicker: 'Sistema completo',
+          summary: 'Fonte central e distribuição para a casa como solução integrada.',
+          details: [['Conforto', 'mais uniforme'], ['Instalação', 'mais técnica'], ['Ideal para', 'obra nova ou remodelação']]
+        }
+      ],
+      vent: [
+        {
+          value: 'Sem ventilação',
+          kicker: 'Não incluir',
+          summary: 'Não adiciona VMC nesta proposta inicial.',
+          details: [['Investimento', '0€'], ['Qualidade do ar', 'sem melhoria dedicada'], ['Ideal para', 'pedido muito simples']]
+        },
+        {
+          value: 'VMC Duplo Fluxo',
+          kicker: 'Conforto',
+          summary: 'Melhora qualidade do ar e recuperação térmica de forma mais completa.',
+          details: [['Qualidade do ar', 'alta'], ['Eficiência', 'recuperação de calor'], ['Ideal para', 'casas eficientes']]
+        },
+        {
+          value: 'VMC Simples Fluxo',
+          kicker: 'Essencial',
+          summary: 'Extração e renovação de ar com solução mais leve.',
+          details: [['Qualidade do ar', 'média'], ['Instalação', 'mais simples'], ['Ideal para', 'renovação base']]
+        }
+      ]
+    };
+
+    const state = {
+      step: 0,
+      aqs: '',
+      clima: '',
+      vent: ''
+    };
+
+    const stepLabels = ['Base', 'AQS', 'Climatização', 'Ventilação', 'Resumo'];
+    const cards = [...document.querySelectorAll('.step-card')];
+    const progressFill = document.getElementById('progress-fill');
+    const progressLabel = document.getElementById('progress-label');
+    const progressState = document.getElementById('progress-state');
+
+    function renderChoices(){
+      Object.entries(options).forEach(([group, items]) => {
+        const root = document.querySelector(`[data-choice-group="${group}"]`);
+        if(!root) return;
+        root.innerHTML = items.map(item => `
+          <article class="choice-card" data-group="${group}" data-value="${item.value}">
+            <div class="choice-main">
+              <span>
+                <span class="choice-kicker">${item.kicker}</span>
+                <span class="choice-title">${item.value}</span>
+                <span class="choice-summary">${item.summary}</span>
+              </span>
+              <span class="choice-dot" aria-hidden="true"></span>
+            </div>
+            <button class="details-toggle" type="button" aria-expanded="false">
+              <span>Ver detalhes</span><span>+</span>
+            </button>
+            <div class="choice-details">
+              ${item.details.map(([label, value]) => `<div class="detail-row"><span>${label}</span><strong>${value}</strong></div>`).join('')}
+            </div>
+          </article>
+        `).join('');
+      });
+    }
+
+    function updateSummary(){
+      const area = document.getElementById('house-area').value.trim();
+      const people = document.getElementById('house-people').value.trim();
+      const type = document.getElementById('house-type').value;
+      const house = [area ? `${area} m²` : '', people ? `${people} pessoas` : '', type].filter(Boolean).join(' · ');
+      document.getElementById('summary-house').textContent = house || 'Por preencher';
+      document.getElementById('summary-aqs').textContent = state.aqs || 'Por escolher';
+      document.getElementById('summary-clima').textContent = state.clima || 'Por escolher';
+      document.getElementById('summary-vent').textContent = state.vent || 'Por escolher';
+    }
+
+    function showStep(index){
+      state.step = Math.max(0, Math.min(cards.length - 1, index));
+      cards.forEach((card, cardIndex) => card.classList.toggle('active', cardIndex === state.step));
+      progressFill.style.width = `${((state.step + 1) / cards.length) * 100}%`;
+      progressLabel.textContent = `Passo ${state.step + 1} de ${cards.length}`;
+      progressState.textContent = stepLabels[state.step];
+      updateSummary();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function canAdvance(){
+      if(state.step === 1) return Boolean(state.aqs);
+      if(state.step === 2) return Boolean(state.clima);
+      if(state.step === 3) return Boolean(state.vent);
+      return true;
+    }
+
+    function showToast(){
+      const card = cards[state.step];
+      const toast = card.querySelector('[data-step-toast]');
+      if(!toast) return;
+      toast.classList.add('visible');
+      window.setTimeout(() => toast.classList.remove('visible'), 1800);
+    }
+
+    renderChoices();
+
+    document.addEventListener('click', event => {
+      const toggle = event.target.closest('.details-toggle');
+      if(toggle){
+        event.stopPropagation();
+        const card = toggle.closest('.choice-card');
+        const isOpen = card.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.querySelector('span:first-child').textContent = isOpen ? 'Esconder detalhes' : 'Ver detalhes';
+        return;
+      }
+
+      const choice = event.target.closest('.choice-card');
+      if(choice){
+        const group = choice.dataset.group;
+        state[group] = choice.dataset.value;
+        document.querySelectorAll(`.choice-card[data-group="${group}"]`).forEach(card => {
+          card.classList.toggle('active', card === choice);
+        });
+        updateSummary();
+        return;
+      }
+
+      if(event.target.closest('[data-next]')){
+        if(!canAdvance()){
+          showToast();
+          return;
+        }
+        showStep(state.step + 1);
+      }
+
+      if(event.target.closest('[data-prev]')){
+        showStep(state.step - 1);
+      }
+    });
+
+    document.querySelectorAll('#house-area,#house-people,#house-type').forEach(input => {
+      input.addEventListener('input', updateSummary);
+      input.addEventListener('change', updateSummary);
+    });
+
+    updateSummary();
+  </script>
+</body>
+</html>
