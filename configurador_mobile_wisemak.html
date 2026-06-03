@@ -302,6 +302,30 @@
     .choice-card.open .choice-details{
       display:grid;
     }
+    .conditional-panel{
+      display:none;
+      gap:16px;
+      align-content:start;
+    }
+    .conditional-panel.active{
+      display:grid;
+    }
+    .choice-section{
+      display:grid;
+      gap:10px;
+      align-content:start;
+    }
+    .choice-section h3{
+      margin:0;
+      font-size:18px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+    .choice-section p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
     .detail-row{
       display:flex;
       justify-content:space-between;
@@ -406,7 +430,7 @@
     <div class="progress-panel">
       <div class="shell">
         <div class="progress-copy">
-          <span id="progress-label">Passo 1 de 5</span>
+          <span id="progress-label">Passo 1 de 6</span>
           <span id="progress-state">Base</span>
         </div>
         <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
@@ -473,6 +497,44 @@
         <div class="step-head">
           <span class="step-num">4</span>
           <div>
+            <h2>Detalhe da climatização</h2>
+            <p>Escolha a solução independente ou monte a combinação centralizada antes de avançar.</p>
+          </div>
+        </div>
+        <div>
+          <div class="conditional-panel" data-climate-detail-panel="indep">
+            <div class="choice-section">
+              <h3>Climatização independente</h3>
+              <p>Escolha uma solução por divisão, com instalação mais direta.</p>
+            </div>
+            <div class="choices" data-choice-group="climaIndep"></div>
+          </div>
+          <div class="conditional-panel" data-climate-detail-panel="central">
+            <div class="choice-section">
+              <h3>Fonte de calor</h3>
+              <p>Escolha a base do sistema centralizado.</p>
+            </div>
+            <div class="choices" data-choice-group="climaFonte"></div>
+            <div class="choice-section">
+              <h3>Distribuidor de calor</h3>
+              <p>Defina como o calor ou frio será distribuído pelos espaços.</p>
+            </div>
+            <div class="choices" data-choice-group="climaDist"></div>
+          </div>
+        </div>
+        <div>
+          <div class="actions">
+            <button class="btn btn-ghost" type="button" data-prev>Anterior</button>
+            <button class="btn btn-light" type="button" data-next>Avançar</button>
+          </div>
+          <div class="toast" data-step-toast>Complete esta escolha para continuar.</div>
+        </div>
+      </article>
+
+      <article class="step-card" data-step="4">
+        <div class="step-head">
+          <span class="step-num">5</span>
+          <div>
             <h2>Ventilação</h2>
             <p>Fechamos a qualidade do ar antes de mostrar o resumo final da solução.</p>
           </div>
@@ -487,9 +549,9 @@
         </div>
       </article>
 
-      <article class="step-card" data-step="4">
+      <article class="step-card" data-step="5">
         <div class="step-head">
-          <span class="step-num">5</span>
+          <span class="step-num">6</span>
           <div>
             <h2>Resumo final</h2>
             <p>Este é o pacote escolhido. A seguir a página pode ligar ao formulário real de proposta.</p>
@@ -499,6 +561,7 @@
           <div class="summary-row"><span>Casa</span><strong id="summary-house">Por preencher</strong></div>
           <div class="summary-row"><span>Água quente</span><strong id="summary-aqs">Por escolher</strong></div>
           <div class="summary-row"><span>Climatização</span><strong id="summary-clima">Por escolher</strong></div>
+          <div class="summary-row"><span>Detalhe da climatização</span><strong id="summary-clima-detail">Por escolher</strong></div>
           <div class="summary-row"><span>Ventilação</span><strong id="summary-vent">Por escolher</strong></div>
           <div class="field"><label for="lead-note">Notas para a equipa</label><textarea id="lead-note" placeholder="Exemplo: quero perceber valores com instalação e prazos."></textarea></div>
         </div>
@@ -552,6 +615,84 @@
           details: [['Conforto', 'mais uniforme'], ['Instalação', 'mais técnica'], ['Ideal para', 'obra nova ou remodelação']]
         }
       ],
+      climaIndep: [
+        {
+          value: 'AC Split Mural',
+          kicker: 'Entrada',
+          summary: 'Solução simples para climatizar uma divisão com instalação rápida e controlo imediato.',
+          details: [['Cobertura típica', 'Pontual / parcial'], ['Tempo de resposta', 'Muito rápido'], ['Integração', 'Visível']]
+        },
+        {
+          value: 'AC Multi Split',
+          kicker: 'Mais vendido',
+          summary: 'Uma unidade exterior para várias divisões, com bom equilíbrio entre custo, cobertura e flexibilidade.',
+          details: [['Cobertura típica', 'Várias divisões'], ['Tempo de resposta', 'Rápido'], ['Integração', 'Moderada']]
+        },
+        {
+          value: 'AC de Conduta',
+          kicker: 'Discreto',
+          summary: 'Sistema embutido com distribuição por grelhas para uma presença visual mínima.',
+          details: [['Cobertura típica', 'Casa quase completa'], ['Tempo de resposta', 'Rápido'], ['Integração', 'Muito discreta']]
+        },
+        {
+          value: 'AC Cassete de teto',
+          kicker: 'Premium',
+          summary: 'Distribuição ampla e uniforme, ideal para espaços abertos ou zonas sociais.',
+          details: [['Cobertura típica', 'Áreas abertas'], ['Tempo de resposta', 'Rápido'], ['Integração', 'Semi-embutida']]
+        }
+      ],
+      climaFonte: [
+        {
+          value: 'Bomba de Calor',
+          kicker: 'Fonte de calor',
+          summary: 'Aerotermia eficiente, preparada para aquecimento e arrefecimento.',
+          details: [['Sistema', 'centralizado'], ['Uso', 'aquecimento e arrefecimento'], ['Perfil', 'mais eficiente']]
+        },
+        {
+          value: 'Caldeira',
+          kicker: 'Fonte de calor',
+          summary: 'Boa opção para reabilitações com gás disponível e distribuição existente.',
+          details: [['Sistema', 'centralizado'], ['Uso', 'aquecimento'], ['Perfil', 'reabilitação']]
+        }
+      ],
+      climaDist: [
+        {
+          value: 'Não preciso, já tenho',
+          kicker: 'Distribuidor',
+          summary: 'Aproveita a distribuição já existente em casa.',
+          details: [['Integração', 'existente'], ['Obra', 'mais controlada'], ['Ideal para', 'substituição de fonte']]
+        },
+        {
+          value: 'Piso Radiante',
+          kicker: 'Distribuidor',
+          summary: 'Conforto elevado e integração discreta.',
+          details: [['Conforto', 'elevado'], ['Integração', 'invisível'], ['Perfil', 'obra nova ou remodelação']]
+        },
+        {
+          value: 'Piso Radiante + Ventiloconvectores',
+          kicker: 'Distribuidor',
+          summary: 'Combinação equilibrada para aquecimento e arrefecimento.',
+          details: [['Aquecimento', 'piso radiante'], ['Arrefecimento', 'ventiloconvectores'], ['Perfil', 'conforto completo']]
+        },
+        {
+          value: 'Piso Radiante + VMC com bateria de água',
+          kicker: 'Distribuidor',
+          summary: 'Solução integrada para conforto e tratamento do ar.',
+          details: [['Conforto', 'integrado'], ['Ar', 'tratamento por VMC'], ['Perfil', 'casa eficiente']]
+        },
+        {
+          value: 'Radiadores',
+          kicker: 'Distribuidor',
+          summary: 'Aquecimento por divisão com leitura mais clássica.',
+          details: [['Resposta', 'gradual'], ['Integração', 'visível'], ['Perfil', 'reabilitação']]
+        },
+        {
+          value: 'Ventiloconvectores',
+          kicker: 'Distribuidor',
+          summary: 'Aquecem e arrefecem com resposta rápida.',
+          details: [['Resposta', 'rápida'], ['Uso', 'aquecimento e arrefecimento'], ['Perfil', 'climatização completa']]
+        }
+      ],
       vent: [
         {
           value: 'Sem ventilação',
@@ -578,10 +719,13 @@
       step: 0,
       aqs: '',
       clima: '',
+      climaIndep: '',
+      climaFonte: '',
+      climaDist: '',
       vent: ''
     };
 
-    const stepLabels = ['Base', 'AQS', 'Climatização', 'Ventilação', 'Resumo'];
+    const stepLabels = ['Base', 'AQS', 'Climatização', 'Detalhe', 'Ventilação', 'Resumo'];
     const cards = [...document.querySelectorAll('.step-card')];
     const progressFill = document.getElementById('progress-fill');
     const progressLabel = document.getElementById('progress-label');
@@ -620,7 +764,28 @@
       document.getElementById('summary-house').textContent = house || 'Por preencher';
       document.getElementById('summary-aqs').textContent = state.aqs || 'Por escolher';
       document.getElementById('summary-clima').textContent = state.clima || 'Por escolher';
+      document.getElementById('summary-clima-detail').textContent = getClimateDetailSummary();
       document.getElementById('summary-vent').textContent = state.vent || 'Por escolher';
+    }
+
+    function getClimateMode(){
+      if(state.clima === 'Climatização independente') return 'indep';
+      if(state.clima === 'Climatização centralizada') return 'central';
+      return 'off';
+    }
+
+    function getClimateDetailSummary(){
+      const mode = getClimateMode();
+      if(mode === 'off') return 'Não aplicável';
+      if(mode === 'indep') return state.climaIndep || 'Por escolher';
+      return [state.climaFonte, state.climaDist].filter(Boolean).join(' + ') || 'Por escolher';
+    }
+
+    function updateClimateDetailPanels(){
+      const mode = getClimateMode();
+      document.querySelectorAll('[data-climate-detail-panel]').forEach(panel => {
+        panel.classList.toggle('active', panel.dataset.climateDetailPanel === mode);
+      });
     }
 
     function showStep(index){
@@ -629,6 +794,7 @@
       progressFill.style.width = `${((state.step + 1) / cards.length) * 100}%`;
       progressLabel.textContent = `Passo ${state.step + 1} de ${cards.length}`;
       progressState.textContent = stepLabels[state.step];
+      updateClimateDetailPanels();
       updateSummary();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -636,8 +802,20 @@
     function canAdvance(){
       if(state.step === 1) return Boolean(state.aqs);
       if(state.step === 2) return Boolean(state.clima);
-      if(state.step === 3) return Boolean(state.vent);
+      if(state.step === 3 && getClimateMode() === 'indep') return Boolean(state.climaIndep);
+      if(state.step === 3 && getClimateMode() === 'central') return Boolean(state.climaFonte && state.climaDist);
+      if(state.step === 4) return Boolean(state.vent);
       return true;
+    }
+
+    function getNextStep(){
+      if(state.step === 2 && getClimateMode() === 'off') return 4;
+      return state.step + 1;
+    }
+
+    function getPrevStep(){
+      if(state.step === 4 && getClimateMode() === 'off') return 2;
+      return state.step - 1;
     }
 
     function showToast(){
@@ -665,6 +843,15 @@
       if(choice){
         const group = choice.dataset.group;
         state[group] = choice.dataset.value;
+        if(group === 'clima'){
+          state.climaIndep = '';
+          state.climaFonte = '';
+          state.climaDist = '';
+          document.querySelectorAll('.choice-card[data-group="climaIndep"],.choice-card[data-group="climaFonte"],.choice-card[data-group="climaDist"]').forEach(card => {
+            card.classList.remove('active');
+          });
+          updateClimateDetailPanels();
+        }
         document.querySelectorAll(`.choice-card[data-group="${group}"]`).forEach(card => {
           card.classList.toggle('active', card === choice);
         });
@@ -677,11 +864,11 @@
           showToast();
           return;
         }
-        showStep(state.step + 1);
+        showStep(getNextStep());
       }
 
       if(event.target.closest('[data-prev]')){
-        showStep(state.step - 1);
+        showStep(getPrevStep());
       }
     });
 
