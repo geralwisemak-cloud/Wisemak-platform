@@ -368,6 +368,122 @@
       font-size:15px;
       line-height:1.25;
     }
+    .solution-summary-card{
+      display:grid;
+      gap:14px;
+      padding:14px;
+      border-radius:20px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.09);
+    }
+    .solution-summary-card .tag{
+      width:max-content;
+    }
+    .solution-panel,.technical-panel{
+      display:grid;
+      gap:12px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .estimate-box{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      padding:15px;
+      border-radius:17px;
+      background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .estimate-box small{
+      display:block;
+      color:rgba(255,255,255,.58);
+      font-weight:700;
+    }
+    .estimate-box .estimate-kicker{
+      margin-bottom:6px;
+      color:#93c5fd;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .estimate-value{
+      display:block;
+      margin-top:6px;
+      color:#fff;
+      font-size:42px;
+      line-height:.95;
+      font-weight:900;
+      letter-spacing:-.06em;
+    }
+    .estimate-value.secondary{
+      font-size:32px;
+    }
+    .note{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .technical-panel h3{
+      margin:0;
+      font-size:20px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+    .technical-panel p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
+    }
+    .tech-list{
+      display:grid;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .tech-row{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:12px;
+      align-items:center;
+      padding:12px;
+      background:rgba(255,255,255,.025);
+      border-bottom:1px solid rgba(255,255,255,.07);
+      color:rgba(255,255,255,.66);
+      font-size:13px;
+      font-weight:700;
+    }
+    .tech-row:last-child{border-bottom:none}
+    .tech-row strong{
+      color:#fff;
+      text-align:right;
+      font-size:15px;
+    }
+    .rating{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      white-space:nowrap;
+    }
+    .rating-score{
+      margin-right:3px;
+      color:rgba(255,255,255,.72);
+      font-weight:900;
+    }
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.34);
+    }
+    .dot.filled{
+      background:#fff;
+      border-color:#fff;
+    }
     .lead-card{
       display:grid;
       gap:14px;
@@ -623,6 +739,41 @@
           <div class="summary-row"><span>Climatização</span><strong id="summary-clima">Por escolher</strong></div>
           <div class="summary-row"><span>Detalhe da climatização</span><strong id="summary-clima-detail">Por escolher</strong></div>
           <div class="summary-row"><span>Ventilação</span><strong id="summary-vent">Por escolher</strong></div>
+          <div class="solution-summary-card">
+            <span class="tag">Resumo da solução</span>
+            <div class="solution-panel">
+              <div class="summary-row"><span>Água quente</span><strong id="solution-aqs">Não incluído</strong></div>
+              <div class="summary-row"><span>Climatização</span><strong id="solution-clima">Não incluído</strong></div>
+              <div class="summary-row"><span>Ventilação</span><strong id="solution-vent">Não incluído</strong></div>
+              <div class="summary-row"><span>Perfil considerado</span><strong id="solution-profile">Por preencher</strong></div>
+              <div class="estimate-box">
+                <div>
+                  <small class="estimate-kicker">Cenário crítico</small>
+                  <small>Custo energético estimado num mês crítico</small>
+                  <strong class="estimate-value" id="solution-month">0€</strong>
+                </div>
+                <div>
+                  <small>Investimento base</small>
+                  <strong class="estimate-value secondary" id="solution-start">0€</strong>
+                </div>
+              </div>
+              <p class="note">Estimativa indicativa para qualificação comercial. A proposta final depende da visita técnica, tipologia e instalação necessária.</p>
+            </div>
+            <div class="technical-panel">
+              <h3>Leitura técnica da solução</h3>
+              <p id="tech-solution-name">Sem soluções selecionadas</p>
+              <div class="tech-list">
+                <div class="tech-row"><span>N.º de banhos ao mesmo tempo</span><strong id="tech-showers">0</strong></div>
+                <div class="tech-row"><span>Consumo energético em AQS</span><strong id="tech-aqs-consumption">0€/mês</strong></div>
+                <div class="tech-row"><span>Conforto em climatização</span><strong id="tech-comfort"></strong></div>
+                <div class="tech-row"><span>Qualidade do ar interior</span><strong id="tech-air-quality"></strong></div>
+                <div class="tech-row"><span>Eficácia em aquecimento</span><strong id="tech-heating"></strong></div>
+                <div class="tech-row"><span>Eficácia em arrefecimento</span><strong id="tech-cooling"></strong></div>
+                <div class="tech-row"><span>Tempo de resposta</span><strong id="tech-response"></strong></div>
+                <div class="tech-row"><span>Consumo energético no pior mês</span><strong id="tech-worst-month">0€/mês</strong></div>
+              </div>
+            </div>
+          </div>
           <div class="lead-card">
             <h3>Resumo enviado com o pedido</h3>
             <details class="request-summary">
@@ -823,6 +974,33 @@
     const progressFill = document.getElementById('progress-fill');
     const progressLabel = document.getElementById('progress-label');
     const progressState = document.getElementById('progress-state');
+    const AQS_METRICS = {
+      'Não incluído': { label: 'Não incluído', tech: '', month: 0, start: 0, showers: 0 },
+      'Bomba de Calor': { label: 'Bomba de Calor', tech: 'Bomba de Calor AQS', month: 12, start: 1750, showers: 2 },
+      'Sistema Solar Térmico': { label: 'Solar Térmico', tech: 'Sistema Solar Térmico', month: 8, start: 2000, showers: 2 },
+      'Termoacumulador (Cilindro)': { label: 'Termoacumulador', tech: 'Termoacumulador', month: 38, start: 380, showers: 2 },
+      'Esquentador de gás natural (rede)': { label: 'Esquentador GN', tech: 'Esquentador GN', month: 18, start: 480, showers: 1 },
+      'Esquentador de gás de botija': { label: 'Esquentador GLP', tech: 'Esquentador GLP', month: 28, start: 480, showers: 1 }
+    };
+    const INDEP_CLIMATE_METRICS = {
+      'AC Split Mural': { label: 'AC Split Mural', month: 25, start: 850, comfort: 3, heating: 3, cooling: 4, response: 5 },
+      'AC Multi Split': { label: 'AC Multi Split', month: 55, start: 5000, comfort: 4, heating: 4, cooling: 4, response: 4 },
+      'AC de Conduta': { label: 'AC de Conduta', month: 60, start: 7500, comfort: 5, heating: 4, cooling: 5, response: 4 },
+      'AC Cassete de teto': { label: 'AC Cassete de teto', month: 45, start: 8000, comfort: 4, heating: 4, cooling: 4, response: 4 }
+    };
+    const CENTRAL_DIST_METRICS = {
+      'Não preciso, já tenho': { label: 'Distribuição existente', start: 0, comfort: 3, heating: 3, cooling: 2, response: 2 },
+      'Piso Radiante': { label: 'Piso Radiante', start: 12000, comfort: 5, heating: 5, cooling: 2, response: 1 },
+      'Piso Radiante + Ventiloconvectores': { label: 'Piso Radiante + Ventiloconvectores', start: 15500, comfort: 5, heating: 5, cooling: 5, response: 3 },
+      'Piso Radiante + VMC com bateria de água': { label: 'Piso Radiante + VMC com bateria de água', start: 17000, comfort: 5, heating: 5, cooling: 4, response: 2 },
+      'Radiadores': { label: 'Radiadores', start: 6500, comfort: 3, heating: 4, cooling: 0, response: 2 },
+      'Ventiloconvectores': { label: 'Ventiloconvectores', start: 7800, comfort: 4, heating: 4, cooling: 4, response: 5 }
+    };
+    const VENT_METRICS = {
+      'Sem ventilação': { label: 'Não incluído', tech: '', month: 0, start: 0, air: 0 },
+      'VMC Duplo Fluxo': { label: 'VMC Duplo Fluxo', tech: 'VMC Duplo Fluxo', month: 9, start: 3500, air: 5 },
+      'VMC Simples Fluxo': { label: 'VMC Simples Fluxo', tech: 'VMC Simples Fluxo', month: 7, start: 2250, air: 3 }
+    };
 
     function renderChoices(){
       Object.entries(options).forEach(([group, items]) => {
@@ -863,6 +1041,7 @@
       document.getElementById('lead-aqs').textContent = state.aqs || 'Por escolher';
       document.getElementById('lead-clima').textContent = [state.clima, climateDetail !== 'Não aplicável' ? climateDetail : ''].filter(Boolean).join(' · ') || 'Por escolher';
       document.getElementById('lead-vent').textContent = state.vent || 'Por escolher';
+      updateSolutionSummary();
     }
 
     function getClimateMode(){
@@ -876,6 +1055,70 @@
       if(mode === 'off') return 'Não aplicável';
       if(mode === 'indep') return state.climaIndep || 'Por escolher';
       return [state.climaFonte, state.climaDist].filter(Boolean).join(' + ') || 'Por escolher';
+    }
+
+    function euro(value){
+      return `${Math.round(value).toLocaleString('pt-PT')}€`;
+    }
+
+    function getClimateMetrics(){
+      const mode = getClimateMode();
+      if(mode === 'off'){
+        return { label: 'Não incluído', tech: '', month: 0, start: 0, comfort: 0, heating: 0, cooling: 0, response: 0 };
+      }
+      if(mode === 'indep'){
+        return INDEP_CLIMATE_METRICS[state.climaIndep] || { label: state.climaIndep || 'Por escolher', tech: '', month: 0, start: 0, comfort: 0, heating: 0, cooling: 0, response: 0 };
+      }
+      const source = state.climaFonte || 'Fonte por escolher';
+      const dist = CENTRAL_DIST_METRICS[state.climaDist] || { label: state.climaDist || 'Distribuidor por escolher', start: 0, comfort: 0, heating: 0, cooling: 0, response: 0 };
+      const sourceStart = source === 'Caldeira' ? 2800 : 5500;
+      const sourceMonth = source === 'Caldeira' ? 90 : 58;
+      const sourceLabel = source === 'Bomba de Calor' ? 'Bomba de Calor de climatização' : source;
+      return {
+        label: `${sourceLabel} + ${dist.label}`,
+        tech: `${sourceLabel} + ${dist.label}`,
+        month: sourceMonth,
+        start: sourceStart + dist.start,
+        comfort: dist.comfort,
+        heating: dist.heating,
+        cooling: dist.cooling,
+        response: dist.response
+      };
+    }
+
+    function renderRating(value){
+      const score = Math.max(0, Math.min(5, Number(value) || 0));
+      const dots = Array.from({ length: 5 }, (_, index) => `<span class="dot${index < score ? ' filled' : ''}"></span>`).join('');
+      return `<span class="rating"><span class="rating-score">${score}/5</span>${dots}</span>`;
+    }
+
+    function updateSolutionSummary(){
+      const area = Number(document.getElementById('house-area').value) || 0;
+      const people = Number(document.getElementById('house-people').value) || 0;
+      const rooms = Math.max(1, Math.round(area / 30) || 0);
+      const profile = [area ? `${area} m²` : '', people ? `${people} pessoas` : '', rooms ? `${rooms} ${rooms === 1 ? 'divisão' : 'divisões'}` : ''].filter(Boolean).join(' · ') || 'Por preencher';
+      const aqs = AQS_METRICS[state.aqs] || AQS_METRICS['Não incluído'];
+      const climate = getClimateMetrics();
+      const vent = VENT_METRICS[state.vent] || VENT_METRICS['Sem ventilação'];
+      const criticalMonth = aqs.month + climate.month + vent.month + Math.round(climate.month * .35);
+      const investment = aqs.start + climate.start + vent.start;
+      const techParts = [aqs.tech, climate.tech, vent.tech].filter(Boolean);
+
+      document.getElementById('solution-aqs').textContent = aqs.label;
+      document.getElementById('solution-clima').textContent = climate.label;
+      document.getElementById('solution-vent').textContent = vent.label;
+      document.getElementById('solution-profile').textContent = profile;
+      document.getElementById('solution-month').textContent = euro(criticalMonth);
+      document.getElementById('solution-start').textContent = euro(investment);
+      document.getElementById('tech-solution-name').textContent = techParts.join(' + ') || 'Sem soluções selecionadas';
+      document.getElementById('tech-showers').textContent = String(aqs.showers);
+      document.getElementById('tech-aqs-consumption').textContent = `${euro(aqs.month)}/mês`;
+      document.getElementById('tech-comfort').innerHTML = renderRating(climate.comfort);
+      document.getElementById('tech-air-quality').innerHTML = renderRating(vent.air);
+      document.getElementById('tech-heating').innerHTML = renderRating(climate.heating);
+      document.getElementById('tech-cooling').innerHTML = renderRating(climate.cooling);
+      document.getElementById('tech-response').innerHTML = renderRating(climate.response);
+      document.getElementById('tech-worst-month').textContent = `${euro(criticalMonth)}/mês`;
     }
 
     function updateClimateDetailPanels(){
