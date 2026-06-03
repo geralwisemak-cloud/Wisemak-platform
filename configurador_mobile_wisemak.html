@@ -756,10 +756,11 @@
           </div>
           <div class="lead-card">
             <h3>Enviar pedido com resumo</h3>
-            <div class="field"><label for="lead-name">Nome</label><input id="lead-name" autocomplete="name" placeholder="O seu nome"></div>
+            <div class="field"><label for="lead-name">Nome</label><input id="lead-name" autocomplete="name" placeholder="O seu nome" required></div>
             <div class="field"><label for="lead-phone">Telefone</label><input id="lead-phone" inputmode="tel" autocomplete="tel" placeholder="912 345 678"></div>
             <div class="field"><label for="lead-email">Email</label><input id="lead-email" type="email" autocomplete="email" placeholder="nome@email.com"></div>
             <div class="field"><label for="lead-note">Notas para a equipa</label><textarea id="lead-note" placeholder="Exemplo: quero perceber valores com instalação e prazos."></textarea></div>
+            <div class="toast" data-lead-toast>Preencha o nome e pelo menos um contacto: email ou telefone.</div>
           </div>
         </div>
         <div class="actions">
@@ -1134,6 +1135,37 @@
       window.setTimeout(() => toast.classList.remove('visible'), 1800);
     }
 
+    function showLeadToast(){
+      const toast = document.querySelector('[data-lead-toast]');
+      if(!toast) return;
+      toast.classList.add('visible');
+      window.setTimeout(() => toast.classList.remove('visible'), 2200);
+    }
+
+    function canSubmitLead(){
+      const name = document.getElementById('lead-name');
+      const email = document.getElementById('lead-email');
+      const phone = document.getElementById('lead-phone');
+      const hasName = Boolean(name.value.trim());
+      const hasContact = Boolean(email.value.trim() || phone.value.trim());
+      const emailValid = !email.value.trim() || email.checkValidity();
+      if(!hasName){
+        name.reportValidity();
+        return false;
+      }
+      if(!hasContact){
+        phone.setCustomValidity('Preencha telefone ou email.');
+        phone.reportValidity();
+        window.setTimeout(() => phone.setCustomValidity(''), 0);
+        return false;
+      }
+      if(!emailValid){
+        email.reportValidity();
+        return false;
+      }
+      return true;
+    }
+
     renderChoices();
 
     document.addEventListener('click', event => {
@@ -1184,6 +1216,10 @@
       }
 
       if(event.target.closest('[data-submit-lead]')){
+        if(!canSubmitLead()){
+          showLeadToast();
+          return;
+        }
         window.alert('Pedido recebido. A equipa Wisemak vai entrar em contacto consigo brevemente.');
         window.location.href = 'index.html';
       }
