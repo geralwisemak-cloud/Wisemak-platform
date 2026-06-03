@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wisemak | Configurador Residencial com Instalação</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0a0a0a;
+      --bg:#ffffff;
       --bg-soft:#111111;
       --card:#171717;
       --card-2:#1f1f1f;
@@ -27,7 +24,8 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    body{margin:0;font-family:Helvetica,Arial,sans-serif;font-weight:300;background:var(--bg);color:var(--text);line-height:1.5}
+    h1,h2,h3,h4,h5,h6,.btn,.tag,strong,label{font-family:Helvetica,Arial,sans-serif;font-weight:700}
     header,main,footer{width:min(var(--page-max),100%);margin:0 auto}
     a{text-decoration:none;color:inherit}
     .container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
@@ -2671,94 +2669,548 @@
       }
     }
 
+  
+    body.standalone-configurator-wix{
+      min-height:100vh;
+      background:#fff;
+      color:#111;
+      --text:#111111;
+      --muted:rgba(17,17,17,.72);
+      --muted-2:rgba(17,17,17,.54);
+      --line:rgba(17,17,17,.10);
+      --bg:#ffffff;
+      --bg-soft:#f6f6f6;
+      --card:#ffffff;
+      --card-2:#fafafa;
+    }
+    body.standalone-configurator-wix,
+    body.standalone-configurator-wix *{
+      font-family:Helvetica,Arial,sans-serif !important;
+    }
+    body.standalone-configurator-wix p,
+    body.standalone-configurator-wix span,
+    body.standalone-configurator-wix small,
+    body.standalone-configurator-wix input,
+    body.standalone-configurator-wix select,
+    body.standalone-configurator-wix textarea,
+    body.standalone-configurator-wix .option p,
+    body.standalone-configurator-wix .option-price-prefix,
+    body.standalone-configurator-wix .option-price-note,
+    body.standalone-configurator-wix .option-video-note,
+    body.standalone-configurator-wix .journey-box p,
+    body.standalone-configurator-wix .journey-step-copy span,
+    body.standalone-configurator-wix .status-card small,
+    body.standalone-configurator-wix .status-input small,
+    body.standalone-configurator-wix .status-card-action,
+    body.standalone-configurator-wix .status-card-action-label,
+    body.standalone-configurator-wix .summary-item span:first-child,
+    body.standalone-configurator-wix .tech-item span:first-child,
+    body.standalone-configurator-wix .combo-desc,
+    body.standalone-configurator-wix .combo-price-meta,
+    body.standalone-configurator-wix .combo-price-note{
+      font-weight:300 !important;
+    }
+    body.standalone-configurator-wix h1,
+    body.standalone-configurator-wix h2,
+    body.standalone-configurator-wix h3,
+    body.standalone-configurator-wix h4,
+    body.standalone-configurator-wix h5,
+    body.standalone-configurator-wix h6,
+    body.standalone-configurator-wix .btn,
+    body.standalone-configurator-wix .tag,
+    body.standalone-configurator-wix label,
+    body.standalone-configurator-wix strong,
+    body.standalone-configurator-wix .journey-step-index,
+    body.standalone-configurator-wix .journey-step-copy strong,
+    body.standalone-configurator-wix .journey-step-state,
+    body.standalone-configurator-wix .status-card > span,
+    body.standalone-configurator-wix .status-card strong,
+    body.standalone-configurator-wix .status-input label,
+    body.standalone-configurator-wix .stack-field span,
+    body.standalone-configurator-wix .summary-item span:last-child,
+    body.standalone-configurator-wix .summary-price strong,
+    body.standalone-configurator-wix .summary-kicker,
+    body.standalone-configurator-wix .tech-item span:last-child,
+    body.standalone-configurator-wix .rating-value,
+    body.standalone-configurator-wix .solution-step,
+    body.standalone-configurator-wix .option h4,
+    body.standalone-configurator-wix .option-badge,
+    body.standalone-configurator-wix .option-price,
+    body.standalone-configurator-wix .climate-master-card h3,
+    body.standalone-configurator-wix .mode-card h4,
+    body.standalone-configurator-wix .mini-option strong,
+    body.standalone-configurator-wix .central-step,
+    body.standalone-configurator-wix .combo-name,
+    body.standalone-configurator-wix .combo-cost strong,
+    body.standalone-configurator-wix .climate-chip,
+    body.standalone-configurator-wix .central-pill{
+      font-weight:700 !important;
+    }
+    body.standalone-configurator-wix h1,
+    body.standalone-configurator-wix h2,
+    body.standalone-configurator-wix h3,
+    body.standalone-configurator-wix h4,
+    body.standalone-configurator-wix h5,
+    body.standalone-configurator-wix h6,
+    body.standalone-configurator-wix .btn,
+    body.standalone-configurator-wix .tag,
+    body.standalone-configurator-wix label,
+    body.standalone-configurator-wix strong,
+    body.standalone-configurator-wix .journey-step-index,
+    body.standalone-configurator-wix .journey-step-copy strong,
+    body.standalone-configurator-wix .journey-step-state,
+    body.standalone-configurator-wix .status-card > span,
+    body.standalone-configurator-wix .status-card strong,
+    body.standalone-configurator-wix .status-input label,
+    body.standalone-configurator-wix .stack-field span,
+    body.standalone-configurator-wix .summary-item span:last-child,
+    body.standalone-configurator-wix .summary-price strong,
+    body.standalone-configurator-wix .summary-kicker,
+    body.standalone-configurator-wix .tech-item span:last-child,
+    body.standalone-configurator-wix .rating-value,
+    body.standalone-configurator-wix .solution-step,
+    body.standalone-configurator-wix .option h4,
+    body.standalone-configurator-wix .option-badge,
+    body.standalone-configurator-wix .option-price,
+    body.standalone-configurator-wix .climate-master-card h3,
+    body.standalone-configurator-wix .mode-card h4,
+    body.standalone-configurator-wix .mini-option strong,
+    body.standalone-configurator-wix .central-step,
+    body.standalone-configurator-wix .combo-name,
+    body.standalone-configurator-wix .combo-cost strong,
+    body.standalone-configurator-wix .climate-chip,
+    body.standalone-configurator-wix .central-pill{
+      text-transform:uppercase !important;
+    }
+    body.standalone-configurator-wix main{width:min(var(--page-max),100%);margin:0 auto;}
+    body.standalone-configurator-wix section:first-of-type{padding-top:32px;}
+    body.standalone-configurator-wix .card,
+    body.standalone-configurator-wix .journey-box,
+    body.standalone-configurator-wix .status-card,
+    body.standalone-configurator-wix .status-input,
+    body.standalone-configurator-wix .summary-panel,
+    body.standalone-configurator-wix .tech-box,
+    body.standalone-configurator-wix .climate-block,
+    body.standalone-configurator-wix .central-col,
+    body.standalone-configurator-wix .central-result,
+    body.standalone-configurator-wix .option.option-rich,
+    body.standalone-configurator-wix .climate-master-card,
+    body.standalone-configurator-wix .mini-option,
+    body.standalone-configurator-wix .mode-card,
+    body.standalone-configurator-wix .quote-result,
+    body.standalone-configurator-wix .video-modal-panel{
+      background:#fff !important;
+      color:#111 !important;
+      border:1px solid rgba(17,17,17,.12) !important;
+      box-shadow:0 18px 50px rgba(17,17,17,.08) !important;
+    }
+    body.standalone-configurator-wix .tag,
+    body.standalone-configurator-wix .journey-step-state,
+    body.standalone-configurator-wix .status-card-action-dot,
+    body.standalone-configurator-wix .solution-step,
+    body.standalone-configurator-wix .central-step{
+      background:#111 !important;
+      color:#fff !important;
+      border-color:#111 !important;
+      box-shadow:none !important;
+    }
+    body.standalone-configurator-wix .journey-step,
+    body.standalone-configurator-wix .summary-item,
+    body.standalone-configurator-wix .tech-item,
+    body.standalone-configurator-wix .option-spec,
+    body.standalone-configurator-wix .status-card-action,
+    body.standalone-configurator-wix .summary-list,
+    body.standalone-configurator-wix .tech-grid,
+    body.standalone-configurator-wix .journey-steps{
+      border-color:rgba(17,17,17,.1) !important;
+    }
+    body.standalone-configurator-wix .journey-step,
+    body.standalone-configurator-wix .journey-box h3,
+    body.standalone-configurator-wix .journey-foot strong,
+    body.standalone-configurator-wix .config-intro h2,
+    body.standalone-configurator-wix .status-input label,
+    body.standalone-configurator-wix .status-card strong,
+    body.standalone-configurator-wix .stack-field span,
+    body.standalone-configurator-wix .solution-rail-head p,
+    body.standalone-configurator-wix .option.option-rich .option-copy h4,
+    body.standalone-configurator-wix .option-badge,
+    body.standalone-configurator-wix .field label,
+    body.standalone-configurator-wix .summary-kicker,
+    body.standalone-configurator-wix .tag,
+    body.standalone-configurator-wix .journey-step-copy strong,
+    body.standalone-configurator-wix .status-card > span,
+    body.standalone-configurator-wix .summary-item span:last-child,
+    body.standalone-configurator-wix .tech-item span:last-child,
+    body.standalone-configurator-wix .option.option-rich .option-spec span:last-child,
+    body.standalone-configurator-wix .combo-name,
+    body.standalone-configurator-wix .combo-cost strong,
+    body.standalone-configurator-wix .summary-price strong,
+    body.standalone-configurator-wix .rating-value,
+    body.standalone-configurator-wix .video-modal-top h3,
+    body.standalone-configurator-wix .quote-modal-top h3,
+    body.standalone-configurator-wix .section-head h2,
+    body.standalone-configurator-wix .solution-rail-head h4,
+    body.standalone-configurator-wix .climate-block-head h3,
+    body.standalone-configurator-wix .central-col h4{
+      color:#111 !important;
+    }
+    body.standalone-configurator-wix p,
+    body.standalone-configurator-wix small,
+    body.standalone-configurator-wix .note,
+    body.standalone-configurator-wix .config-intro,
+    body.standalone-configurator-wix .journey-box p,
+    body.standalone-configurator-wix .journey-foot p,
+    body.standalone-configurator-wix .journey-step-copy span,
+    body.standalone-configurator-wix .solution-helper,
+    body.standalone-configurator-wix .summary-item span:first-child,
+    body.standalone-configurator-wix .tech-item span:first-child,
+    body.standalone-configurator-wix .option.option-rich .option-spec span:first-child,
+    body.standalone-configurator-wix .option.option-rich .option-copy p,
+    body.standalone-configurator-wix .climate-master-card p,
+    body.standalone-configurator-wix .combo-desc,
+    body.standalone-configurator-wix .combo-cost span,
+    body.standalone-configurator-wix .journey-current-helper,
+    body.standalone-configurator-wix .video-modal-top p,
+    body.standalone-configurator-wix .quote-modal-top p{
+      color:rgba(17,17,17,.68) !important;
+    }
+    body.standalone-configurator-wix .journey-step-index,
+    body.standalone-configurator-wix .status-card-action-dot,
+    body.standalone-configurator-wix .rating-dot{
+      border-color:rgba(17,17,17,.32) !important;
+    }
+    body.standalone-configurator-wix .journey-step,
+    body.standalone-configurator-wix .journey-step:hover,
+    body.standalone-configurator-wix .status-card.current,
+    body.standalone-configurator-wix .status-card.complete-aqs,
+    body.standalone-configurator-wix .status-card.complete-clima,
+    body.standalone-configurator-wix .status-card.complete-vent{
+      background:#fff !important;
+      color:#111 !important;
+      border-color:rgba(17,17,17,.16) !important;
+      box-shadow:0 12px 32px rgba(17,17,17,.06) !important;
+    }
+    body.standalone-configurator-wix .journey-box{
+      background:#fcfcfc !important;
+      border-color:rgba(17,17,17,.12) !important;
+    }
+    body.standalone-configurator-wix .journey-steps{
+      background:#f6f6f6 !important;
+      border-color:rgba(17,17,17,.12) !important;
+    }
+    body.standalone-configurator-wix .journey-step{
+      background:#ffffff !important;
+    }
+    body.standalone-configurator-wix .journey-step:hover{
+      background:#f3f3f3 !important;
+    }
+    body.standalone-configurator-wix .journey-step-state{
+      background:#efefef !important;
+      color:#111 !important;
+      border-color:rgba(17,17,17,.14) !important;
+      text-shadow:none !important;
+      box-shadow:none !important;
+    }
+    body.standalone-configurator-wix .journey-step-copy .journey-step-state,
+    body.standalone-configurator-wix .journey-step .journey-step-state{
+      background:#111 !important;
+      color:#fff !important;
+      border-color:#111 !important;
+    }
+    body.standalone-configurator-wix .journey-step.is-current{
+      background:#eef4ff !important;
+      border-color:rgba(59,130,246,.28) !important;
+      box-shadow:0 12px 32px rgba(59,130,246,.10) !important;
+    }
+    body.standalone-configurator-wix .journey-step.is-current .journey-step-index{
+      border-color:#2563eb !important;
+      box-shadow:0 0 0 4px rgba(37,99,235,.10) !important;
+    }
+    body.standalone-configurator-wix .journey-step.is-current .journey-step-state{
+      background:#dbeafe !important;
+      color:#0f172a !important;
+      border-color:rgba(59,130,246,.22) !important;
+    }
+    body.standalone-configurator-wix .journey-step.is-complete{
+      background:#111 !important;
+      color:#fff !important;
+      border-color:#111 !important;
+      box-shadow:0 14px 34px rgba(17,17,17,.18) !important;
+    }
+    body.standalone-configurator-wix .option{
+      background:#fff !important;
+      border-color:rgba(17,17,17,.14) !important;
+    }
+    body.standalone-configurator-wix .option:hover{
+      border-color:rgba(17,17,17,.28) !important;
+      box-shadow:0 12px 30px rgba(17,17,17,.08) !important;
+    }
+    body.standalone-configurator-wix .option.active{
+      background:#f3f6fb !important;
+      border-color:#111 !important;
+      box-shadow:0 0 0 2px rgba(17,17,17,.08),0 14px 34px rgba(17,17,17,.10) !important;
+    }
+    body.standalone-configurator-wix .option-select-dot{
+      width:20px !important;
+      height:20px !important;
+      border:2px solid rgba(17,17,17,.5) !important;
+      background:#fff !important;
+      box-shadow:0 0 0 1px rgba(17,17,17,.05) inset !important;
+    }
+    body.standalone-configurator-wix .option.active .option-select-dot{
+      border-color:#111 !important;
+      background:radial-gradient(circle at 50% 50%, #111 0 42%, #fff 44% 100%) !important;
+      box-shadow:0 0 0 4px rgba(17,17,17,.10) !important;
+    }
+    body.standalone-configurator-wix .climate-master-card,
+    body.standalone-configurator-wix .mode-card,
+    body.standalone-configurator-wix .mini-option,
+    body.standalone-configurator-wix .central-result.choice-off,
+    body.standalone-configurator-wix .status-card{
+      position:relative;
+      background:#fff !important;
+      border-color:rgba(17,17,17,.14) !important;
+    }
+    body.standalone-configurator-wix .climate-master-card:hover,
+    body.standalone-configurator-wix .mode-card:hover,
+    body.standalone-configurator-wix .mini-option:hover,
+    body.standalone-configurator-wix .central-result.choice-off:hover,
+    body.standalone-configurator-wix .status-card:hover{
+      border-color:rgba(17,17,17,.28) !important;
+      box-shadow:0 12px 30px rgba(17,17,17,.08) !important;
+    }
+    body.standalone-configurator-wix .climate-master-card.active,
+    body.standalone-configurator-wix .mode-card.active,
+    body.standalone-configurator-wix .mini-option.active,
+    body.standalone-configurator-wix .central-result.choice-off.active,
+    body.standalone-configurator-wix .status-card.current,
+    body.standalone-configurator-wix .status-card.complete-aqs,
+    body.standalone-configurator-wix .status-card.complete-clima,
+    body.standalone-configurator-wix .status-card.complete-vent{
+      background:#f3f6fb !important;
+      border-color:#111 !important;
+      box-shadow:0 0 0 2px rgba(17,17,17,.08),0 14px 34px rgba(17,17,17,.10) !important;
+    }
+    body.standalone-configurator-wix .climate-master-card::after,
+    body.standalone-configurator-wix .mode-card::after,
+    body.standalone-configurator-wix .central-result.choice-off::after{
+      content:"";
+      position:absolute;
+      top:16px;
+      right:16px;
+      width:20px;
+      height:20px;
+      border-radius:999px;
+      border:2px solid rgba(17,17,17,.5);
+      background:#fff;
+      box-shadow:0 0 0 1px rgba(17,17,17,.05) inset;
+      transition:.25s ease;
+    }
+    body.standalone-configurator-wix .climate-master-card.active::after,
+    body.standalone-configurator-wix .mode-card.active::after,
+    body.standalone-configurator-wix .central-result.choice-off.active::after{
+      border-color:#111;
+      background:radial-gradient(circle at 50% 50%, #111 0 42%, #fff 44% 100%);
+      box-shadow:0 0 0 4px rgba(17,17,17,.10);
+    }
+    body.standalone-configurator-wix .mini-option::after,
+    body.standalone-configurator-wix .status-card-action-dot{
+      width:20px !important;
+      height:20px !important;
+      border:2px solid rgba(17,17,17,.5) !important;
+      background:#fff !important;
+      box-shadow:0 0 0 1px rgba(17,17,17,.05) inset !important;
+    }
+    body.standalone-configurator-wix .mini-option.active::after,
+    body.standalone-configurator-wix .status-card.current .status-card-action-dot,
+    body.standalone-configurator-wix .status-card.complete-aqs .status-card-action-dot,
+    body.standalone-configurator-wix .status-card.complete-clima .status-card-action-dot,
+    body.standalone-configurator-wix .status-card.complete-vent .status-card-action-dot{
+      border-color:#111 !important;
+      background:radial-gradient(circle at 50% 50%, #111 0 42%, #fff 44% 100%) !important;
+      box-shadow:0 0 0 4px rgba(17,17,17,.10) !important;
+    }
+    body.standalone-configurator-wix .journey-step-state{
+      text-shadow:none !important;
+    }
+    body.standalone-configurator-wix .journey-step-index{
+      background:#fff !important;
+      color:#111 !important;
+    }
+    body.standalone-configurator-wix .journey-step.is-complete .journey-step-index{
+      background:#fff !important;
+      color:#111 !important;
+      border-color:#fff !important;
+    }
+    body.standalone-configurator-wix .journey-step.is-complete .journey-step-copy strong,
+    body.standalone-configurator-wix .journey-step.is-complete .journey-step-copy > span:not(.journey-step-state){
+      color:#fff !important;
+    }
+    body.standalone-configurator-wix .journey-step.is-complete .journey-step-copy .journey-placeholder{
+      color:rgba(255,255,255,.72) !important;
+    }
+    body.standalone-configurator-wix .journey-step-state.state-pending{
+      background:#ffffff !important;
+      border-color:#ffffff !important;
+      color:#111111 !important;
+    }
+    body.standalone-configurator-wix .journey-step-state.state-current,
+    body.standalone-configurator-wix .journey-step-state.state-complete{
+      background:#111111 !important;
+      border-color:#111111 !important;
+      color:#ffffff !important;
+    }
+    body.standalone-configurator-wix .status-card-action,
+    body.standalone-configurator-wix .status-card-action-label,
+    body.standalone-configurator-wix .status-card small,
+    body.standalone-configurator-wix .status-input small,
+    body.standalone-configurator-wix .option-price-prefix,
+    body.standalone-configurator-wix .option-price-note,
+    body.standalone-configurator-wix .option-video-note,
+    body.standalone-configurator-wix .central-helper,
+    body.standalone-configurator-wix .combo-price-meta,
+    body.standalone-configurator-wix .combo-price-note{
+      color:rgba(17,17,17,.62) !important;
+    }
+    body.standalone-configurator-wix .btn-light{
+      background:#111 !important;
+      color:#fff !important;
+      border-color:#111 !important;
+    }
+    body.standalone-configurator-wix .btn-ghost{
+      background:#fff !important;
+      color:#111 !important;
+      border-color:rgba(17,17,17,.16) !important;
+    }
+    body.standalone-configurator-wix input,
+    body.standalone-configurator-wix select,
+    body.standalone-configurator-wix textarea{
+      background:#fff !important;
+      color:#111 !important;
+      border:1px solid rgba(17,17,17,.16) !important;
+      box-shadow:none !important;
+    }
+    body.standalone-configurator-wix input::placeholder,
+    body.standalone-configurator-wix textarea::placeholder{
+      color:rgba(17,17,17,.42) !important;
+    }
+    body.standalone-configurator-wix .stepper-btn,
+    body.standalone-configurator-wix .quote-modal-close{
+      background:#111 !important;
+      color:#fff !important;
+      border-color:#111 !important;
+    }
+    body.standalone-configurator-wix .summary-price,
+    body.standalone-configurator-wix .config-status{
+      background:#f6f6f6 !important;
+      border:1px solid rgba(17,17,17,.12) !important;
+      box-shadow:none !important;
+    }
+    body.standalone-configurator-wix .summary-panel{
+      background:#fcfcfc !important;
+      border-color:rgba(17,17,17,.14) !important;
+    }
+    body.standalone-configurator-wix .summary-list{
+      background:#ffffff !important;
+      border-color:rgba(17,17,17,.14) !important;
+    }
+    body.standalone-configurator-wix .summary-item{
+      border-bottom:1px solid rgba(17,17,17,.10) !important;
+    }
+    body.standalone-configurator-wix .summary-price{
+      background:#f1f1f1 !important;
+      border-color:rgba(17,17,17,.14) !important;
+    }
+    body.standalone-configurator-wix .summary-price small,
+    body.standalone-configurator-wix .note{
+      color:rgba(17,17,17,.74) !important;
+    }
+    body.standalone-configurator-wix .summary-price .summary-kicker{
+      color:#111 !important;
+    }
+    body.standalone-configurator-wix .central-pill,
+    body.standalone-configurator-wix .central-pill small,
+    body.standalone-configurator-wix .combo-cost span,
+    body.standalone-configurator-wix .central-video-note{
+      color:#111 !important;
+    }
+    body.standalone-configurator-wix .central-pill{
+      background:#f1f1f1 !important;
+      border:1px solid rgba(17,17,17,.14) !important;
+    }
+    body.standalone-configurator-wix .combo-desc,
+    body.standalone-configurator-wix .central-helper,
+    body.standalone-configurator-wix .status-card small,
+    body.standalone-configurator-wix .status-input small,
+    body.standalone-configurator-wix .journey-box p,
+    body.standalone-configurator-wix .journey-foot p,
+    body.standalone-configurator-wix .note{
+      color:rgba(17,17,17,.78) !important;
+    }
+    body.standalone-configurator-wix .summary-box > .tag{
+      background:#111 !important;
+      color:#fff !important;
+      border-color:#111 !important;
+    }
+    body.standalone-configurator-wix #cotacao .section-head > .tag,
+    body.standalone-configurator-wix #lead-form > div:first-of-type .tag{
+      background:#111 !important;
+      color:#fff !important;
+      border-color:#111 !important;
+    }
+    @media (max-width:920px){
+      body.standalone-configurator-wix .sticky-box{
+        position:sticky !important;
+        top:0 !important;
+        z-index:40 !important;
+      }
+      body.standalone-configurator-wix .journey-box{
+        background:rgba(255,255,255,.96) !important;
+        backdrop-filter:blur(14px);
+        box-shadow:0 10px 28px rgba(17,17,17,.08) !important;
+      }
+      body.standalone-configurator-wix .journey-step.is-complete{
+        background:#111 !important;
+        color:#fff !important;
+        border-color:#111 !important;
+        box-shadow:0 14px 34px rgba(17,17,17,.18) !important;
+      }
+      body.standalone-configurator-wix .journey-step.is-complete .journey-step-copy strong,
+      body.standalone-configurator-wix .journey-step.is-complete .journey-step-copy > span:not(.journey-step-state){
+        color:#fff !important;
+      }
+      body.standalone-configurator-wix .journey-step.is-complete .journey-step-copy .journey-placeholder{
+        color:rgba(255,255,255,.72) !important;
+      }
+      body.standalone-configurator-wix .journey-step.is-complete .journey-step-state{
+        background:#fff !important;
+        color:#111 !important;
+        border-color:#fff !important;
+      }
+      body.standalone-configurator-wix #cotacao .section-head h2{
+        white-space:nowrap !important;
+        font-size:34px !important;
+        line-height:.96 !important;
+      }
+    }
+    body.standalone-configurator-wix .rating-dot.full{
+      background:#111 !important;
+      border-color:#111 !important;
+    }
+    body.standalone-configurator-wix .rating-dot.half{
+      background:linear-gradient(90deg,#111 50%,transparent 50%) !important;
+      border-color:#111 !important;
+    }
+    body.standalone-configurator-wix .option-badge,
+    body.standalone-configurator-wix .climate-chip,
+    body.standalone-configurator-wix .summary-kicker,
+    body.standalone-configurator-wix .combo-price-meta,
+    body.standalone-configurator-wix .combo-price-note{
+      color:#111 !important;
+    }
   </style>
 </head>
-<body class="configurator-side-summary-page">
-  <header>
-    <div class="container nav">
-      <a class="logo" href="#top" aria-label="Wisemak home"><picture><source media="(max-width: 760px)" srcset="data:image/png;base64,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"><img src="Wisemak Logo.png" alt="Wisemak"></picture><span class="logo-word">Wisemak</span></a>
-      <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
-      <nav class="nav-links" id="site-nav">
-        <div class="nav-item">
-          <a href="#" class="nav-trigger">Soluções</a>
-          <div class="solutions-menu">
-            <div class="solutions-col">
-              <strong>AQS</strong>
-              <p>Soluções para água quente sanitária e alternativas complementares.</p>
-              <div class="solutions-links">
-                <a href="solucao_bomba_calor_aqs_wisemak.html"><span>Bomba de Calor AQS</span><span>→</span></a>
-                <a href="solucao_solar_termico_wisemak.html"><span>Solar Térmico</span><span>→</span></a>
-                <a href="solucao_termoacumulador_wisemak.html"><span>Termoacumulador</span><span>→</span></a>
-                <a href="solucao_esquentador_gn_wisemak.html"><span>Esquentador</span><span>→</span></a>
-              </div>
-            </div>
-            <div class="solutions-col">
-              <strong>Climatização</strong>
-              <p>Principais soluções residenciais de climatização e emissão.</p>
-              <div class="solutions-links">
-                <a href="solucao_bomba_calor_climatizacao_wisemak.html"><span>Bomba de Calor</span><span>→</span></a>
-                <a href="solucao_ar_condicionado_wisemak.html"><span>AC</span><span>→</span></a>
-                <a href="solucao_piso_radiante_wisemak.html"><span>Piso Radiante</span><span>→</span></a>
-                <a href="solucao_ventiloconvectores_wisemak.html"><span>Ventiloconvectores</span><span>→</span></a>
-                <a href="solucao_radiadores_wisemak.html"><span>Radiadores</span><span>→</span></a>
-                <a href="solucao_caldeira_wisemak.html"><span>Caldeira</span><span>→</span></a>
-              </div>
-            </div>
-            <div class="solutions-col">
-              <strong>Ventilação</strong>
-              <p>Qualidade do ar interior, VMC e soluções complementares.</p>
-              <div class="solutions-links">
-                <a href="solucao_vmc_wisemak.html"><span>VMC Duplo Fluxo</span><span>→</span></a>
-                <a href="solucao_vmc_simples_fluxo_wisemak.html"><span>VMC simples fluxo</span><span>→</span></a>
-                <a href="solucao_vmc_bateria_agua_wisemak.html"><span>VMC com bateria de água</span><span>→</span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a href="#configurador">Configurador</a>
-        <a href="#instalacao">Instalação</a>
-        <a href="#conteudo">Conteúdo</a>
-        <a href="#configurador" class="btn btn-light">Começar configurador</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="quote-modal" id="quick-quote-modal" aria-hidden="true">
-    <div class="quote-modal-panel">
-      <div class="quote-modal-top">
-        <div>
-          <span class="tag">Pedido rápido</span>
-          <h3>Pede ja o teu orçamento</h3>
-          <p>Deixe os seus contactos, localização e uma mensagem rápida. A equipa Wisemak entra em contacto consigo com a maior brevidade.</p>
-          <div class="quote-contact-chip">
-            <span>Wisemak</span>
-            <small>Contacto direto</small>
-            <span>913081515</span>
-          </div>
-        </div>
-        <button class="quote-modal-close" type="button" aria-label="Fechar" onclick="closeQuickQuoteModal()">×</button>
-      </div>
-      <form class="quote-compact" id="quick-quote-form">
-        <div class="quote-inline-fields">
-          <div class="field"><label>Nome</label><input id="quick-name" placeholder="O seu nome"></div>
-          <div class="field"><label>Email</label><input id="quick-email" type="email" placeholder="nome@email.com"></div>
-          <div class="field"><label>Telefone</label><input id="quick-phone" placeholder="912 345 678"></div>
-          <div class="field"><label>Distrito</label><select id="quick-district"></select></div>
-          <div class="field"><label>Concelho</label><select id="quick-municipality"></select></div>
-        </div>
-        <div class="field"><label>Mensagem</label><textarea id="quick-message" placeholder="Descreva brevemente o que pretende"></textarea></div>
-        <div class="quote-summary-inline">
-          <div class="quote-result" style="margin-top:0">
-            <strong style="display:block;margin-bottom:8px">Próximo passo</strong>
-            <p style="margin:0;color:var(--muted)">Depois do envio, a equipa Wisemak analisa o seu pedido e entra em contacto para perceber o caso real.</p>
-          </div>
-          <button class="btn btn-light" type="button" onclick="submitQuickLead()">Receber proposta completa</button>
-        </div>
-        <div id="quick-lead-feedback" class="quote-result" style="display:none"></div>
-      </form>
-    </div>
-  </div>
-
+<body class="configurator-side-summary-page standalone-configurator-wix">
   <div class="video-modal" id="config-video-modal" aria-hidden="true">
     <div class="video-modal-panel">
       <div class="video-modal-top">
@@ -2779,21 +3231,6 @@
   </div>
 
   <main id="top">
-    <section class="hero" id="instalacao">
-      <div class="container hero-inner">
-        <span class="tag">Climatização, Ventilação e Água Quente</span>
-        <h1>Projetamos e instalamos soluções completas</h1>
-        <p>
-          Climatização, ventilação e água quente com instalação completa.
-          Use o configurador para comparar soluções e obter orçamentos em tempo real.
-        </p>
-        <div class="hero-actions">
-          <a href="#configurador" class="btn btn-light">Começar configurador</a>
-          <button class="btn btn-ghost" type="button" onclick="openQuickQuoteModal()">Pede ja o teu orçamento</button>
-        </div>
-      </div>
-    </section>
-
     <section id="configurador">
       <div class="container">
         <div class="section-head config-intro">
@@ -3377,123 +3814,7 @@
       </div>
     </section>
 
-    <section id="conteudo">
-      <div class="container">
-        <div class="section-head">
-          <span class="tag">Wisemak Episodes</span>
-          <h2>Veja antes de decidir</h2>
-          <p>Episódios curtos para perceber soluções, consumos, conforto e instalação antes de pedir proposta.</p>
-        </div>
-        <div class="episodes-shell">
-          <article class="episodes-feature" style="background-image:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.22) 62%,rgba(0,0,0,.74)),linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.76)),url('https://img.youtube.com/vi/PGuqKFGyXi4/hqdefault.jpg');background-size:cover;background-position:center;">
-            <div class="episodes-feature-content">
-              <div class="episodes-feature-meta">
-                <span>Em destaque</span>
-                <span>Climatização</span>
-                <span>Wisemak Episodes</span>
-              </div>
-              <h3>Bomba de calor + ventiloconvectores</h3>
-              <p>Um episódio para perceber resposta, conforto, integração e os pontos que mudam totalmente a leitura de uma proposta.</p>
-              <div class="episodes-feature-actions">
-                <button class="btn btn-light" type="button" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">▶ Ver episódio</button>
-                <a href="#configurador" class="btn btn-ghost">Configurar solução</a>
-              </div>
-            </div>
-          </article>
-          <div class="episodes-library-tools">
-            <label class="episodes-search" for="episodes-search">
-              <span>⌕</span>
-              <input id="episodes-search" type="search" tabindex="-1" placeholder="Pesquisar por piso radiante, VMC, ventiloconvectores...">
-            </label>
-            <div class="episodes-filters" aria-label="Categorias de vídeo">
-              <button class="episode-filter active" type="button" data-episode-filter="all">Todos</button>
-              <button class="episode-filter" type="button" data-episode-filter="aqs">AQS</button>
-              <button class="episode-filter" type="button" data-episode-filter="clima">Climatização</button>
-              <button class="episode-filter" type="button" data-episode-filter="comparativos">Comparativos</button>
-              <button class="episode-filter" type="button" data-episode-filter="obra">Obra</button>
-            </div>
-          </div>
-          <div class="episodes-row-title">
-            <h3>Biblioteca Wisemak</h3>
-            <span>Procure por solução ou categoria</span>
-          </div>
-          <div class="episodes-row">
-            <article class="episode" data-episode-card data-category="clima comparativos" data-search="caldeira avariou caldeira condensacao bomba calor compensa mais comparativo" onclick="window.open('https://www.youtube.com/watch?v=E59jlCIeH4Q', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/E59jlCIeH4Q/hqdefault.jpg');"><span class="episode-tag">Comparativo</span><div class="episode-title">Caldeira ou<br>bomba de calor?</div></div>
-              <div class="episode-body"><p>A tua caldeira avariou? Comparação entre caldeira de condensação e bomba de calor.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs comparativos" data-search="equipamento agua quente sanitaria aqs escolher sistema" onclick="window.open('https://www.youtube.com/watch?v=vPsqnx52cho', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/vPsqnx52cho/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Escolher água<br>quente sanitária</div></div>
-              <div class="episode-body"><p>Como escolher o equipamento de água quente sanitária mais adequado para a casa.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="clima" data-search="ar condicionado mural ac split solucao economica climatizar casa" onclick="window.open('https://www.youtube.com/watch?v=KRkQr3-7cRY', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/KRkQr3-7cRY/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Ar condicionado<br>mural</div></div>
-              <div class="episode-body"><p>A solução mais económica para climatizar uma casa com leitura simples e instalação direta.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="obra comparativos" data-search="moradia confortavel solucoes quanto podem custar obra casa" onclick="window.open('https://www.youtube.com/watch?v=Ux9qJnY8MrE', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/Ux9qJnY8MrE/hqdefault.jpg');"><span class="episode-tag">Obra</span><div class="episode-title">A moradia<br>confortável</div></div>
-              <div class="episode-body"><p>Quais as soluções possíveis numa moradia e quanto podem custar.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="capacidade acumulacao litros bomba calor quantos litros pessoas aqs" onclick="window.open('https://www.youtube.com/watch?v=OTS8QweFkLI', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/OTS8QweFkLI/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Capacidade de<br>acumulação</div></div>
-              <div class="episode-body"><p>Quantos litros deve ter a bomba de calor para água quente, em função do uso.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="deposito acumulacao agua garantia inox vitrificado aqs" onclick="window.open('https://www.youtube.com/watch?v=nX9DaC1c4U0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/nX9DaC1c4U0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Depósito de<br>acumulação</div></div>
-              <div class="episode-body"><p>O que muda no depósito de acumulação de água e na garantia do equipamento.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="dimensoes bomba calor tamanho espaco instalacao" onclick="window.open('https://www.youtube.com/watch?v=bmpiQ-JMTs0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/bmpiQ-JMTs0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Dimensões da<br>bomba de calor</div></div>
-              <div class="episode-body"><p>Qual o tamanho típico e o espaço necessário para instalar a solução.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="clima" data-search="bomba calor ventiloconvectores clima climatizacao aquecimento arrefecimento" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/PGuqKFGyXi4/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Ventiloconvectores</div></div>
-              <div class="episode-body"><p>Os pontos que normalmente ninguém explica e que mudam totalmente o valor real de uma proposta.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="cop rendimento consumo bomba calor agua quente aqs" onclick="window.open('https://www.youtube.com/watch?v=Qd4SZsPGHuc', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/Qd4SZsPGHuc/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">COP, rendimento<br>e consumo</div></div>
-              <div class="episode-body"><p>Como o COP influencia o consumo de uma bomba de calor para água quente.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="ruido bomba calor agua quente barulho db split monobloco" onclick="window.open('https://www.youtube.com/watch?v=8b1NgEzy_Xg', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/8b1NgEzy_Xg/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Ruído da<br>bomba de calor</div></div>
-              <div class="episode-body"><p>A bomba de calor para água quente faz muito barulho? Comparação e contexto.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="monobloco split bomba calor agua quente guia escolha" onclick="window.open('https://www.youtube.com/watch?v=xKExVpAShA0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/xKExVpAShA0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Monobloco<br>ou split?</div></div>
-              <div class="episode-body"><p>Primeiro passo do guia de escolha de uma bomba de calor para água quente.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs clima" data-search="bomba calor piso radiante aqs climatizacao conforto" onclick="window.open('https://www.youtube.com/watch?v=cQ-RycAyNX0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/cQ-RycAyNX0/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Piso Radiante</div></div>
-              <div class="episode-body"><p>O que muda no consumo, na instalação e no conforto quando comparada com alternativas tradicionais.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-          </div>
-          <div class="episodes-empty" id="episodes-empty">Não encontrámos episódios para essa pesquisa. Experimente procurar por “piso radiante”, “COP” ou “ar condicionado”.</div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="cta-band">
-          <div>
-            <h2 style="margin:0 0 10px;font-size:clamp(28px,4vw,48px);letter-spacing:-.05em">Pronto para transformar decisão em instalação?</h2>
-            <p style="margin:0">Use o configurador, veja o conteúdo e peça a proposta completa com instalação Wisemak.</p>
-          </div>
-          <div class="actions">
-            <a href="#configurador" class="btn btn-light">Começar</a>
-            <a href="#cotacao" class="btn btn-ghost">Pedir proposta</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
-
-  <footer>
-    <div class="container footer-line">
-      <div class="footer-brand"><img src="Wisemak Logo.png" alt="Wisemak">Soluções AVAC com instalação completa.</div>
-      <div>Configurar · Decidir · Instalar</div>
-    </div>
-  </footer>
 
   <script>
     const BASELINE = {
@@ -4542,6 +4863,19 @@ function focusVentilationEntry(){
       state.baseConfirmed.rooms = roomsInput.value.trim() !== '';
       updateCentralResult();
       updateSummary();
+    }
+
+    function isBaseReadyForAdvance(){
+      return areaInput.value.trim() !== '' && peopleInput.value.trim() !== '' && roomsInput.value.trim() !== '';
+    }
+
+    function advanceFromBaseToAqs(){
+      if(!isBaseReadyForAdvance() || !window.matchMedia('(max-width:920px)').matches){
+        return;
+      }
+      window.setTimeout(() => {
+        focusAqsChoice();
+      }, 160);
     }
 
     document.querySelectorAll('[data-step-target]').forEach(button => {
@@ -5843,6 +6177,10 @@ function focusVentilationEntry(){
           event.stopPropagation();
           event.stopImmediatePropagation?.();
           parkFocusAfterNumberInput(input);
+          if(input === peopleInput){
+            syncConfiguratorInputs();
+            advanceFromBaseToAqs();
+          }
         }
       };
       input.addEventListener('keydown', closeKeyboard);
@@ -5852,11 +6190,19 @@ function focusVentilationEntry(){
         if(event.inputType === 'insertLineBreak'){
           event.preventDefault();
           parkFocusAfterNumberInput(input);
+          if(input === peopleInput){
+            syncConfiguratorInputs();
+            advanceFromBaseToAqs();
+          }
         }
       });
       input.addEventListener('change', () => {
         if(input === peopleInput){
-          window.setTimeout(() => parkFocusAfterNumberInput(input), 0);
+          window.setTimeout(() => {
+            parkFocusAfterNumberInput(input);
+            syncConfiguratorInputs();
+            advanceFromBaseToAqs();
+          }, 0);
         }
       });
     });

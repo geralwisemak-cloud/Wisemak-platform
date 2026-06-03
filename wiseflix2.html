@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wisemak | Configurador Residencial com Instalação</title>
+  <title>Wisemak | Wiseflix 2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -2715,10 +2715,10 @@
             </div>
           </div>
         </div>
-        <a href="#configurador">Configurador</a>
+        <a href="#conteudo">Wisemak Episodes</a>
         <a href="#instalacao">Instalação</a>
         <a href="#conteudo">Conteúdo</a>
-        <a href="#configurador" class="btn btn-light">Começar configurador</a>
+        <a href="#conteudo" class="btn btn-light">Ver Wisemak Episodes</a>
       </nav>
     </div>
   </header>
@@ -2785,14 +2785,110 @@
         <h1>Projetamos e instalamos soluções completas</h1>
         <p>
           Climatização, ventilação e água quente com instalação completa.
-          Use o configurador para comparar soluções e obter orçamentos em tempo real.
+          Veja primeiro os Wisemak Episodes e avance depois para o configurador com mais contexto.
         </p>
         <div class="hero-actions">
-          <a href="#configurador" class="btn btn-light">Começar configurador</a>
+          <a href="#conteudo" class="btn btn-light">Ver Wisemak Episodes</a>
           <button class="btn btn-ghost" type="button" onclick="openQuickQuoteModal()">Pede ja o teu orçamento</button>
         </div>
       </div>
     </section>
+
+    <section id="conteudo">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Wisemak Episodes</span>
+          <h2>Veja antes de decidir</h2>
+          <p>Episódios curtos para perceber soluções, consumos, conforto e instalação antes de pedir proposta.</p>
+        </div>
+        <div class="episodes-shell">
+          <article class="episodes-feature" style="background-image:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.22) 62%,rgba(0,0,0,.74)),linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.76)),url('https://img.youtube.com/vi/PGuqKFGyXi4/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="episodes-feature-content">
+              <div class="episodes-feature-meta">
+                <span>Em destaque</span>
+                <span>Climatização</span>
+                <span>Wisemak Episodes</span>
+              </div>
+              <h3>Bomba de calor + ventiloconvectores</h3>
+              <p>Um episódio para perceber resposta, conforto, integração e os pontos que mudam totalmente a leitura de uma proposta.</p>
+              <div class="episodes-feature-actions">
+                <button class="btn btn-light" type="button" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">▶ Ver episódio</button>
+                <a href="#configurador" class="btn btn-ghost">Configurar solução</a>
+              </div>
+            </div>
+          </article>
+          <div class="episodes-library-tools">
+            <label class="episodes-search" for="episodes-search">
+              <span>⌕</span>
+              <input id="episodes-search" type="search" tabindex="-1" placeholder="Pesquisar por piso radiante, VMC, ventiloconvectores...">
+            </label>
+            <div class="episodes-filters" aria-label="Categorias de vídeo">
+              <button class="episode-filter active" type="button" data-episode-filter="all">Todos</button>
+              <button class="episode-filter" type="button" data-episode-filter="aqs">AQS</button>
+              <button class="episode-filter" type="button" data-episode-filter="clima">Climatização</button>
+              <button class="episode-filter" type="button" data-episode-filter="comparativos">Comparativos</button>
+              <button class="episode-filter" type="button" data-episode-filter="obra">Obra</button>
+            </div>
+          </div>
+          <div class="episodes-row-title">
+            <h3>Biblioteca Wisemak</h3>
+            <span>Procure por solução ou categoria</span>
+          </div>
+          <div class="episodes-row">
+            <article class="episode" data-episode-card data-category="clima comparativos" data-search="caldeira avariou caldeira condensacao bomba calor compensa mais comparativo" onclick="window.open('https://www.youtube.com/watch?v=E59jlCIeH4Q', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/E59jlCIeH4Q/hqdefault.jpg');"><span class="episode-tag">Comparativo</span><div class="episode-title">Caldeira ou<br>bomba de calor?</div></div>
+              <div class="episode-body"><p>A tua caldeira avariou? Comparação entre caldeira de condensação e bomba de calor.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs comparativos" data-search="equipamento agua quente sanitaria aqs escolher sistema" onclick="window.open('https://www.youtube.com/watch?v=vPsqnx52cho', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/vPsqnx52cho/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Escolher água<br>quente sanitária</div></div>
+              <div class="episode-body"><p>Como escolher o equipamento de água quente sanitária mais adequado para a casa.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="clima" data-search="ar condicionado mural ac split solucao economica climatizar casa" onclick="window.open('https://www.youtube.com/watch?v=KRkQr3-7cRY', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/KRkQr3-7cRY/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Ar condicionado<br>mural</div></div>
+              <div class="episode-body"><p>A solução mais económica para climatizar uma casa com leitura simples e instalação direta.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="obra comparativos" data-search="moradia confortavel solucoes quanto podem custar obra casa" onclick="window.open('https://www.youtube.com/watch?v=Ux9qJnY8MrE', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/Ux9qJnY8MrE/hqdefault.jpg');"><span class="episode-tag">Obra</span><div class="episode-title">A moradia<br>confortável</div></div>
+              <div class="episode-body"><p>Quais as soluções possíveis numa moradia e quanto podem custar.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="capacidade acumulacao litros bomba calor quantos litros pessoas aqs" onclick="window.open('https://www.youtube.com/watch?v=OTS8QweFkLI', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/OTS8QweFkLI/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Capacidade de<br>acumulação</div></div>
+              <div class="episode-body"><p>Quantos litros deve ter a bomba de calor para água quente, em função do uso.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="deposito acumulacao agua garantia inox vitrificado aqs" onclick="window.open('https://www.youtube.com/watch?v=nX9DaC1c4U0', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/nX9DaC1c4U0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Depósito de<br>acumulação</div></div>
+              <div class="episode-body"><p>O que muda no depósito de acumulação de água e na garantia do equipamento.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="dimensoes bomba calor tamanho espaco instalacao" onclick="window.open('https://www.youtube.com/watch?v=bmpiQ-JMTs0', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/bmpiQ-JMTs0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Dimensões da<br>bomba de calor</div></div>
+              <div class="episode-body"><p>Qual o tamanho típico e o espaço necessário para instalar a solução.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="clima" data-search="bomba calor ventiloconvectores clima climatizacao aquecimento arrefecimento" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/PGuqKFGyXi4/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Ventiloconvectores</div></div>
+              <div class="episode-body"><p>Os pontos que normalmente ninguém explica e que mudam totalmente o valor real de uma proposta.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="cop rendimento consumo bomba calor agua quente aqs" onclick="window.open('https://www.youtube.com/watch?v=Qd4SZsPGHuc', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/Qd4SZsPGHuc/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">COP, rendimento<br>e consumo</div></div>
+              <div class="episode-body"><p>Como o COP influencia o consumo de uma bomba de calor para água quente.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="ruido bomba calor agua quente barulho db split monobloco" onclick="window.open('https://www.youtube.com/watch?v=8b1NgEzy_Xg', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/8b1NgEzy_Xg/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Ruído da<br>bomba de calor</div></div>
+              <div class="episode-body"><p>A bomba de calor para água quente faz muito barulho? Comparação e contexto.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs" data-search="monobloco split bomba calor agua quente guia escolha" onclick="window.open('https://www.youtube.com/watch?v=xKExVpAShA0', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/xKExVpAShA0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Monobloco<br>ou split?</div></div>
+              <div class="episode-body"><p>Primeiro passo do guia de escolha de uma bomba de calor para água quente.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+            <article class="episode" data-episode-card data-category="aqs clima" data-search="bomba calor piso radiante aqs climatizacao conforto" onclick="window.open('https://www.youtube.com/watch?v=cQ-RycAyNX0', '_blank', 'noopener')">
+              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/cQ-RycAyNX0/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Piso Radiante</div></div>
+              <div class="episode-body"><p>O que muda no consumo, na instalação e no conforto quando comparada com alternativas tradicionais.</p><span class="play">▶ Ver episódio</span></div>
+            </article>
+          </div>
+          <div class="episodes-empty" id="episodes-empty">Não encontrámos episódios para essa pesquisa. Experimente procurar por “piso radiante”, “COP” ou “ar condicionado”.</div>
+        </div>
+      </div>
+    </section>
+
 
     <section id="configurador">
       <div class="container">
@@ -3373,101 +3469,6 @@
             </div>
             <div id="lead-feedback" class="quote-result" style="display:none"></div>
           </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="conteudo">
-      <div class="container">
-        <div class="section-head">
-          <span class="tag">Wisemak Episodes</span>
-          <h2>Veja antes de decidir</h2>
-          <p>Episódios curtos para perceber soluções, consumos, conforto e instalação antes de pedir proposta.</p>
-        </div>
-        <div class="episodes-shell">
-          <article class="episodes-feature" style="background-image:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.22) 62%,rgba(0,0,0,.74)),linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.76)),url('https://img.youtube.com/vi/PGuqKFGyXi4/hqdefault.jpg');background-size:cover;background-position:center;">
-            <div class="episodes-feature-content">
-              <div class="episodes-feature-meta">
-                <span>Em destaque</span>
-                <span>Climatização</span>
-                <span>Wisemak Episodes</span>
-              </div>
-              <h3>Bomba de calor + ventiloconvectores</h3>
-              <p>Um episódio para perceber resposta, conforto, integração e os pontos que mudam totalmente a leitura de uma proposta.</p>
-              <div class="episodes-feature-actions">
-                <button class="btn btn-light" type="button" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">▶ Ver episódio</button>
-                <a href="#configurador" class="btn btn-ghost">Configurar solução</a>
-              </div>
-            </div>
-          </article>
-          <div class="episodes-library-tools">
-            <label class="episodes-search" for="episodes-search">
-              <span>⌕</span>
-              <input id="episodes-search" type="search" tabindex="-1" placeholder="Pesquisar por piso radiante, VMC, ventiloconvectores...">
-            </label>
-            <div class="episodes-filters" aria-label="Categorias de vídeo">
-              <button class="episode-filter active" type="button" data-episode-filter="all">Todos</button>
-              <button class="episode-filter" type="button" data-episode-filter="aqs">AQS</button>
-              <button class="episode-filter" type="button" data-episode-filter="clima">Climatização</button>
-              <button class="episode-filter" type="button" data-episode-filter="comparativos">Comparativos</button>
-              <button class="episode-filter" type="button" data-episode-filter="obra">Obra</button>
-            </div>
-          </div>
-          <div class="episodes-row-title">
-            <h3>Biblioteca Wisemak</h3>
-            <span>Procure por solução ou categoria</span>
-          </div>
-          <div class="episodes-row">
-            <article class="episode" data-episode-card data-category="clima comparativos" data-search="caldeira avariou caldeira condensacao bomba calor compensa mais comparativo" onclick="window.open('https://www.youtube.com/watch?v=E59jlCIeH4Q', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/E59jlCIeH4Q/hqdefault.jpg');"><span class="episode-tag">Comparativo</span><div class="episode-title">Caldeira ou<br>bomba de calor?</div></div>
-              <div class="episode-body"><p>A tua caldeira avariou? Comparação entre caldeira de condensação e bomba de calor.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs comparativos" data-search="equipamento agua quente sanitaria aqs escolher sistema" onclick="window.open('https://www.youtube.com/watch?v=vPsqnx52cho', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/vPsqnx52cho/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Escolher água<br>quente sanitária</div></div>
-              <div class="episode-body"><p>Como escolher o equipamento de água quente sanitária mais adequado para a casa.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="clima" data-search="ar condicionado mural ac split solucao economica climatizar casa" onclick="window.open('https://www.youtube.com/watch?v=KRkQr3-7cRY', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/KRkQr3-7cRY/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Ar condicionado<br>mural</div></div>
-              <div class="episode-body"><p>A solução mais económica para climatizar uma casa com leitura simples e instalação direta.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="obra comparativos" data-search="moradia confortavel solucoes quanto podem custar obra casa" onclick="window.open('https://www.youtube.com/watch?v=Ux9qJnY8MrE', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/Ux9qJnY8MrE/hqdefault.jpg');"><span class="episode-tag">Obra</span><div class="episode-title">A moradia<br>confortável</div></div>
-              <div class="episode-body"><p>Quais as soluções possíveis numa moradia e quanto podem custar.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="capacidade acumulacao litros bomba calor quantos litros pessoas aqs" onclick="window.open('https://www.youtube.com/watch?v=OTS8QweFkLI', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/OTS8QweFkLI/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Capacidade de<br>acumulação</div></div>
-              <div class="episode-body"><p>Quantos litros deve ter a bomba de calor para água quente, em função do uso.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="deposito acumulacao agua garantia inox vitrificado aqs" onclick="window.open('https://www.youtube.com/watch?v=nX9DaC1c4U0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/nX9DaC1c4U0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Depósito de<br>acumulação</div></div>
-              <div class="episode-body"><p>O que muda no depósito de acumulação de água e na garantia do equipamento.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="dimensoes bomba calor tamanho espaco instalacao" onclick="window.open('https://www.youtube.com/watch?v=bmpiQ-JMTs0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/bmpiQ-JMTs0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Dimensões da<br>bomba de calor</div></div>
-              <div class="episode-body"><p>Qual o tamanho típico e o espaço necessário para instalar a solução.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="clima" data-search="bomba calor ventiloconvectores clima climatizacao aquecimento arrefecimento" onclick="window.open('https://www.youtube.com/watch?v=PGuqKFGyXi4', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/PGuqKFGyXi4/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Ventiloconvectores</div></div>
-              <div class="episode-body"><p>Os pontos que normalmente ninguém explica e que mudam totalmente o valor real de uma proposta.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="cop rendimento consumo bomba calor agua quente aqs" onclick="window.open('https://www.youtube.com/watch?v=Qd4SZsPGHuc', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/Qd4SZsPGHuc/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">COP, rendimento<br>e consumo</div></div>
-              <div class="episode-body"><p>Como o COP influencia o consumo de uma bomba de calor para água quente.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="ruido bomba calor agua quente barulho db split monobloco" onclick="window.open('https://www.youtube.com/watch?v=8b1NgEzy_Xg', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/8b1NgEzy_Xg/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Ruído da<br>bomba de calor</div></div>
-              <div class="episode-body"><p>A bomba de calor para água quente faz muito barulho? Comparação e contexto.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs" data-search="monobloco split bomba calor agua quente guia escolha" onclick="window.open('https://www.youtube.com/watch?v=xKExVpAShA0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/xKExVpAShA0/hqdefault.jpg');"><span class="episode-tag">AQS</span><div class="episode-title">Monobloco<br>ou split?</div></div>
-              <div class="episode-body"><p>Primeiro passo do guia de escolha de uma bomba de calor para água quente.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-            <article class="episode" data-episode-card data-category="aqs clima" data-search="bomba calor piso radiante aqs climatizacao conforto" onclick="window.open('https://www.youtube.com/watch?v=cQ-RycAyNX0', '_blank', 'noopener')">
-              <div class="episode-cover" style="background-image:url('https://img.youtube.com/vi/cQ-RycAyNX0/hqdefault.jpg');"><span class="episode-tag">Clima</span><div class="episode-title">Bomba de calor<br>+ Piso Radiante</div></div>
-              <div class="episode-body"><p>O que muda no consumo, na instalação e no conforto quando comparada com alternativas tradicionais.</p><span class="play">▶ Ver episódio</span></div>
-            </article>
-          </div>
-          <div class="episodes-empty" id="episodes-empty">Não encontrámos episódios para essa pesquisa. Experimente procurar por “piso radiante”, “COP” ou “ar condicionado”.</div>
         </div>
       </div>
     </section>

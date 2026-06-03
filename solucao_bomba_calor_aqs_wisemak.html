@@ -172,11 +172,12 @@
       max-height:min(58vh,430px);
       overflow-y:auto;
       overscroll-behavior:contain;
+      overflow-anchor:none;
       scrollbar-width:none;
       border:1px solid rgba(255,255,255,.08);
       border-radius:18px;
       background:rgba(255,255,255,.02);
-      counter-reset:summary-step -1;
+      counter-reset:summary-step 0;
       scroll-behavior:smooth;
     }
     .summary-list::-webkit-scrollbar{display:none}
@@ -609,6 +610,50 @@
       color:var(--muted);
       font-size:15px;
     }
+    .price-stage-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);
+      gap:14px;
+      align-items:stretch;
+    }
+    .price-card{
+      padding:22px;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.12), transparent 40%),
+        linear-gradient(180deg,#1a1a1a 0%,#111111 100%);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 18px 42px rgba(0,0,0,.24);
+      display:grid;
+      gap:10px;
+    }
+    .price-card strong{
+      display:block;
+      font-size:clamp(36px,4vw,54px);
+      line-height:.95;
+      letter-spacing:-.06em;
+    }
+    .price-card small{
+      color:var(--muted);
+      font-size:14px;
+    }
+    .price-badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+    .price-badge{
+      display:inline-flex;
+      align-items:center;
+      padding:9px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      color:#fff;
+      font-size:13px;
+      font-weight:700;
+    }
     .note-card{
       color:var(--muted);
       font-size:16px;
@@ -763,7 +808,8 @@
     @media (max-width:760px){
       .choice-row,
       .compact-grid,
-      .form-grid{
+      .form-grid,
+      .price-stage-grid{
         grid-template-columns:1fr;
       }
       .hero{padding-top:92px}
@@ -830,6 +876,10 @@
               <div class="summary-item" id="summary-dimensoes-row" style="display:none">
                 <span>Medidas disponíveis</span>
                 <strong id="summary-dimensoes">-</strong>
+              </div>
+              <div class="summary-item">
+                <span>Valor indicativo</span>
+                <strong id="summary-price">Por calcular</strong>
               </div>
             </div>
           </div>
@@ -1106,9 +1156,39 @@
             </div>
           </article>
 
+          <article class="stage" id="step-price">
+            <div class="stage-head">
+              <span class="stage-index">7</span>
+              <div class="stage-title">
+                <strong>Apresentação do valor</strong>
+                <span>Preço indicativo com base no número de pessoas</span>
+              </div>
+              <span class="tag">Preço</span>
+            </div>
+            <p>Este valor segue a mesma lógica do configurador principal da Wisemak e varia consoante o número de pessoas selecionado para a casa.</p>
+            <div class="price-stage-grid">
+              <div class="price-card">
+                <span class="tag" style="width:max-content">A partir de</span>
+                <strong id="aqs-price-from">Por calcular</strong>
+                <small id="aqs-price-note">Defina o número de pessoas no passo 2 para apresentar o valor indicativo desta solução.</small>
+                <div class="price-badges">
+                  <span class="price-badge" id="aqs-price-profile">Perfil por definir</span>
+                  <span class="price-badge" id="aqs-price-total">Custo 10 anos por calcular</span>
+                </div>
+              </div>
+              <div class="note-card">
+                <p>Mostramos aqui um preço de entrada indicativo para a bomba de calor AQS já alinhado com o perfil de utilização escolhido.</p>
+                <p>O valor final pode variar consoante instalação, marca, depósito, espaço disponível e necessidades específicas da obra.</p>
+              </div>
+            </div>
+            <div class="stage-actions">
+              <button class="btn btn-ghost" type="button" id="advance-price">Avançar</button>
+            </div>
+          </article>
+
           <div class="form-card" id="step-form">
             <span class="tag">Lead</span>
-            <h3>7. Enviar para a equipa Wisemak</h3>
+            <h3>8. Enviar para a equipa Wisemak</h3>
             <p>O pedido segue com todas as escolhas do guia para a equipa receber logo o contexto essencial da decisão.</p>
             <div class="form-grid">
               <input id="aqs-name" type="text" placeholder="Nome">
@@ -1172,6 +1252,14 @@
       }
     };
     const PORTUGAL_KWH_PRICE_WITH_VAT = 0.17;
+    const AQS_TABLE = {
+      bc: {
+        annual: [35,70,105,140,175,210,245,280,315,350],
+        maintenance: [20,20,20,20,20,20,20,20,20,20],
+        invest: [1500,1750,2000,2250,2500,2750,3000,3250,3500,3750],
+        total10: [2050,2650,3250,3850,4450,5050,5650,6250,6850,7450]
+      }
+    };
 
     const guideState = {
       tipo_bomba: '',
@@ -1180,6 +1268,7 @@
       litros: '',
       prioridade: '',
       contexto_instalacao: '',
+      price_ready: false,
       cop_reviewed: false,
       noise_reviewed: false
     };
@@ -1191,6 +1280,7 @@
       litros: document.getElementById('summary-litros'),
       prioridade: document.getElementById('summary-prioridade'),
       contexto: document.getElementById('summary-contexto'),
+      price: document.getElementById('summary-price'),
       dimensoesRow: document.getElementById('summary-dimensoes-row'),
       dimensoes: document.getElementById('summary-dimensoes'),
       status: document.getElementById('guide-status')
@@ -1202,6 +1292,7 @@
     const peopleInput = document.getElementById('aqs-people');
     const litersNote = document.getElementById('liters-note');
     const litersResult = document.getElementById('recommended-liters');
+    const summaryList = document.querySelector('.summary-list');
     let activeScrollTimer = null;
 
     const guideStages = [
@@ -1211,12 +1302,69 @@
       { id: 'step-context', complete: () => Boolean(guideState.cop_reviewed) },
       { id: 'step-noise', complete: () => Boolean(guideState.noise_reviewed) },
       { id: 'step-space', complete: () => Boolean(guideState.contexto_instalacao) },
+      { id: 'step-price', complete: () => Boolean(guideState.price_ready) },
       { id: 'step-form', complete: () => false }
     ];
+
+    function formatEuro(value){
+      return `${Number(value).toLocaleString('pt-PT')}€`;
+    }
+
+    function getAqsPricingProfile(){
+      const people = Math.max(1, Math.min(10, Number(guideState.pessoas) || 0));
+      if(!people){
+        return null;
+      }
+      const idx = Math.max(0, Math.min(9, people - 1));
+      const table = AQS_TABLE.bc;
+      const replacementExtra = guideState.contexto_instalacao === 'Substituição de outro equipamento' ? 150 : 0;
+      return {
+        people,
+        annual: table.annual[idx],
+        maintenance: table.maintenance[idx],
+        invest: table.invest[idx] + replacementExtra,
+        total10: table.total10[idx] + replacementExtra
+      };
+    }
 
     function setSummaryItemComplete(id, isComplete){
       const item = document.getElementById(id)?.closest('.summary-item');
       item?.classList.toggle('is-complete', Boolean(isComplete));
+    }
+
+    function syncSummaryScroll(){
+      if(!summaryList) return;
+
+      const orderedItems = [
+        document.getElementById('summary-tipo')?.closest('.summary-item'),
+        document.getElementById('summary-habitacao')?.closest('.summary-item'),
+        document.getElementById('summary-pessoas')?.closest('.summary-item'),
+        document.getElementById('summary-litros')?.closest('.summary-item'),
+        document.getElementById('summary-prioridade')?.closest('.summary-item'),
+        document.getElementById('summary-contexto')?.closest('.summary-item'),
+        summaryEls.dimensoesRow?.style.display !== 'none' ? summaryEls.dimensoesRow : null,
+        document.getElementById('summary-price')?.closest('.summary-item')
+      ].filter(Boolean);
+
+      const target = orderedItems.find(item => !item.classList.contains('is-complete')) || orderedItems[orderedItems.length - 1];
+      if(!target) return;
+
+      const listRect = summaryList.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const outOfViewTop = targetRect.top < listRect.top + 10;
+      const outOfViewBottom = targetRect.bottom > listRect.bottom - 10;
+
+      if(outOfViewTop || outOfViewBottom){
+        target.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+
+    function scrollSummaryToBottom(){
+      if(!summaryList) return;
+      summaryList.scrollTo({
+        top: summaryList.scrollHeight,
+        behavior: 'smooth'
+      });
     }
 
     function updateGuideProgress(){
@@ -1233,7 +1381,7 @@
         }
       });
 
-      const pathComplete = guideState.tipo_bomba && guideState.habitacao && guideState.litros && guideState.prioridade && guideState.cop_reviewed && guideState.noise_reviewed && guideState.contexto_instalacao;
+      const pathComplete = guideState.tipo_bomba && guideState.habitacao && guideState.litros && guideState.prioridade && guideState.cop_reviewed && guideState.noise_reviewed && guideState.contexto_instalacao && guideState.price_ready;
       document.getElementById('step-form')?.classList.toggle('is-current', Boolean(pathComplete));
     }
 
@@ -1270,14 +1418,35 @@
       }, 900);
     }
 
+    function refreshPricePresentation(){
+      const priceEl = document.getElementById('aqs-price-from');
+      const priceNoteEl = document.getElementById('aqs-price-note');
+      const priceProfileEl = document.getElementById('aqs-price-profile');
+      const priceTotalEl = document.getElementById('aqs-price-total');
+      const pricing = getAqsPricingProfile();
+
+      if(!pricing || !guideState.habitacao || !guideState.litros){
+        guideState.price_ready = false;
+        summaryEls.price.textContent = 'Por calcular';
+        priceEl.textContent = 'Por calcular';
+        priceNoteEl.textContent = 'Defina o número de pessoas no passo 2 para apresentar o valor indicativo desta solução.';
+        priceProfileEl.textContent = 'Perfil por definir';
+        priceTotalEl.textContent = 'Custo 10 anos por calcular';
+        return;
+      }
+
+      guideState.price_ready = true;
+      summaryEls.price.textContent = `A partir de ${formatEuro(pricing.invest)}`;
+      priceEl.textContent = `A partir de ${formatEuro(pricing.invest)}`;
+      priceNoteEl.textContent = `Valor indicativo para ${pricing.people} ${pricing.people === 1 ? 'pessoa' : 'pessoas'}, com base na tabela usada no configurador principal da Wisemak.`;
+      priceProfileEl.textContent = `${pricing.people} ${pricing.people === 1 ? 'pessoa' : 'pessoas'} · ${guideState.litros}`;
+      priceTotalEl.textContent = `${formatEuro(pricing.total10)} em 10 anos`;
+    }
+
     function updateGuideStatus(){
-      const completed = Object.values({
-        tipo_bomba: guideState.tipo_bomba,
-        habitacao: guideState.habitacao,
-        litros: guideState.litros,
-        prioridade: guideState.prioridade,
-        contexto_instalacao: guideState.contexto_instalacao
-      }).filter(Boolean).length;
+      refreshPricePresentation();
+      const completed = guideStages.filter(stage => stage.id !== 'step-form' && stage.complete()).length;
+      const total = guideStages.filter(stage => stage.id !== 'step-form').length;
 
       const width = document.getElementById('aqs-width')?.value.trim() || '';
       const depth = document.getElementById('aqs-depth')?.value.trim() || '';
@@ -1296,8 +1465,8 @@
       summaryEls.dimensoesRow.style.display = dimensions.length ? 'grid' : 'none';
       summaryEls.dimensoes.textContent = dimensions.join(' · ');
 
-      summaryEls.status.textContent = completed === 5 ? 'Lead pronta para envio' : `Guide preenchido ${completed}/5`;
-      summaryEls.status.classList.toggle('is-complete', completed === 5);
+      summaryEls.status.textContent = completed === total ? 'Lead pronta para envio' : `Guide preenchido ${completed}/${total}`;
+      summaryEls.status.classList.toggle('is-complete', completed === total);
 
       setSummaryItemComplete('summary-tipo', guideState.tipo_bomba);
       setSummaryItemComplete('summary-habitacao', guideState.habitacao);
@@ -1305,8 +1474,10 @@
       setSummaryItemComplete('summary-litros', guideState.litros);
       setSummaryItemComplete('summary-prioridade', guideState.prioridade);
       setSummaryItemComplete('summary-contexto', guideState.contexto_instalacao);
+      setSummaryItemComplete('summary-price', guideState.price_ready);
       setSummaryItemComplete('summary-dimensoes', dimensions.length);
       updateGuideProgress();
+      syncSummaryScroll();
     }
 
     function selectChoice(button){
@@ -1325,6 +1496,9 @@
       }
       if(field === 'prioridade'){
         window.setTimeout(() => scrollToStage('step-context'), 220);
+      }
+      if(field === 'contexto_instalacao'){
+        window.setTimeout(scrollSummaryToBottom, 120);
       }
     }
 
@@ -1397,9 +1571,9 @@
         return;
       }
 
-      if(!guideState.tipo_bomba || !guideState.habitacao || !guideState.litros || !guideState.prioridade || !guideState.contexto_instalacao){
+      if(!guideState.tipo_bomba || !guideState.habitacao || !guideState.litros || !guideState.prioridade || !guideState.contexto_instalacao || !guideState.cop_reviewed || !guideState.noise_reviewed || !guideState.price_ready){
         feedback.style.display = 'block';
-        feedback.innerHTML = '<strong>Faltam escolhas</strong><p style="margin:8px 0 0;color:var(--muted)">Complete os passos principais do guia antes de enviar.</p>';
+        feedback.innerHTML = '<strong>Faltam escolhas</strong><p style="margin:8px 0 0;color:var(--muted)">Complete todos os passos do guia, incluindo a apresentação do valor, antes de enviar.</p>';
         return;
       }
 
@@ -1423,6 +1597,7 @@
       formData.set('tipo_habitacao', guideState.habitacao);
       formData.set('numero_pessoas', String(guideState.pessoas));
       formData.set('litros', guideState.litros);
+      formData.set('preco_indicativo_desde', summaryEls.price.textContent || '-');
       formData.set('preferencia_deposito', guideState.prioridade);
       formData.set('contexto_instalacao', guideState.contexto_instalacao || '-');
       formData.set('largura_disponivel_mm', width || '-');
@@ -1455,6 +1630,7 @@
           guideState.litros = '';
           guideState.prioridade = '';
           guideState.contexto_instalacao = '';
+          guideState.price_ready = false;
           guideState.cop_reviewed = false;
           guideState.noise_reviewed = false;
           document.querySelectorAll('.choice-btn').forEach(btn => btn.classList.remove('active'));
@@ -1497,7 +1673,8 @@
       updateGuideStatus();
       scrollToStage('step-space');
     });
-    document.getElementById('advance-space').addEventListener('click', () => scrollToStage('step-form'));
+    document.getElementById('advance-space').addEventListener('click', () => scrollToStage('step-price'));
+    document.getElementById('advance-price').addEventListener('click', () => scrollToStage('step-form'));
     document.getElementById('aqs-cop').addEventListener('input', refreshCopEstimate);
     document.getElementById('close-video-modal').addEventListener('click', closeVideoModal);
     document.getElementById('aqs-submit-btn').addEventListener('click', submitAqsGuideLead);

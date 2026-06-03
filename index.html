@@ -499,25 +499,38 @@
       margin-top:4px;
       padding:7px 10px;
       border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.1);
-      color:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(255,255,255,.98);
+      color:#111111;
       font-size:11px;
       font-weight:700;
       letter-spacing:.04em;
+      text-transform:uppercase;
+      text-shadow:none;
       white-space:nowrap;
     }
     .journey-step.is-current{
-      background:rgba(59,130,246,.12);
+      background:linear-gradient(180deg,rgba(237,243,255,.98),rgba(228,236,252,.95));
+      border-color:rgba(59,130,246,.24);
+      box-shadow:0 16px 38px rgba(15,23,42,.10);
     }
     .journey-step.is-current .journey-step-index{
-      background:rgba(59,130,246,.18);
-      border-color:rgba(59,130,246,.34);
+      background:#ffffff;
+      border:2px solid #2563eb;
+      color:#111111;
+      box-shadow:0 0 0 6px rgba(37,99,235,.10);
     }
-    .journey-step.is-current .journey-step-state{
-      background:rgba(59,130,246,.16);
-      border-color:rgba(59,130,246,.28);
-      color:#dbeafe;
+    .journey-step.is-current .journey-step-copy strong{
+      color:#111111;
+    }
+    .journey-step.is-current .journey-step-copy > span:not(.journey-step-state){
+      color:rgba(17,17,17,.62);
+    }
+    .journey-step.is-current .journey-step-copy .journey-step-state{
+      background:#111111;
+      border-color:#111111;
+      color:#ffffff;
+      box-shadow:none;
     }
     .journey-step.is-complete{
       background:
@@ -535,15 +548,26 @@
     .journey-step.is-complete .journey-step-copy strong{
       color:#050505;
     }
-    .journey-step.is-complete .journey-step-copy span{
+    .journey-step.is-complete .journey-step-copy > span:not(.journey-step-state){
       color:rgba(5,5,5,.70);
     }
     .journey-step.is-complete .journey-step-copy .journey-step-state{
       background:#050505;
-      border-color:rgba(255,255,255,.82);
+      border-color:#050505;
       color:#ffffff;
-      text-shadow:0 1px 0 rgba(0,0,0,.55);
-      box-shadow:0 0 0 1px rgba(255,255,255,.28) inset,0 0 24px rgba(255,255,255,.42);
+      text-shadow:none;
+      box-shadow:none;
+    }
+    .journey-step-state.state-pending{
+      background:#ffffff !important;
+      border-color:#ffffff !important;
+      color:#111111 !important;
+    }
+    .journey-step-state.state-current,
+    .journey-step-state.state-complete{
+      background:#111111 !important;
+      border-color:#111111 !important;
+      color:#ffffff !important;
     }
     .journey-foot{
       margin-top:16px;
@@ -899,7 +923,7 @@
     @media (max-width:960px){
       .hero-kpis,.cards-4,.process-row{grid-template-columns:repeat(2,1fr)}
       .cards-3,.funnel,.quote-wrap,.cta-band,.quote-inline-fields{grid-template-columns:1fr}
-      .sticky-box{position:static}
+      .sticky-box{position:sticky;top:88px;z-index:24}
       .summary-tech-layout{grid-template-columns:1fr}
     }
     @media (max-width:760px){
@@ -1209,7 +1233,7 @@
         padding-top:10px;
       }
       .funnel{grid-template-columns:1fr}
-      .sticky-box{position:static}
+      .sticky-box{position:sticky;top:66px;z-index:24}
       .journey-box{padding:18px;border-radius:22px}
       .journey-box h3{font-size:24px}
       .journey-step{grid-template-columns:30px minmax(0,1fr);padding:13px 12px}
@@ -1219,9 +1243,24 @@
       .field label{font-size:13px}
       section{padding:56px 0}
       #configurador{padding-top:12px}
+      #cotacao{padding-top:18px}
+      #cotacao .section-head{display:none}
+      #cotacao .quote-wrap{gap:10px}
+      #cotacao .quote-compact{gap:10px}
       .section-head{margin-bottom:20px}
       .section-head h2{font-size:clamp(28px,8vw,40px)}
       .section-head p{font-size:15px;max-width:32ch}
+      #cotacao .section-head h2.mobile-proposal-title{
+        font-size:clamp(16px,5.8vw,24px);
+        line-height:1.02;
+        max-width:14ch;
+        margin-inline:0;
+        white-space:normal;
+        overflow-wrap:break-word;
+      }
+      #cotacao .section-head h2.mobile-proposal-title{
+        display:none;
+      }
       .episodes-shell{padding:18px;border-radius:26px}
       .episode{min-width:86vw;max-width:86vw;border-radius:22px}
       .episode-body{padding:16px}
@@ -3292,7 +3331,7 @@
       <div class="container">
         <div class="section-head">
           <span class="tag">Pedido de proposta</span>
-          <h2>Peça a sua proposta completa</h2>
+          <h2 class="mobile-proposal-title">Peça a sua proposta completa</h2>
           <p>Preencha o essencial e a equipa Wisemak entra em contacto rapidamente para validar o seu caso real.</p>
         </div>
         <div class="quote-wrap">
@@ -3773,13 +3812,16 @@
     const panelCards = document.querySelectorAll('[data-panel-card]');
     const configStatus = document.getElementById('config-status');
     const aqsChoice = document.getElementById('aqs-choice');
+    const aqsChoiceHead = aqsChoice?.querySelector('.solution-rail-head') || aqsChoice;
     const climateEntry = document.getElementById('climate-entry');
+    const climateEntryOffCard = climateEntry?.querySelector('[data-climate-master="off"]') || climateEntry;
     const climateIndepBlock = document.getElementById('climate-indep-block');
     const climateCentralBlock = document.getElementById('climate-central-block');
     const centralSourceStep = document.getElementById('central-source-step');
     const centralDistStep = document.getElementById('central-dist-step');
     const centralResultBox = document.getElementById('central-result');
     const ventChoice = document.getElementById('vent-choice');
+    const ventChoiceHead = ventChoice?.querySelector('.solution-rail-head') || ventChoice;
     const summaryBox = document.querySelector('.summary-box');
     const summaryHeading = document.querySelector('.summary-box .tag');
     const journeySteps = document.querySelectorAll('[data-journey-step]');
@@ -4032,9 +4074,11 @@
       ){
         const stickySummary = configuradorSection.querySelector('.sticky-box');
         if(stickySummary){
+          const stickyRect = stickySummary.getBoundingClientRect();
           const stickyTop = parseFloat(window.getComputedStyle(stickySummary).top) || 0;
-          const stickyHeight = stickySummary.getBoundingClientRect().height || 0;
-          offset = Math.max(offset, Math.ceil(stickyTop + stickyHeight + 18));
+          const stickyClearance = options.stickyClearance ?? 14;
+          const stickyCover = Math.max(stickyRect.bottom, stickyTop) + stickyClearance;
+          offset = Math.max(offset, Math.ceil(stickyCover));
         }
       }
       const duration = options.duration ?? 1100;
@@ -4042,47 +4086,114 @@
       smoothScrollToY(targetY, duration);
     }
 
+    function isMobileConfiguratorMode(){
+      return window.matchMedia('(max-width:920px)').matches;
+    }
+
+    function scrollConfiguratorStep(element, options = {}){
+      if(!element){
+        return;
+      }
+
+      const isMobile = isMobileConfiguratorMode();
+      if(isMobile){
+        return;
+      }
+      const offset = isMobile
+        ? (options.mobileOffset ?? options.offset ?? 24)
+        : (options.offset ?? 24);
+      const duration = options.duration ?? 1100;
+      const mobileDelay = isMobile ? (options.mobileDelay ?? 0) : 0;
+      const mobileCorrectionDelay = isMobile ? (options.mobileCorrectionDelay ?? 220) : 0;
+      const stickyClearance = options.stickyClearance;
+      const runScroll = () => smoothScrollToElement(element, { offset, duration, stickyClearance });
+
+      if(isMobile){
+        window.setTimeout(() => {
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+              runScroll();
+              if(mobileCorrectionDelay > 0){
+                window.setTimeout(() => {
+                  runScroll();
+                }, mobileCorrectionDelay);
+              }
+            });
+          });
+        }, mobileDelay);
+        return;
+      }
+
+      runScroll();
+    }
+
     function focusAqsChoice(){
       activatePanel('aqs');
-      smoothScrollToElement(aqsChoice, { offset: 112, duration: 1120 });
+      scrollConfiguratorStep(aqsChoiceHead, { offset: 112, mobileOffset: 24, stickyClearance: 48, mobileCorrectionDelay: 220, duration: 1120 });
     }
+
+function focusAqsChoiceAfterBaseInput(){
+  activatePanel('aqs');
+  scrollConfiguratorStep(aqsChoice, { offset: 112, mobileOffset: 24, stickyClearance: 108, mobileDelay: 320, mobileCorrectionDelay: 320, duration: 820 });
+}
 
     function focusClimateEntry(){
       activatePanel('clima');
-      smoothScrollToElement(climateEntry, { offset: 112, duration: 1180 });
+      scrollConfiguratorStep(climateEntryOffCard, { offset: 112, mobileOffset: 24, stickyClearance: 148, mobileCorrectionDelay: 260, duration: 1180 });
     }
 
     function focusClimateIndependent(){
       activatePanel('clima');
+      if(isMobileConfiguratorMode()){
+        return;
+      }
       smoothScrollToElement(climateIndepBlock, { offset: 112, duration: 1120 });
     }
 
     function focusClimateCentral(){
       activatePanel('clima');
+      if(isMobileConfiguratorMode()){
+        return;
+      }
       smoothScrollToElement(climateCentralBlock, { offset: 112, duration: 1140 });
     }
 
     function focusCentralDistributor(){
       activatePanel('clima');
+      if(isMobileConfiguratorMode()){
+        return;
+      }
       smoothScrollToElement(centralDistStep, { offset: 118, duration: 1020 });
     }
 
     function focusCentralResult(){
       activatePanel('clima');
+      if(isMobileConfiguratorMode()){
+        return;
+      }
       smoothScrollToElement(centralResultBox, { offset: 112, duration: 1100 });
     }
 
-    function focusVentilationEntry(){
-      activatePanel('vent');
-      smoothScrollToElement(ventChoice, { offset: 112, duration: 1180 });
-    }
+function focusVentilationEntry(){
+  activatePanel('vent');
+  scrollConfiguratorStep(ventChoiceHead, { offset: 112, mobileOffset: 24, stickyClearance: 56, mobileCorrectionDelay: 220, duration: 1180 });
+}
 
     function focusSummaryBox(){
+      if(isMobileConfiguratorMode()){
+        return;
+      }
       smoothScrollToElement(summaryHeading || summaryBox, { offset: 112, duration: 1120 });
     }
 
     function goToVentilationStep(){
       pendingSummaryReveal = false;
+      if(isMobileConfiguratorMode()){
+        const configuradorSection = document.getElementById('configurador');
+        if(configuradorSection){
+          configuradorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
       focusVentilationEntry();
     }
 
@@ -4120,11 +4231,15 @@
       }
 
       if(stateEl){
+        stateEl.classList.remove('state-pending', 'state-current', 'state-complete');
         if(options.current){
+          stateEl.classList.add('state-current');
           stateEl.textContent = 'Em curso';
         } else if(options.complete){
+          stateEl.classList.add('state-complete');
           stateEl.textContent = 'Concluído';
         } else {
+          stateEl.classList.add('state-pending');
           stateEl.textContent = options.pendingLabel || 'Por fazer';
         }
       }
@@ -4211,10 +4326,14 @@
         journeyCurrentHelper.textContent = 'Já definiu água quente, climatização e ventilação. Agora pode validar a solução completa.';
       } else if(currentStep === 'clima'){
         journeyCurrentTitle.textContent = 'Está na climatização';
-        journeyCurrentHelper.textContent = 'Feche a parte da climatização para o caminho continuar de forma natural até à ventilação.';
+        journeyCurrentHelper.textContent = isMobileConfiguratorMode()
+          ? 'Escolha a climatização para desbloquear o passo seguinte. O resumo acima vai acompanhando o caminho.'
+          : 'Feche a parte da climatização para o caminho continuar de forma natural até à ventilação.';
       } else if(currentStep === 'vent'){
-        journeyCurrentTitle.textContent = 'Está na ventilação';
-        journeyCurrentHelper.textContent = 'Este é o último grande passo antes do resumo final da solução.';
+        journeyCurrentTitle.textContent = isMobileConfiguratorMode() ? 'Passo seguinte: ventilação' : 'Está na ventilação';
+        journeyCurrentHelper.textContent = isMobileConfiguratorMode()
+          ? 'A ventilação já ficou ativa. Suba um pouco na página para continuar neste passo.'
+          : 'Este é o último grande passo antes do resumo final da solução.';
       } else if(currentStep === 'aqs'){
         journeyCurrentTitle.textContent = 'Agora escolha a água quente';
         journeyCurrentHelper.textContent = 'Depois da base da casa, escolha se quer incluir AQS e qual a solução mais adequada.';
@@ -4226,6 +4345,10 @@
 
     function scheduleGuidedAdvance(panelId, delay = 420){
       cancelGuidedAdvance();
+      if(isMobileConfiguratorMode()){
+        activatePanel(panelId);
+        return;
+      }
       guidedAdvanceTimer = window.setTimeout(() => {
         guidedAdvanceTimer = null;
         if(panelId === 'clima'){
@@ -4262,7 +4385,7 @@
 
     function scheduleSummaryReveal(){
       const summaryTarget = summaryHeading || summaryBox;
-      if(!summaryTarget){
+      if(!summaryTarget || isMobileConfiguratorMode()){
         return;
       }
       cancelSummaryAutoScroll();
@@ -5481,6 +5604,16 @@
     document.querySelectorAll('[data-journey-target]').forEach(button => {
       bindPress(button, () => {
         const target = button.dataset.journeyTarget;
+        if(isMobileConfiguratorMode()){
+          if(target === 'base'){
+            return;
+          }
+          if(target === 'aqs' || target === 'clima' || target === 'vent'){
+            activatePanel(target);
+            return;
+          }
+          return;
+        }
         if(target === 'base'){
           smoothScrollToElement(configStatus, { offset: 112, duration: 980 });
           return;
@@ -5672,6 +5805,18 @@
           active.blur();
         }
       }, 120);
+
+      if(
+        input === peopleInput &&
+        isMobileConfiguratorMode() &&
+        areaInput.value.trim() !== '' &&
+        peopleInput.value.trim() !== '' &&
+        roomsInput.value.trim() !== ''
+      ){
+        window.setTimeout(() => {
+          activatePanel('aqs');
+        }, 180);
+      }
     };
 
     document.addEventListener('focusin', event => {
