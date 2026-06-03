@@ -3367,7 +3367,7 @@
     <section id="cotacao">
       <div class="container">
         <div class="section-head">
-          <span class="tag">Pedido de proposta</span>
+          <span class="tag">Pedido de contacto</span>
           <h2 class="mobile-proposal-title">Peça a sua proposta completa</h2>
           <p>Preencha o essencial e a equipa Wisemak entra em contacto rapidamente para validar o seu caso real.</p>
         </div>
@@ -3377,15 +3377,6 @@
             <input type="hidden" name="subject" value="Novo pedido de proposta Wisemak">
             <input type="hidden" name="from_name" value="Wisemak Configurador">
             <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
-            <div>
-              <span class="tag">Resumo enviado com o pedido</span>
-              <div class="summary-list" style="margin-top:12px">
-                <div class="summary-item"><span>Solução AQS</span><span id="lead-aqs">Bomba de Calor</span></div>
-                <div class="summary-item"><span>Solução Clima</span><span id="lead-clima">AC Split Mural</span></div>
-                <div class="summary-item"><span>Solução Ventilação</span><span id="lead-vent">VMC Duplo Fluxo</span></div>
-                <div class="summary-item"><span>Intenção</span><span>Proposta com instalação</span></div>
-              </div>
-            </div>
             <div class="quote-inline-fields">
               <div class="field"><label>Nome</label><input id="lead-name" placeholder="O seu nome"></div>
               <div class="field"><label>Email</label><input id="lead-email" type="email" placeholder="nome@email.com"></div>
@@ -5510,9 +5501,12 @@ function focusVentilationEntry(){
       document.getElementById('sum-clima').textContent = climateSummaryLabel;
       document.getElementById('sum-vent').textContent = ventSummaryLabel;
       document.getElementById('sum-profile').textContent = houseProfile.area + ' m² · ' + houseProfile.people + (houseProfile.people === 1 ? ' pessoa' : ' pessoas') + ' · ' + houseProfile.rooms + (houseProfile.rooms === 1 ? ' divisão' : ' divisões');
-      document.getElementById('lead-aqs').textContent = state.aqs.label;
-      document.getElementById('lead-clima').textContent = climateSummaryLabel;
-      document.getElementById('lead-vent').textContent = ventSummaryLabel;
+      const leadAqs = document.getElementById('lead-aqs');
+      const leadClima = document.getElementById('lead-clima');
+      const leadVent = document.getElementById('lead-vent');
+      if(leadAqs) leadAqs.textContent = state.aqs.label;
+      if(leadClima) leadClima.textContent = climateSummaryLabel;
+      if(leadVent) leadVent.textContent = ventSummaryLabel;
       document.getElementById('sum-month').textContent = euro(month, false);
       document.getElementById('sum-start').textContent = euro(start, false);
       updateAqsCardsFromTable();
