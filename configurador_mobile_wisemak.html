@@ -371,17 +371,47 @@
     .solution-summary-card{
       display:grid;
       gap:14px;
-      padding:14px;
+    }
+    .summary-disclosure{
       border-radius:20px;
       background:rgba(255,255,255,.045);
       border:1px solid rgba(255,255,255,.09);
+      overflow:hidden;
     }
-    .solution-summary-card .tag{
+    .summary-disclosure summary{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px;
+      cursor:pointer;
+      list-style:none;
+    }
+    .summary-disclosure summary::-webkit-details-marker{display:none}
+    .summary-disclosure summary::after{
+      content:'+';
+      flex:0 0 auto;
+      width:28px;
+      height:28px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      color:#fff;
+      font-size:19px;
+      font-weight:900;
+      line-height:1;
+    }
+    .summary-disclosure[open] summary::after{
+      content:'-';
+    }
+    .summary-disclosure .tag{
       width:max-content;
     }
     .solution-panel,.technical-panel{
       display:grid;
       gap:12px;
+      margin:0 14px 14px;
       padding:14px;
       border-radius:18px;
       background:rgba(255,255,255,.04);
@@ -740,39 +770,44 @@
           <div class="summary-row"><span>Detalhe da climatização</span><strong id="summary-clima-detail">Por escolher</strong></div>
           <div class="summary-row"><span>Ventilação</span><strong id="summary-vent">Por escolher</strong></div>
           <div class="solution-summary-card">
-            <span class="tag">Resumo da solução</span>
-            <div class="solution-panel">
-              <div class="summary-row"><span>Água quente</span><strong id="solution-aqs">Não incluído</strong></div>
-              <div class="summary-row"><span>Climatização</span><strong id="solution-clima">Não incluído</strong></div>
-              <div class="summary-row"><span>Ventilação</span><strong id="solution-vent">Não incluído</strong></div>
-              <div class="summary-row"><span>Perfil considerado</span><strong id="solution-profile">Por preencher</strong></div>
-              <div class="estimate-box">
-                <div>
-                  <small class="estimate-kicker">Cenário crítico</small>
-                  <small>Custo energético estimado num mês crítico</small>
-                  <strong class="estimate-value" id="solution-month">0€</strong>
+            <details class="summary-disclosure">
+              <summary><span class="tag">Resumo da solução</span></summary>
+              <div class="solution-panel">
+                <div class="summary-row"><span>Água quente</span><strong id="solution-aqs">Não incluído</strong></div>
+                <div class="summary-row"><span>Climatização</span><strong id="solution-clima">Não incluído</strong></div>
+                <div class="summary-row"><span>Ventilação</span><strong id="solution-vent">Não incluído</strong></div>
+                <div class="summary-row"><span>Perfil considerado</span><strong id="solution-profile">Por preencher</strong></div>
+                <div class="estimate-box">
+                  <div>
+                    <small class="estimate-kicker">Cenário crítico</small>
+                    <small>Custo energético estimado num mês crítico</small>
+                    <strong class="estimate-value" id="solution-month">0€</strong>
+                  </div>
+                  <div>
+                    <small>Investimento base</small>
+                    <strong class="estimate-value secondary" id="solution-start">0€</strong>
+                  </div>
                 </div>
-                <div>
-                  <small>Investimento base</small>
-                  <strong class="estimate-value secondary" id="solution-start">0€</strong>
+                <p class="note">Estimativa indicativa para qualificação comercial. A proposta final depende da visita técnica, tipologia e instalação necessária.</p>
+              </div>
+            </details>
+            <details class="summary-disclosure">
+              <summary><span class="tag">Leitura técnica da solução</span></summary>
+              <div class="technical-panel">
+                <h3>Leitura técnica da solução</h3>
+                <p id="tech-solution-name">Sem soluções selecionadas</p>
+                <div class="tech-list">
+                  <div class="tech-row"><span>N.º de banhos ao mesmo tempo</span><strong id="tech-showers">0</strong></div>
+                  <div class="tech-row"><span>Consumo energético em AQS</span><strong id="tech-aqs-consumption">0€/mês</strong></div>
+                  <div class="tech-row"><span>Conforto em climatização</span><strong id="tech-comfort"></strong></div>
+                  <div class="tech-row"><span>Qualidade do ar interior</span><strong id="tech-air-quality"></strong></div>
+                  <div class="tech-row"><span>Eficácia em aquecimento</span><strong id="tech-heating"></strong></div>
+                  <div class="tech-row"><span>Eficácia em arrefecimento</span><strong id="tech-cooling"></strong></div>
+                  <div class="tech-row"><span>Tempo de resposta</span><strong id="tech-response"></strong></div>
+                  <div class="tech-row"><span>Consumo energético no pior mês</span><strong id="tech-worst-month">0€/mês</strong></div>
                 </div>
               </div>
-              <p class="note">Estimativa indicativa para qualificação comercial. A proposta final depende da visita técnica, tipologia e instalação necessária.</p>
-            </div>
-            <div class="technical-panel">
-              <h3>Leitura técnica da solução</h3>
-              <p id="tech-solution-name">Sem soluções selecionadas</p>
-              <div class="tech-list">
-                <div class="tech-row"><span>N.º de banhos ao mesmo tempo</span><strong id="tech-showers">0</strong></div>
-                <div class="tech-row"><span>Consumo energético em AQS</span><strong id="tech-aqs-consumption">0€/mês</strong></div>
-                <div class="tech-row"><span>Conforto em climatização</span><strong id="tech-comfort"></strong></div>
-                <div class="tech-row"><span>Qualidade do ar interior</span><strong id="tech-air-quality"></strong></div>
-                <div class="tech-row"><span>Eficácia em aquecimento</span><strong id="tech-heating"></strong></div>
-                <div class="tech-row"><span>Eficácia em arrefecimento</span><strong id="tech-cooling"></strong></div>
-                <div class="tech-row"><span>Tempo de resposta</span><strong id="tech-response"></strong></div>
-                <div class="tech-row"><span>Consumo energético no pior mês</span><strong id="tech-worst-month">0€/mês</strong></div>
-              </div>
-            </div>
+            </details>
           </div>
           <div class="lead-card">
             <h3>Resumo enviado com o pedido</h3>
