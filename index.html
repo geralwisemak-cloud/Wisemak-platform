@@ -1271,7 +1271,7 @@
       .field label{font-size:13px}
       section{padding:56px 0}
       #configurador{padding-top:12px}
-      #cotacao{padding-top:18px}
+      #cotacao{display:none}
       #cotacao .section-head{display:none}
       #cotacao .quote-wrap{gap:10px}
       #cotacao .quote-compact{gap:10px}
@@ -3352,7 +3352,7 @@
               </div>
             </div>
             <div class="summary-final-cta">
-              <a href="#cotacao" class="btn btn-light">Receber proposta completa</a>
+              <a href="#cotacao" class="btn btn-light" data-mobile-quick-quote>Receber proposta completa</a>
             </div>
             </div>
           </div>
@@ -3508,7 +3508,7 @@
           </div>
           <div class="actions">
             <a href="#configurador" class="btn btn-light">Começar</a>
-            <a href="#cotacao" class="btn btn-ghost">Pedir proposta</a>
+            <a href="#cotacao" class="btn btn-ghost" data-mobile-quick-quote>Pedir proposta</a>
           </div>
         </div>
       </div>
@@ -4603,6 +4603,16 @@ function focusVentilationEntry(){
       quickQuoteModal.classList.remove('is-open');
       quickQuoteModal.setAttribute('aria-hidden', 'true');
     }
+
+    document.querySelectorAll('[data-mobile-quick-quote]').forEach(trigger => {
+      trigger.addEventListener('click', event => {
+        if(!window.matchMedia('(max-width:760px)').matches){
+          return;
+        }
+        event.preventDefault();
+        openQuickQuoteModal();
+      });
+    });
 
     function openConfigVideoModal(){
       if(!configVideoModal){
