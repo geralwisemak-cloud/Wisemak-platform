@@ -960,6 +960,7 @@
       vent: ''
     };
 
+    const CONFIGURATOR_SESSION_KEY = 'wisemak-configurator-mobile-v1';
     const stepLabels = ['Base', 'AQS', 'Climatização', 'Detalhe', 'Ventilação', 'Resumo'];
     const cards = [...document.querySelectorAll('.step-card')];
     const progressFill = document.getElementById('progress-fill');
@@ -1030,6 +1031,7 @@
       document.getElementById('summary-clima-detail').textContent = climateDetail;
       document.getElementById('summary-vent').textContent = state.vent || 'Por escolher';
       updateSolutionSummary();
+      saveConfiguratorSession();
     }
 
     function getClimateMode(){
@@ -1132,6 +1134,48 @@
       document.querySelectorAll('[data-climate-detail-panel]').forEach(panel => {
         panel.classList.toggle('active', panel.dataset.climateDetailPanel === mode);
       });
+    }
+
+    function saveConfiguratorSession(){
+      try{
+        sessionStorage.setItem(CONFIGURATOR_SESSION_KEY, JSON.stringify({
+          state,
+          house: {
+            area: document.getElementById('house-area').value,
+            people: document.getElementById('house-people').value,
+            type: document.getElementById('house-type').value
+          }
+        }));
+      }catch(error){
+        // The configurator remains usable when browser storage is unavailable.
+      }
+    }
+
+    function restoreConfiguratorSession(){
+      try{
+        const saved = JSON.parse(sessionStorage.getItem(CONFIGURATOR_SESSION_KEY) || 'null');
+        if(!saved || !saved.state || !saved.house){
+          return;
+        }
+
+        Object.keys(state).forEach(key => {
+          if(key !== 'step'){
+            state[key] = saved.state[key] || '';
+          }
+        });
+        state.step = Number.isInteger(saved.state.step)
+          ? Math.max(0, Math.min(cards.length - 1, saved.state.step))
+          : state.step;
+        document.getElementById('house-area').value = saved.house.area ?? '';
+        document.getElementById('house-people').value = saved.house.people ?? '';
+        document.getElementById('house-type').value = saved.house.type || 'Moradia';
+
+        document.querySelectorAll('.choice-card').forEach(choice => {
+          choice.classList.toggle('active', state[choice.dataset.group] === choice.dataset.value);
+        });
+      }catch(error){
+        sessionStorage.removeItem(CONFIGURATOR_SESSION_KEY);
+      }
     }
 
     function showStep(index){
@@ -1329,7 +1373,8 @@
       input.addEventListener('change', updateSummary);
     });
 
-    updateSummary();
+    restoreConfiguratorSession();
+    showStep(state.step);
   </script>
 </body>
 </html>

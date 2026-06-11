@@ -2831,10 +2831,9 @@
         </div>
 
         <div class="mobile-config-gateway">
-          <span class="tag">Experiência mobile</span>
           <h3>Configurador passo a passo</h3>
-          <p>No telemóvel, o configurador abre numa página dedicada com uma escolha por etapa e detalhes expansíveis em cada solução.</p>
-          <a href="configurador_mobile_wisemak.html" class="btn btn-light">Abrir configurador mobile</a>
+          <p>Acompanhe o caminho da solução e veja o que já ficou definido enquanto percorre o configurador.</p>
+          <a href="configurador_mobile_wisemak.html" class="btn btn-light">Abrir configurador</a>
         </div>
 
         <div class="funnel">
@@ -3821,9 +3820,74 @@
       }
     };
 
+    const CONFIGURATOR_SESSION_KEY = 'wisemak-configurator-desktop-v1';
     const areaInput = document.getElementById('house-area');
     const peopleInput = document.getElementById('house-people');
     const roomsInput = document.getElementById('house-rooms');
+
+    function saveConfiguratorSession(){
+      try{
+        sessionStorage.setItem(CONFIGURATOR_SESSION_KEY, JSON.stringify({
+          state,
+          house: {
+            area: areaInput.value,
+            people: peopleInput.value,
+            rooms: roomsInput.value
+          }
+        }));
+      }catch(error){
+        // The configurator remains usable when browser storage is unavailable.
+      }
+    }
+
+    function restoreConfiguratorSession(){
+      try{
+        const saved = JSON.parse(sessionStorage.getItem(CONFIGURATOR_SESSION_KEY) || 'null');
+        if(!saved || !saved.state || !saved.house){
+          return;
+        }
+
+        const savedState = saved.state;
+        if(savedState.aqs){
+          state.aqs = { ...state.aqs, ...savedState.aqs };
+        }
+        if(savedState.clima){
+          state.clima = {
+            ...state.clima,
+            ...savedState.clima,
+            indep: { ...state.clima.indep, ...(savedState.clima.indep || {}) },
+            central: { ...state.clima.central, ...(savedState.clima.central || {}) }
+          };
+        }
+        if(savedState.vent){
+          state.vent = { ...state.vent, ...savedState.vent };
+        }
+        state.ventSelectionSource = savedState.ventSelectionSource || state.ventSelectionSource;
+        state.baseConfirmed = { ...state.baseConfirmed, ...(savedState.baseConfirmed || {}) };
+        state.decisions = { ...state.decisions, ...(savedState.decisions || {}) };
+
+        areaInput.value = saved.house.area ?? areaInput.value;
+        peopleInput.value = saved.house.people ?? peopleInput.value;
+        roomsInput.value = saved.house.rooms ?? roomsInput.value;
+
+        document.querySelectorAll('.option[data-group]').forEach(option => {
+          const group = option.dataset.group;
+          const selectedLabel = group === 'clima-indep'
+            ? state.clima.indep.label
+            : state[group]?.label;
+          option.classList.toggle('active', option.dataset.value === selectedLabel);
+        });
+        document.querySelectorAll('[data-central-group]').forEach(option => {
+          option.classList.toggle(
+            'active',
+            state.clima.central[option.dataset.centralGroup] === option.dataset.centralValue
+          );
+        });
+      }catch(error){
+        sessionStorage.removeItem(CONFIGURATOR_SESSION_KEY);
+      }
+    }
+
     let suppressPostNumberFocusUntil = 0;
     const quickQuoteModal = document.getElementById('quick-quote-modal');
     const configVideoModal = document.getElementById('config-video-modal');
@@ -5539,6 +5603,7 @@ function focusVentilationEntry(){
         cancelSummaryAutoScroll();
       }
       hadCompleteConfiguration = isCompleteNow;
+      saveConfiguratorSession();
     }
 
     async function submitLead(){
@@ -5892,6 +5957,7 @@ function focusVentilationEntry(){
       });
     });
 
+    restoreConfiguratorSession();
     filterEpisodes();
     updateCentralResult();
     updateSummary();
