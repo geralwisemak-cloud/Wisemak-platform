@@ -234,6 +234,11 @@
         linear-gradient(180deg,#242424,#161616);
       box-shadow:0 18px 46px rgba(255,255,255,.10);
     }
+    .choice-card.is-disabled{
+      opacity:.38;
+      cursor:not-allowed;
+      pointer-events:none;
+    }
     .choice-main{
       display:grid;
       grid-template-columns:minmax(0,1fr) 18px;
@@ -961,6 +966,7 @@
       climaDist: '',
       vent: ''
     };
+    let ventSelectionSource = 'none';
 
     const CONFIGURATOR_SESSION_KEY = 'wisemak-configurator-mobile-v1';
     const stepLabels = ['Base', 'AQS', 'Climatização', 'Detalhe', 'Ventilação', 'Resumo'];
@@ -1298,6 +1304,28 @@
       });
     }
 
+    function centralClimateNeedsAutoVmc(){
+      return getClimateMode() === 'central' && state.climaDist === 'Piso Radiante + VMC com bateria de água';
+    }
+
+    function syncVentilationDependency(){
+      const locked = centralClimateNeedsAutoVmc();
+      if(locked){
+        state.vent = 'VMC Duplo Fluxo';
+        ventSelectionSource = 'auto';
+      } else if(ventSelectionSource === 'auto'){
+        state.vent = '';
+        ventSelectionSource = 'none';
+      }
+
+      document.querySelectorAll('.choice-card[data-group="vent"]').forEach(card => {
+        const isRequiredOption = card.dataset.value === 'VMC Duplo Fluxo';
+        card.classList.toggle('active', locked ? isRequiredOption : state.vent === card.dataset.value);
+        card.classList.toggle('is-disabled', locked && !isRequiredOption);
+        card.setAttribute('aria-disabled', locked && !isRequiredOption ? 'true' : 'false');
+      });
+    }
+
     function saveConfiguratorSession(){
       try{
         sessionStorage.setItem(CONFIGURATOR_SESSION_KEY, JSON.stringify({
@@ -1337,6 +1365,7 @@
         document.querySelectorAll('.choice-card').forEach(choice => {
           choice.classList.toggle('active', state[choice.dataset.group] === choice.dataset.value);
         });
+        syncVentilationDependency();
       }catch(error){
         sessionStorage.removeItem(CONFIGURATOR_SESSION_KEY);
       }
@@ -1349,6 +1378,7 @@
       progressLabel.textContent = `Passo ${state.step + 1} de ${cards.length}`;
       progressState.textContent = stepLabels[state.step];
       updateClimateDetailPanels();
+      syncVentilationDependency();
       updateSummary();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1495,7 +1525,13 @@
       const choice = event.target.closest('.choice-card');
       if(choice){
         const group = choice.dataset.group;
+        if(group === 'vent' && choice.getAttribute('aria-disabled') === 'true'){
+          return;
+        }
         state[group] = choice.dataset.value;
+        if(group === 'vent'){
+          ventSelectionSource = 'manual';
+        }
         if(group === 'clima'){
           state.climaIndep = '';
           state.climaFonte = '';
@@ -1508,6 +1544,7 @@
         document.querySelectorAll(`.choice-card[data-group="${group}"]`).forEach(card => {
           card.classList.toggle('active', card === choice);
         });
+        syncVentilationDependency();
         updateSummary();
         return;
       }

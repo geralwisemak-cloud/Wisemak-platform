@@ -1,0 +1,38 @@
+# Historico e metadados do Git
+.git/
+
+# Metadados do sistema operativo e editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Dependencias, builds e caches caso sejam criados
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.parcel-cache/
+.vite/
+
+# Ficheiros temporarios e logs
+tmp/
+temp/
+*.tmp
+*.log
+*.bak
+
+# Artefactos de validacao local
+screenshots/
+test-results/
+playwright-report/
+
+# Binarios ativos: as funcoes e nomes estao documentados em PROJECT_CONTEXT.md
+*.png
+*.jpg
+*.jpeg
+*.webp
