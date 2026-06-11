@@ -789,6 +789,7 @@
     </section>
   </main>
 
+  <script src="wisemak-pricing.js"></script>
   <script>
     const WEB3FORMS_ACCESS_KEY = 'e384da97-878d-4e67-8d80-2bc132531e2f';
 
@@ -968,69 +969,21 @@
     const progressLabel = document.getElementById('progress-label');
     const progressState = document.getElementById('progress-state');
     const BASELINE = { area: 150, people: 4, rooms: 5 };
-    const PRICE_MULTIPLIER = 1.05;
-    const AQS_TABLE = {
-      'Bomba de Calor': {
-        annual: [35,70,105,140,175,210,245,280,315,350],
-        invest: [1500,1750,2000,2250,2500,2750,3000,3250,3500,3750]
-      },
-      'Esquentador de gás natural (rede)': {
-        annual: [67,134,201,268,335,402,469,536,603,670],
-        invest: [480,480,480,480,480,480,480,480,480,480]
-      },
-      'Esquentador de gás de botija': {
-        annual: [133,266,399,532,665,798,931,1064,1197,1330],
-        invest: [480,480,480,480,480,480,480,480,480,480]
-      },
-      'Termoacumulador (Cilindro)': {
-        annual: [225,450,675,900,1125,1350,1575,1800,2025,2250],
-        invest: [320,380,440,500,560,620,680,740,800,860]
-      },
-      'Sistema Solar Térmico': {
-        annual: [35,70,105,140,175,210,245,280,315,350],
-        invest: [1750,2000,2250,2500,2750,3000,3250,3500,3750,4000]
-      }
-    };
-    const INDEP_CLIMATE_PRICING = {
-      'AC Split Mural': 850,
-      'AC Multi Split': 1000,
-      'AC de Conduta': 1500,
-      'AC Cassete de teto': 1600
-    };
-    const VMC_PRICING_TIERS = [
-      { maxArea: 100, invest: 3500 },
-      { maxArea: 150, invest: 4200 },
-      { maxArea: 200, invest: 4500 },
-      { maxArea: 250, invest: 5000 },
-      { maxArea: 300, invest: 6000 }
-    ];
-    const BC_CLIMATE_PRICING_TIERS = [
-      { maxArea: 200, invest: 6000 },
-      { maxArea: 300, invest: 8000 },
-      { maxArea: 400, invest: 13000 }
-    ];
-    const CENTRAL_CLIMATE_MONTHLY_PER_M2 = {
-      'Bomba de Calor + Piso Radiante': 1.05,
-      'Bomba de Calor + Ventiloconvectores': 1.25,
-      'Bomba de Calor + Radiadores': 1.45,
-      'Bomba de Calor + Piso Radiante + Ventiloconvectores': 1.05,
-      'Bomba de Calor + Piso Radiante + VMC com bateria de água': 1.05,
-      'Caldeira + Piso Radiante': 1.365,
-      'Caldeira + Ventiloconvectores': 1.625,
-      'Caldeira + Radiadores': 1.885,
-      'Caldeira + Piso Radiante + Ventiloconvectores': 1.365,
-      'Caldeira + Piso Radiante + VMC com bateria de água': 1.365
-    };
-    const CENTRAL_BASE_MONTHLY = {
-      'Bomba de Calor': 68,
-      'Caldeira': 118
-    };
-    const CALDEIRA_BASE_PRICE = 1500;
-    const RADIATOR_PER_ROOM = 550;
-    const FAN_COIL_PER_ROOM = 1200;
-    const FLOOR_HEATING_PER_M2 = 55;
-    const FLOOR_HEATING_VMC_WATER_BATTERY_PER_M2 = 70;
-    const INDEP_CLIMATE_MONTHLY_PER_ROOM = 50;
+    const PRICING = window.WISEMAK_PRICING;
+    const AQS_TABLE = Object.fromEntries(
+      Object.entries(PRICING.aqsLabels).map(([label, key]) => [label, PRICING.aqs[key]])
+    );
+    const INDEP_CLIMATE_PRICING = PRICING.independentClimate;
+    const VMC_PRICING_TIERS = PRICING.vmcTiers;
+    const BC_CLIMATE_PRICING_TIERS = PRICING.heatPumpClimateTiers;
+    const CENTRAL_CLIMATE_MONTHLY_PER_M2 = PRICING.consumption.centralClimateMonthlyPerM2;
+    const CENTRAL_BASE_MONTHLY = PRICING.consumption.centralBaseMonthly;
+    const CALDEIRA_BASE_PRICE = PRICING.centralInvestment.boiler;
+    const RADIATOR_PER_ROOM = PRICING.centralInvestment.radiatorPerRoom;
+    const FAN_COIL_PER_ROOM = PRICING.centralInvestment.fanCoilPerRoom;
+    const FLOOR_HEATING_PER_M2 = PRICING.centralInvestment.floorHeatingPerM2;
+    const FLOOR_HEATING_VMC_WATER_BATTERY_PER_M2 = PRICING.centralInvestment.floorHeatingVmcWaterBatteryPerM2;
+    const INDEP_CLIMATE_MONTHLY_PER_ROOM = PRICING.consumption.independentClimateMonthlyPerRoom;
     const AQS_METRICS = {
       'Não incluído': { label: 'Não incluído', tech: '', month: 0, start: 0, showers: 0 },
       'Bomba de Calor': { label: 'Bomba de Calor', tech: 'Bomba de Calor AQS', showers: 2 },
@@ -1126,8 +1079,8 @@
       return Math.min(max, Math.max(min, value));
     }
 
-    function inflatePrice(value){
-      return Math.round(value * PRICE_MULTIPLIER);
+    function inflatePrice(value, currentMultiplier = 1){
+      return PRICING.adjustInvestment(value, { currentMultiplier });
     }
 
     function getHouseProfile(){
@@ -1153,7 +1106,13 @@
       return {
         ...base,
         month: Math.round(table.annual[index] / 12),
-        start: inflatePrice(table.invest[index]),
+        start: PRICING.adjustInvestment(
+          table.invest[index],
+          {
+            solution: state.aqs === 'Bomba de Calor' ? 'Bomba de Calor AQS' : state.aqs,
+            currentMultiplier: 1.05
+          }
+        ),
         showers
       };
     }
@@ -1196,7 +1155,7 @@
         return source + Math.round(area * FLOOR_HEATING_PER_M2) + (rooms * FAN_COIL_PER_ROOM);
       }
       if(state.climaDist === 'Piso Radiante + VMC com bateria de água'){
-        const integrationExtra = state.climaFonte === 'Bomba de Calor' ? 2500 : 0;
+        const integrationExtra = state.climaFonte === 'Bomba de Calor' ? PRICING.centralInvestment.heatPumpVmcIntegration : 0;
         return source + Math.round(area * FLOOR_HEATING_VMC_WATER_BATTERY_PER_M2) + getVmcBaseInvestment() + integrationExtra;
       }
       return 0;
@@ -1215,7 +1174,7 @@
           ...base,
           tech: base.label,
           month: Math.round(rooms * INDEP_CLIMATE_MONTHLY_PER_ROOM * monthlyBoost),
-          start: (INDEP_CLIMATE_PRICING[state.climaIndep] || 0) * rooms
+          start: inflatePrice((INDEP_CLIMATE_PRICING[state.climaIndep] || 0) * rooms)
         };
       }
       const dist = CENTRAL_DIST_METRICS[state.climaDist] || { label: state.climaDist || 'Distribuidor por escolher', comfort: 0, heating: 0, cooling: 0, response: 0 };
@@ -1228,7 +1187,7 @@
         month *= 0.8;
       }
       const baseInvestment = getCentralClimateBaseInvestment(label);
-      const shouldInflate = !builtInVmc && !(hasManualVmcEfficiencyBoost() && state.climaDist === 'Piso Radiante');
+      const currentMultiplier = !builtInVmc && !(hasManualVmcEfficiencyBoost() && state.climaDist === 'Piso Radiante') ? 1.05 : 1;
       const displayLabel = label.startsWith('Bomba de Calor')
         ? label.replace('Bomba de Calor', 'Bomba de Calor de climatização')
         : label;
@@ -1236,7 +1195,7 @@
         label: displayLabel,
         tech: displayLabel,
         month: Math.round(month),
-        start: shouldInflate ? inflatePrice(baseInvestment) : baseInvestment,
+        start: inflatePrice(baseInvestment, currentMultiplier),
         comfort: dist.comfort,
         heating: dist.heating,
         cooling: dist.cooling,
@@ -1256,7 +1215,7 @@
         return { ...base, month: 0, start: 0 };
       }
       if(state.vent === 'VMC Duplo Fluxo'){
-        return { ...base, month: 0, start: inflatePrice(getVmcBaseInvestment()) };
+        return { ...base, month: 0, start: inflatePrice(getVmcBaseInvestment(), 1.05) };
       }
       if(state.vent === 'VMC Simples Fluxo'){
         const { area, people } = getHouseProfile();
@@ -1266,7 +1225,7 @@
         return {
           ...base,
           month: 0,
-          start: inflatePrice(Math.round(2250 * clamp(startMultiplier, 0.7, 2.3)))
+          start: inflatePrice(Math.round(PRICING.ventilation.simpleFlowBase * clamp(startMultiplier, 0.7, 2.3)), 1.05)
         };
       }
       return { ...base, month: 0, start: 0 };

@@ -3544,6 +3544,7 @@
     </div>
   </footer>
 
+  <script src="wisemak-pricing.js"></script>
   <script>
     const BASELINE = {
       area: 150,
@@ -3554,9 +3555,13 @@
     const WEB3FORMS_ACCESS_KEY = 'e384da97-878d-4e67-8d80-2bc132531e2f';
     const CONFIG_TUTORIAL_EMBED = '';
 
-    const PRICE_MULTIPLIER = 1.05;
+    const PRICING = window.WISEMAK_PRICING;
     const EMPTY_SELECTION = { label: 'Não incluído', month: 0, start: 0 };
-    const AUTO_VMC_SELECTION = { label: 'VMC Duplo Fluxo', month: 10, start: 3900 };
+    const AUTO_VMC_SELECTION = {
+      label: 'VMC Duplo Fluxo',
+      month: PRICING.ventilation.automaticDoubleFlow.month,
+      start: PRICING.ventilation.automaticDoubleFlow.invest
+    };
 
     // Add future solution videos here by filling `video` and `thumb`.
     const AQS_SOLUTIONS = {
@@ -3633,38 +3638,7 @@
       }
     };
 
-    const AQS_TABLE = {
-      bc: {
-        annual: [35,70,105,140,175,210,245,280,315,350],
-        maintenance: [20,20,20,20,20,20,20,20,20,20],
-        invest: [1500,1750,2000,2250,2500,2750,3000,3250,3500,3750],
-        total10: [2050,2650,3250,3850,4450,5050,5650,6250,6850,7450]
-      },
-      gn: {
-        annual: [67,134,201,268,335,402,469,536,603,670],
-        maintenance: [20,20,20,20,20,20,20,20,20,20],
-        invest: [480,480,480,480,480,480,480,480,480,480],
-        total10: [1470,2140,2810,3480,4150,4820,5490,6160,6830,7500]
-      },
-      glp: {
-        annual: [133,266,399,532,665,798,931,1064,1197,1330],
-        maintenance: [20,20,20,20,20,20,20,20,20,20],
-        invest: [480,480,480,480,480,480,480,480,480,480],
-        total10: [2130,3460,4790,6120,7450,8780,10110,11440,12770,14100]
-      },
-      termo: {
-        annual: [225,450,675,900,1125,1350,1575,1800,2025,2250],
-        maintenance: [100,100,100,100,100,100,100,100,100,100],
-        invest: [320,380,440,500,560,620,680,740,800,860],
-        total10: [3650,5975,8300,10625,12950,15275,17600,19925,22250,24575]
-      },
-      solar: {
-        annual: [35,70,105,140,175,210,245,280,315,350],
-        maintenance: [150,150,150,150,150,150,150,150,150,150],
-        invest: [1750,2000,2250,2500,2750,3000,3250,3500,3750,4000],
-        total10: [3600,4200,4800,5400,6000,6600,7200,7800,8400,9000]
-      }
-    };
+    const AQS_TABLE = PRICING.aqs;
 
     // Add future solution videos here by filling `video` and `thumb`.
     const INDEP_CLIMATE_SOLUTIONS = {
@@ -3714,45 +3688,16 @@
       }
     };
 
-    const INDEP_CLIMATE_PRICING = {
-      'AC Split Mural': 850,
-      'AC Multi Split': 1000,
-      'AC de Conduta': 1500,
-      'AC Cassete de teto': 1600
-    };
-
-    const VMC_PRICING_TIERS = [
-      { maxArea: 100, invest: 3500, label: 'até 100 m²' },
-      { maxArea: 150, invest: 4200, label: 'até 150 m²' },
-      { maxArea: 200, invest: 4500, label: 'até 200 m²' },
-      { maxArea: 250, invest: 5000, label: 'até 250 m²' },
-      { maxArea: 300, invest: 6000, label: 'até 300 m²' }
-    ];
-
-    const BC_CLIMATE_PRICING_TIERS = [
-      { maxArea: 200, invest: 6000 },
-      { maxArea: 300, invest: 8000 },
-      { maxArea: 400, invest: 13000 }
-    ];
-
-    const CALDEIRA_BASE_PRICE = 1500;
-    const RADIATOR_PER_ROOM = 550;
-    const FAN_COIL_PER_ROOM = 1200;
-    const FLOOR_HEATING_PER_M2 = 55;
-    const FLOOR_HEATING_VMC_WATER_BATTERY_PER_M2 = 70;
-    const INDEP_CLIMATE_MONTHLY_PER_ROOM = 50;
-    const CENTRAL_CLIMATE_MONTHLY_PER_M2 = {
-      'Bomba de Calor + Piso Radiante': 1.05,
-      'Bomba de Calor + Ventiloconvectores': 1.25,
-      'Bomba de Calor + Radiadores': 1.45,
-      'Bomba de Calor + Piso Radiante + Ventiloconvectores': 1.05,
-      'Bomba de Calor + Piso Radiante + VMC com bateria de água': 1.05,
-      'Caldeira + Piso Radiante': 1.365,
-      'Caldeira + Ventiloconvectores': 1.625,
-      'Caldeira + Radiadores': 1.885,
-      'Caldeira + Piso Radiante + Ventiloconvectores': 1.365,
-      'Caldeira + Piso Radiante + VMC com bateria de água': 1.365
-    };
+    const INDEP_CLIMATE_PRICING = PRICING.independentClimate;
+    const VMC_PRICING_TIERS = PRICING.vmcTiers;
+    const BC_CLIMATE_PRICING_TIERS = PRICING.heatPumpClimateTiers;
+    const CALDEIRA_BASE_PRICE = PRICING.centralInvestment.boiler;
+    const RADIATOR_PER_ROOM = PRICING.centralInvestment.radiatorPerRoom;
+    const FAN_COIL_PER_ROOM = PRICING.centralInvestment.fanCoilPerRoom;
+    const FLOOR_HEATING_PER_M2 = PRICING.centralInvestment.floorHeatingPerM2;
+    const FLOOR_HEATING_VMC_WATER_BATTERY_PER_M2 = PRICING.centralInvestment.floorHeatingVmcWaterBatteryPerM2;
+    const INDEP_CLIMATE_MONTHLY_PER_ROOM = PRICING.consumption.independentClimateMonthlyPerRoom;
+    const CENTRAL_CLIMATE_MONTHLY_PER_M2 = PRICING.consumption.centralClimateMonthlyPerM2;
 
     // Add future solution videos here by filling `video` and `thumb`.
     const VENT_SOLUTIONS = {
@@ -4805,44 +4750,35 @@ function focusVentilationEntry(){
       });
     });
 
-    function inflatePrice(n){
-      return Math.round(n * PRICE_MULTIPLIER);
+    function euro(n){
+      return new Intl.NumberFormat('pt-PT').format(Math.round(n)) + '€';
     }
 
-    function shouldInflateSelection(selection, category){
-      if(!selection || !selection.label){
-        return true;
+    function currentInvestmentMultiplier(selection, category){
+      if(category === 'aqs' || category === 'vent'){
+        return 1.05;
       }
-
-      if(category === 'clima' && INDEP_CLIMATE_PRICING[selection.label]){
-        return false;
+      if(category !== 'clima' || INDEP_CLIMATE_PRICING[selection?.label]){
+        return 1;
       }
-
-      if(category !== 'clima'){
-        return true;
+      if(selection?.label?.includes('VMC com bateria de água')){
+        return 1;
       }
-
-      if(selection.label.includes('VMC com bateria de água')){
-        return false;
-      }
-
       if(
         hasManualVmcEfficiencyBoost() &&
-        selection.label.includes('Piso Radiante') &&
+        selection?.label?.includes('Piso Radiante') &&
         !selection.label.includes('Ventiloconvectores')
       ){
-        return false;
+        return 1;
       }
-
-      return true;
+      return 1.05;
     }
 
-    function getDisplayPrice(n, shouldInflate = true){
-      return shouldInflate ? inflatePrice(n) : Math.round(n);
-    }
-
-    function euro(n, shouldInflate = true){
-      return new Intl.NumberFormat('pt-PT').format(getDisplayPrice(n, shouldInflate)) + '€';
+    function adjustInvestment(value, selection, category){
+      return PRICING.adjustInvestment(value, {
+        solution: category === 'aqs' && selection?.label === 'Bomba de Calor' ? 'Bomba de Calor AQS' : selection?.label,
+        currentMultiplier: currentInvestmentMultiplier(selection, category)
+      });
     }
 
     function clamp(value, min, max){
@@ -4922,7 +4858,7 @@ function focusVentilationEntry(){
         return bcSource + floorHeating + fanCoils;
       }
       if(label === 'Bomba de Calor + Piso Radiante + VMC com bateria de água'){
-        return bcSource + getFloorHeatingVmcBatteryPricing() + getVmcPricingProfile().invest + 2500;
+        return bcSource + getFloorHeatingVmcBatteryPricing() + getVmcPricingProfile().invest + PRICING.centralInvestment.heatPumpVmcIntegration;
       }
       if(label === 'Caldeira + Radiadores'){
         return caldeiraSource + radiators;
@@ -4989,14 +4925,14 @@ function focusVentilationEntry(){
         if(profile){
           return {
             month: Math.round(profile.annual / 12),
-            start: profile.invest
+            start: adjustInvestment(profile.invest, selection, category)
           };
         }
         const monthMultiplier = (peopleFactor * 0.8) + (areaFactor * 0.2);
         const startMultiplier = 0.78 + (peopleFactor * 0.32) + (Math.max(areaFactor - 1, 0) * 0.08);
         return {
           month: Math.round(selection.month * clamp(monthMultiplier, 0.55, 2.6)),
-          start: Math.round(selection.start * clamp(startMultiplier, 0.75, 2.15))
+          start: adjustInvestment(Math.round(selection.start * clamp(startMultiplier, 0.75, 2.15)), selection, category)
         };
       }
 
@@ -5006,7 +4942,7 @@ function focusVentilationEntry(){
         if(centralClimateStart !== null){
           return {
             month: climateMonthlyEstimate ?? selection.month,
-            start: centralClimateStart
+            start: adjustInvestment(centralClimateStart, selection, category)
           };
         }
 
@@ -5014,7 +4950,7 @@ function focusVentilationEntry(){
           const perRoom = INDEP_CLIMATE_PRICING[selection.label];
           return {
             month: climateMonthlyEstimate ?? selection.month,
-            start: Math.round(perRoom * rooms)
+            start: adjustInvestment(Math.round(perRoom * rooms), selection, category)
           };
         }
 
@@ -5029,7 +4965,7 @@ function focusVentilationEntry(){
         const baseMix = (areaFactor * (0.82 - roomWeight)) + (peopleFactor * 0.18) + (roomsFactor * roomWeight);
         return {
           month: Math.round(selection.month * clamp(baseMix * occupancyBoost, 0.6, 3.1)),
-          start: Math.round(selection.start * clamp((areaFactor * (0.9 - roomWeight)) + (peopleFactor * 0.1) + (roomsFactor * roomWeight), 0.7, 2.9))
+          start: adjustInvestment(Math.round(selection.start * clamp((areaFactor * (0.9 - roomWeight)) + (peopleFactor * 0.1) + (roomsFactor * roomWeight), 0.7, 2.9)), selection, category)
         };
       }
 
@@ -5039,13 +4975,13 @@ function focusVentilationEntry(){
       if(selection.label === 'VMC Duplo Fluxo'){
         return {
           month: Math.round(selection.month * clamp(ventMonthMultiplier, 0.65, 2.4)),
-          start: getVmcPricingProfile().invest
+          start: adjustInvestment(getVmcPricingProfile().invest, selection, category)
         };
       }
 
       return {
         month: Math.round(selection.month * clamp(ventMonthMultiplier, 0.65, 2.4)),
-        start: Math.round(selection.start * clamp(ventStartMultiplier, 0.7, 2.3))
+        start: adjustInvestment(Math.round(selection.start * clamp(ventStartMultiplier, 0.7, 2.3)), selection, category)
       };
     }
 
@@ -5099,7 +5035,7 @@ function focusVentilationEntry(){
           </div>
           <div style="text-align:right">
             <span>Investimento base</span>
-            <strong style="font-size:26px">${euro(config.start, config.inflateStart ?? true)}</strong>
+            <strong style="font-size:26px">${euro(config.start)}</strong>
           </div>
         </div>
         <div class="combo-specs">
@@ -5160,7 +5096,7 @@ function focusVentilationEntry(){
         const investNode = document.getElementById(`${prefix}-invest`);
         const roomsNode = document.getElementById(`${prefix}-rooms`);
         if(investNode){
-          investNode.textContent = euro(perRoom * rooms, false);
+          investNode.textContent = euro(PRICING.adjustInvestment(perRoom * rooms));
         }
         if(roomsNode){
           roomsNode.textContent = `${rooms} ${rooms === 1 ? 'divisão' : 'divisões'}`;
@@ -5176,13 +5112,13 @@ function focusVentilationEntry(){
       const noneInvest = document.getElementById('vent-none-invest');
 
       if(vmcInvest){
-        vmcInvest.textContent = euro(vmcProfile.invest);
+        vmcInvest.textContent = euro(PRICING.adjustInvestment(vmcProfile.invest, { currentMultiplier: 1.05 }));
       }
       if(vmcNote){
         vmcNote.textContent = `${vmcProfile.label} · com instalação e IVA incluídos`;
       }
       if(simpleInvest){
-        simpleInvest.textContent = euro(2250);
+        simpleInvest.textContent = euro(PRICING.adjustInvestment(PRICING.ventilation.simpleFlowBase, { currentMultiplier: 1.05 }));
       }
       if(noneInvest){
         noneInvest.textContent = euro(0);
@@ -5215,7 +5151,13 @@ function focusVentilationEntry(){
         setText('annual', `${euro(Math.round(profile.annual / 12), false)}/mês`);
         setText('maint', `${euro(profile.maintenance, false)}/ano`);
         setText('total10', euro(profile.total10, false));
-        setText('invest', euro(profile.invest, true));
+        setText(
+          'invest',
+          euro(PRICING.adjustInvestment(profile.invest, {
+            solution: key === 'bc' ? 'Bomba de Calor AQS' : label,
+            currentMultiplier: 1.05
+          }))
+        );
       });
     }
 
@@ -5236,7 +5178,6 @@ function focusVentilationEntry(){
         desc: meta.desc,
         month: adjusted.month,
         start: adjusted.start,
-        inflateStart: shouldInflateSelection(state.clima.indep, 'clima'),
         specs: meta.specs(getHouseProfile()),
         video: meta.video,
         thumb: meta.thumb
@@ -5260,7 +5201,6 @@ function focusVentilationEntry(){
         desc: meta.desc,
         month: adjusted.month,
         start: adjusted.start,
-        inflateStart: shouldInflateSelection(state.vent, 'vent'),
         specs: meta.specs(getHouseProfile()),
         video: meta.video,
         thumb: meta.thumb
@@ -5536,7 +5476,6 @@ function focusVentilationEntry(){
       };
       const distLabel = distLabelMap[state.clima.central.dist];
       const adjusted = calculateAdjustedSelection(combo, 'clima');
-      const shouldInflateCombo = shouldInflateSelection(combo, 'clima');
       state.clima.central.label = combo.label;
       state.clima.central.month = combo.month;
       state.clima.central.start = combo.start;
@@ -5560,7 +5499,7 @@ function focusVentilationEntry(){
           </div>
           <div style="text-align:right">
             <span class="combo-price-meta">a partir de</span>
-            <strong style="font-size:26px">${euro(adjusted.start, shouldInflateCombo)}</strong>
+            <strong style="font-size:26px">${euro(adjusted.start)}</strong>
             <span class="combo-price-note">com instalação e IVA incluídos</span>
           </div>
         </div>
@@ -5590,9 +5529,9 @@ function focusVentilationEntry(){
       const ventPricedAdjusted = calculateAdjustedSelection(pricedVent, 'vent');
       const month = aqsAdjusted.month + climateAdjusted.month + ventAdjusted.month;
       const start =
-        getDisplayPrice(aqsAdjusted.start, shouldInflateSelection(state.aqs, 'aqs')) +
-        getDisplayPrice(climateAdjusted.start, shouldInflateSelection(climate, 'clima')) +
-        getDisplayPrice(ventPricedAdjusted.start, shouldInflateSelection(pricedVent, 'vent'));
+        aqsAdjusted.start +
+        climateAdjusted.start +
+        ventPricedAdjusted.start;
       document.getElementById('sum-aqs').textContent = state.aqs.label;
       document.getElementById('sum-clima').textContent = climateSummaryLabel;
       document.getElementById('sum-vent').textContent = ventSummaryLabel;
@@ -5681,9 +5620,9 @@ function focusVentilationEntry(){
       const ventPricedAdjusted = calculateAdjustedSelection(pricedVent, 'vent');
       const totalMonth = aqsAdjusted.month + climateAdjusted.month + ventAdjusted.month;
       const totalStart =
-        getDisplayPrice(aqsAdjusted.start, shouldInflateSelection(state.aqs, 'aqs')) +
-        getDisplayPrice(climateAdjusted.start, shouldInflateSelection(climate, 'clima')) +
-        getDisplayPrice(ventPricedAdjusted.start, shouldInflateSelection(pricedVent, 'vent'));
+        aqsAdjusted.start +
+        climateAdjusted.start +
+        ventPricedAdjusted.start;
       document.getElementById('lead-access-key').value = WEB3FORMS_ACCESS_KEY;
       const formData = new FormData(form);
       formData.set('name', name);
