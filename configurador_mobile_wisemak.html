@@ -623,6 +623,7 @@
         <div class="field-grid">
           <div class="field"><label for="house-area">Área da casa</label><input id="house-area" type="number" min="20" inputmode="numeric" placeholder="Exemplo: 150" required></div>
           <div class="field"><label for="house-people">N.º de pessoas</label><input id="house-people" type="number" min="1" inputmode="numeric" placeholder="Exemplo: 4" required></div>
+          <div class="field"><label for="house-rooms">Divisões a climatizar</label><input id="house-rooms" type="number" min="1" max="20" inputmode="numeric" placeholder="Exemplo: 5" required></div>
           <div class="field"><label for="house-type">Tipo de imóvel</label><select id="house-type"><option>Moradia</option><option>Apartamento</option><option>Obra nova</option><option>Remodelação</option></select></div>
         </div>
         <div>
@@ -630,7 +631,7 @@
             <button class="btn btn-ghost" type="button" disabled>Anterior</button>
             <button class="btn btn-light" type="button" data-next>Avançar</button>
           </div>
-          <div class="toast" data-step-toast>Preencha a área da casa e o n.º de pessoas para continuar.</div>
+          <div class="toast" data-step-toast>Preencha a área, o n.º de pessoas e as divisões a climatizar para continuar.</div>
         </div>
       </article>
 
@@ -1022,8 +1023,14 @@
     function updateSummary(){
       const area = document.getElementById('house-area').value.trim();
       const people = document.getElementById('house-people').value.trim();
+      const rooms = document.getElementById('house-rooms').value.trim();
       const type = document.getElementById('house-type').value;
-      const house = [area ? `${area} m²` : '', people ? `${people} pessoas` : '', type].filter(Boolean).join(' · ');
+      const house = [
+        area ? `${area} m²` : '',
+        people ? `${people} ${people === '1' ? 'pessoa' : 'pessoas'}` : '',
+        rooms ? `${rooms} ${rooms === '1' ? 'divisão' : 'divisões'}` : '',
+        type
+      ].filter(Boolean).join(' · ');
       const climateDetail = getClimateDetailSummary();
       document.getElementById('summary-house').textContent = house || 'Por preencher';
       document.getElementById('summary-aqs').textContent = state.aqs || 'Por escolher';
@@ -1085,7 +1092,6 @@
     function updateSolutionSummary(){
       const area = Number(document.getElementById('house-area').value) || 0;
       const people = Number(document.getElementById('house-people').value) || 0;
-      const rooms = Math.max(1, Math.round(area / 30) || 0);
       const aqs = AQS_METRICS[state.aqs] || AQS_METRICS['Não incluído'];
       const climate = getClimateMetrics();
       const vent = VENT_METRICS[state.vent] || VENT_METRICS['Sem ventilação'];
@@ -1109,7 +1115,7 @@
     function getMobileLeadPayload(){
       const area = Number(document.getElementById('house-area').value) || 0;
       const people = Number(document.getElementById('house-people').value) || 0;
-      const rooms = Math.max(1, Math.round(area / 30) || 0);
+      const rooms = Number(document.getElementById('house-rooms').value) || 0;
       const type = document.getElementById('house-type').value;
       const aqs = AQS_METRICS[state.aqs] || AQS_METRICS['Não incluído'];
       const climate = getClimateMetrics();
@@ -1143,6 +1149,7 @@
           house: {
             area: document.getElementById('house-area').value,
             people: document.getElementById('house-people').value,
+            rooms: document.getElementById('house-rooms').value,
             type: document.getElementById('house-type').value
           }
         }));
@@ -1168,6 +1175,7 @@
           : state.step;
         document.getElementById('house-area').value = saved.house.area ?? '';
         document.getElementById('house-people').value = saved.house.people ?? '';
+        document.getElementById('house-rooms').value = saved.house.rooms ?? '';
         document.getElementById('house-type').value = saved.house.type || 'Moradia';
 
         document.querySelectorAll('.choice-card').forEach(choice => {
@@ -1193,7 +1201,8 @@
       if(state.step === 0){
         const area = document.getElementById('house-area');
         const people = document.getElementById('house-people');
-        return area.checkValidity() && people.checkValidity();
+        const rooms = document.getElementById('house-rooms');
+        return area.checkValidity() && people.checkValidity() && rooms.checkValidity();
       }
       if(state.step === 1) return Boolean(state.aqs);
       if(state.step === 2) return Boolean(state.clima);
@@ -1352,6 +1361,7 @@
           if(state.step === 0){
             document.getElementById('house-area').reportValidity();
             document.getElementById('house-people').reportValidity();
+            document.getElementById('house-rooms').reportValidity();
           }
           showToast();
           return;
@@ -1368,7 +1378,7 @@
       }
     });
 
-    document.querySelectorAll('#house-area,#house-people,#house-type').forEach(input => {
+    document.querySelectorAll('#house-area,#house-people,#house-rooms,#house-type').forEach(input => {
       input.addEventListener('input', updateSummary);
       input.addEventListener('change', updateSummary);
     });
