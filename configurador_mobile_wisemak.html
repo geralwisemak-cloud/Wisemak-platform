@@ -967,13 +967,77 @@
     const progressFill = document.getElementById('progress-fill');
     const progressLabel = document.getElementById('progress-label');
     const progressState = document.getElementById('progress-state');
+    const BASELINE = { area: 150, people: 4, rooms: 5 };
+    const PRICE_MULTIPLIER = 1.05;
+    const AQS_TABLE = {
+      'Bomba de Calor': {
+        annual: [35,70,105,140,175,210,245,280,315,350],
+        invest: [1500,1750,2000,2250,2500,2750,3000,3250,3500,3750]
+      },
+      'Esquentador de gás natural (rede)': {
+        annual: [67,134,201,268,335,402,469,536,603,670],
+        invest: [480,480,480,480,480,480,480,480,480,480]
+      },
+      'Esquentador de gás de botija': {
+        annual: [133,266,399,532,665,798,931,1064,1197,1330],
+        invest: [480,480,480,480,480,480,480,480,480,480]
+      },
+      'Termoacumulador (Cilindro)': {
+        annual: [225,450,675,900,1125,1350,1575,1800,2025,2250],
+        invest: [320,380,440,500,560,620,680,740,800,860]
+      },
+      'Sistema Solar Térmico': {
+        annual: [35,70,105,140,175,210,245,280,315,350],
+        invest: [1750,2000,2250,2500,2750,3000,3250,3500,3750,4000]
+      }
+    };
+    const INDEP_CLIMATE_PRICING = {
+      'AC Split Mural': 850,
+      'AC Multi Split': 1000,
+      'AC de Conduta': 1500,
+      'AC Cassete de teto': 1600
+    };
+    const VMC_PRICING_TIERS = [
+      { maxArea: 100, invest: 3500 },
+      { maxArea: 150, invest: 4200 },
+      { maxArea: 200, invest: 4500 },
+      { maxArea: 250, invest: 5000 },
+      { maxArea: 300, invest: 6000 }
+    ];
+    const BC_CLIMATE_PRICING_TIERS = [
+      { maxArea: 200, invest: 6000 },
+      { maxArea: 300, invest: 8000 },
+      { maxArea: 400, invest: 13000 }
+    ];
+    const CENTRAL_CLIMATE_MONTHLY_PER_M2 = {
+      'Bomba de Calor + Piso Radiante': 1.05,
+      'Bomba de Calor + Ventiloconvectores': 1.25,
+      'Bomba de Calor + Radiadores': 1.45,
+      'Bomba de Calor + Piso Radiante + Ventiloconvectores': 1.05,
+      'Bomba de Calor + Piso Radiante + VMC com bateria de água': 1.05,
+      'Caldeira + Piso Radiante': 1.365,
+      'Caldeira + Ventiloconvectores': 1.625,
+      'Caldeira + Radiadores': 1.885,
+      'Caldeira + Piso Radiante + Ventiloconvectores': 1.365,
+      'Caldeira + Piso Radiante + VMC com bateria de água': 1.365
+    };
+    const CENTRAL_BASE_MONTHLY = {
+      'Bomba de Calor': 68,
+      'Caldeira': 118
+    };
+    const CALDEIRA_BASE_PRICE = 1500;
+    const RADIATOR_PER_ROOM = 550;
+    const FAN_COIL_PER_ROOM = 1200;
+    const FLOOR_HEATING_PER_M2 = 55;
+    const FLOOR_HEATING_VMC_WATER_BATTERY_PER_M2 = 70;
+    const INDEP_CLIMATE_MONTHLY_PER_ROOM = 50;
     const AQS_METRICS = {
       'Não incluído': { label: 'Não incluído', tech: '', month: 0, start: 0, showers: 0 },
-      'Bomba de Calor': { label: 'Bomba de Calor', tech: 'Bomba de Calor AQS', month: 12, start: 1750, showers: 2 },
-      'Sistema Solar Térmico': { label: 'Solar Térmico', tech: 'Sistema Solar Térmico', month: 8, start: 2000, showers: 2 },
-      'Termoacumulador (Cilindro)': { label: 'Termoacumulador', tech: 'Termoacumulador', month: 38, start: 380, showers: 2 },
-      'Esquentador de gás natural (rede)': { label: 'Esquentador GN', tech: 'Esquentador GN', month: 18, start: 480, showers: 1 },
-      'Esquentador de gás de botija': { label: 'Esquentador GLP', tech: 'Esquentador GLP', month: 28, start: 480, showers: 1 }
+      'Bomba de Calor': { label: 'Bomba de Calor', tech: 'Bomba de Calor AQS', showers: 2 },
+      'Sistema Solar Térmico': { label: 'Solar Térmico', tech: 'Sistema Solar Térmico', showers: 2 },
+      'Termoacumulador (Cilindro)': { label: 'Termoacumulador', tech: 'Termoacumulador', showers: 2 },
+      'Esquentador de gás natural (rede)': { label: 'Esquentador GN', tech: 'Esquentador GN', showers: 1 },
+      'Esquentador de gás de botija': { label: 'Esquentador GLP', tech: 'Esquentador GLP', showers: 1 }
     };
     const INDEP_CLIMATE_METRICS = {
       'AC Split Mural': { label: 'AC Split Mural', month: 25, start: 850, comfort: 3, heating: 3, cooling: 4, response: 5 },
@@ -1058,24 +1122,121 @@
       return `${Math.round(value).toLocaleString('pt-PT')}€`;
     }
 
+    function clamp(value, min, max){
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function inflatePrice(value){
+      return Math.round(value * PRICE_MULTIPLIER);
+    }
+
+    function getHouseProfile(){
+      return {
+        area: clamp(Number(document.getElementById('house-area').value) || BASELINE.area, 40, 1000),
+        people: clamp(Number(document.getElementById('house-people').value) || BASELINE.people, 1, 12),
+        rooms: clamp(Number(document.getElementById('house-rooms').value) || BASELINE.rooms, 1, 20)
+      };
+    }
+
+    function getAqsMetrics(){
+      const base = AQS_METRICS[state.aqs] || AQS_METRICS['Não incluído'];
+      const table = AQS_TABLE[state.aqs];
+      if(!table){
+        return { ...base, month: 0, start: 0 };
+      }
+      const { people } = getHouseProfile();
+      const index = Math.max(0, Math.min(9, people - 1));
+      const showers =
+        state.aqs === 'Bomba de Calor' ? (people >= 5 ? 3 : 2) :
+        (state.aqs === 'Esquentador de gás natural (rede)' || state.aqs === 'Esquentador de gás de botija') ? 1 :
+        (people >= 4 ? 2 : 1);
+      return {
+        ...base,
+        month: Math.round(table.annual[index] / 12),
+        start: inflatePrice(table.invest[index]),
+        showers
+      };
+    }
+
+    function getVmcBaseInvestment(){
+      const { area } = getHouseProfile();
+      const tier = VMC_PRICING_TIERS.find(item => area <= item.maxArea) || VMC_PRICING_TIERS[VMC_PRICING_TIERS.length - 1];
+      return tier.invest;
+    }
+
+    function getBcClimateBaseInvestment(){
+      const { area } = getHouseProfile();
+      const tier = BC_CLIMATE_PRICING_TIERS.find(item => area <= item.maxArea) || BC_CLIMATE_PRICING_TIERS[BC_CLIMATE_PRICING_TIERS.length - 1];
+      return tier.invest;
+    }
+
+    function hasManualVmcEfficiencyBoost(){
+      return state.vent === 'VMC Duplo Fluxo' && state.climaDist !== 'Piso Radiante + VMC com bateria de água';
+    }
+
+    function getCentralClimateLabel(){
+      if(!state.climaFonte){
+        return 'Não incluído';
+      }
+      const source = state.climaFonte;
+      if(state.climaDist === 'Não preciso, já tenho'){
+        return source;
+      }
+      return `${source} + ${state.climaDist}`;
+    }
+
+    function getCentralClimateBaseInvestment(label){
+      const { area, rooms } = getHouseProfile();
+      const source = state.climaFonte === 'Caldeira' ? CALDEIRA_BASE_PRICE : getBcClimateBaseInvestment();
+      if(label === 'Bomba de Calor' || label === 'Caldeira') return source;
+      if(state.climaDist === 'Radiadores') return source + (rooms * RADIATOR_PER_ROOM);
+      if(state.climaDist === 'Ventiloconvectores') return source + (rooms * FAN_COIL_PER_ROOM);
+      if(state.climaDist === 'Piso Radiante') return source + Math.round(area * FLOOR_HEATING_PER_M2);
+      if(state.climaDist === 'Piso Radiante + Ventiloconvectores'){
+        return source + Math.round(area * FLOOR_HEATING_PER_M2) + (rooms * FAN_COIL_PER_ROOM);
+      }
+      if(state.climaDist === 'Piso Radiante + VMC com bateria de água'){
+        const integrationExtra = state.climaFonte === 'Bomba de Calor' ? 2500 : 0;
+        return source + Math.round(area * FLOOR_HEATING_VMC_WATER_BATTERY_PER_M2) + getVmcBaseInvestment() + integrationExtra;
+      }
+      return 0;
+    }
+
     function getClimateMetrics(){
       const mode = getClimateMode();
       if(mode === 'off'){
         return { label: 'Não incluído', tech: '', month: 0, start: 0, comfort: 0, heating: 0, cooling: 0, response: 0 };
       }
       if(mode === 'indep'){
-        return INDEP_CLIMATE_METRICS[state.climaIndep] || { label: state.climaIndep || 'Por escolher', tech: '', month: 0, start: 0, comfort: 0, heating: 0, cooling: 0, response: 0 };
+        const base = INDEP_CLIMATE_METRICS[state.climaIndep] || { label: state.climaIndep || 'Por escolher', comfort: 0, heating: 0, cooling: 0, response: 0 };
+        const { rooms } = getHouseProfile();
+        const monthlyBoost = hasManualVmcEfficiencyBoost() ? 0.8 : 1;
+        return {
+          ...base,
+          tech: base.label,
+          month: Math.round(rooms * INDEP_CLIMATE_MONTHLY_PER_ROOM * monthlyBoost),
+          start: (INDEP_CLIMATE_PRICING[state.climaIndep] || 0) * rooms
+        };
       }
-      const source = state.climaFonte || 'Fonte por escolher';
-      const dist = CENTRAL_DIST_METRICS[state.climaDist] || { label: state.climaDist || 'Distribuidor por escolher', start: 0, comfort: 0, heating: 0, cooling: 0, response: 0 };
-      const sourceStart = source === 'Caldeira' ? 2800 : 5500;
-      const sourceMonth = source === 'Caldeira' ? 90 : 58;
-      const sourceLabel = source === 'Bomba de Calor' ? 'Bomba de Calor de climatização' : source;
+      const dist = CENTRAL_DIST_METRICS[state.climaDist] || { label: state.climaDist || 'Distribuidor por escolher', comfort: 0, heating: 0, cooling: 0, response: 0 };
+      const label = getCentralClimateLabel();
+      const { area } = getHouseProfile();
+      const builtInVmc = state.climaDist === 'Piso Radiante + VMC com bateria de água';
+      const monthlyRate = CENTRAL_CLIMATE_MONTHLY_PER_M2[label];
+      let month = monthlyRate != null ? area * monthlyRate : (CENTRAL_BASE_MONTHLY[label] || 0);
+      if(builtInVmc || hasManualVmcEfficiencyBoost()){
+        month *= 0.8;
+      }
+      const baseInvestment = getCentralClimateBaseInvestment(label);
+      const shouldInflate = !builtInVmc && !(hasManualVmcEfficiencyBoost() && state.climaDist === 'Piso Radiante');
+      const displayLabel = label.startsWith('Bomba de Calor')
+        ? label.replace('Bomba de Calor', 'Bomba de Calor de climatização')
+        : label;
       return {
-        label: `${sourceLabel} + ${dist.label}`,
-        tech: `${sourceLabel} + ${dist.label}`,
-        month: sourceMonth,
-        start: sourceStart + dist.start,
+        label: displayLabel,
+        tech: displayLabel,
+        month: Math.round(month),
+        start: shouldInflate ? inflatePrice(baseInvestment) : baseInvestment,
         comfort: dist.comfort,
         heating: dist.heating,
         cooling: dist.cooling,
@@ -1089,13 +1250,42 @@
       return `<span class="rating"><span class="rating-score">${score}/5</span>${dots}</span>`;
     }
 
+    function getVentMetrics(){
+      const base = VENT_METRICS[state.vent] || VENT_METRICS['Sem ventilação'];
+      if(state.climaDist === 'Piso Radiante + VMC com bateria de água'){
+        return { ...base, month: 0, start: 0 };
+      }
+      if(state.vent === 'VMC Duplo Fluxo'){
+        return { ...base, month: 0, start: inflatePrice(getVmcBaseInvestment()) };
+      }
+      if(state.vent === 'VMC Simples Fluxo'){
+        const { area, people } = getHouseProfile();
+        const areaFactor = area / BASELINE.area;
+        const peopleFactor = people / BASELINE.people;
+        const startMultiplier = (areaFactor * 0.84) + (peopleFactor * 0.16);
+        return {
+          ...base,
+          month: 0,
+          start: inflatePrice(Math.round(2250 * clamp(startMultiplier, 0.7, 2.3)))
+        };
+      }
+      return { ...base, month: 0, start: 0 };
+    }
+
+    function updateChoiceInvestment(group, value, amount){
+      const choice = document.querySelector(`.choice-card[data-group="${group}"][data-value="${value}"]`);
+      const detail = choice?.querySelector('.detail-row');
+      if(detail?.querySelector('span')?.textContent === 'Investimento'){
+        detail.querySelector('strong').textContent = amount === 0 ? '0€' : `a partir de ${euro(amount)}`;
+      }
+    }
+
     function updateSolutionSummary(){
-      const area = Number(document.getElementById('house-area').value) || 0;
-      const people = Number(document.getElementById('house-people').value) || 0;
-      const aqs = AQS_METRICS[state.aqs] || AQS_METRICS['Não incluído'];
+      const aqs = getAqsMetrics();
       const climate = getClimateMetrics();
-      const vent = VENT_METRICS[state.vent] || VENT_METRICS['Sem ventilação'];
-      const criticalMonth = aqs.month + climate.month + vent.month + Math.round(climate.month * .35);
+      const vent = getVentMetrics();
+      const criticalMonth = aqs.month + climate.month;
+      const worstMonth = criticalMonth + Math.round(climate.month * .35);
       const investment = aqs.start + climate.start + vent.start;
       const techParts = [aqs.tech, climate.tech, vent.tech].filter(Boolean);
 
@@ -1109,7 +1299,14 @@
       document.getElementById('tech-heating').innerHTML = renderRating(climate.heating);
       document.getElementById('tech-cooling').innerHTML = renderRating(climate.cooling);
       document.getElementById('tech-response').innerHTML = renderRating(climate.response);
-      document.getElementById('tech-worst-month').textContent = `${euro(criticalMonth)}/mês`;
+      document.getElementById('tech-worst-month').textContent = `${euro(worstMonth)}/mês`;
+
+      Object.keys(AQS_TABLE).forEach(label => {
+        const previousAqs = state.aqs;
+        state.aqs = label;
+        updateChoiceInvestment('aqs', label, getAqsMetrics().start);
+        state.aqs = previousAqs;
+      });
     }
 
     function getMobileLeadPayload(){
@@ -1117,10 +1314,10 @@
       const people = Number(document.getElementById('house-people').value) || 0;
       const rooms = Number(document.getElementById('house-rooms').value) || 0;
       const type = document.getElementById('house-type').value;
-      const aqs = AQS_METRICS[state.aqs] || AQS_METRICS['Não incluído'];
+      const aqs = getAqsMetrics();
       const climate = getClimateMetrics();
-      const vent = VENT_METRICS[state.vent] || VENT_METRICS['Sem ventilação'];
-      const criticalMonth = aqs.month + climate.month + vent.month + Math.round(climate.month * .35);
+      const vent = getVentMetrics();
+      const criticalMonth = aqs.month + climate.month;
       const investment = aqs.start + climate.start + vent.start;
       return {
         area,
