@@ -2697,6 +2697,28 @@
       .configurator-side-summary-page .play{
         font-size:12px;
       }
+
+      body.configurator-side-summary-page{
+        --mobile-section-spacing:32px;
+        --mobile-block-spacing:20px;
+      }
+      .configurator-side-summary-page main > section:not(#cotacao){
+        padding-top:var(--mobile-section-spacing);
+        padding-bottom:var(--mobile-section-spacing);
+      }
+      .configurator-side-summary-page main > .hero{
+        padding-top:38px;
+        padding-bottom:var(--mobile-section-spacing);
+      }
+      .configurator-side-summary-page main > section .section-head{
+        margin-bottom:var(--mobile-block-spacing);
+      }
+      .configurator-side-summary-page #conteudo .section-head{
+        margin-bottom:var(--mobile-block-spacing);
+      }
+      .configurator-side-summary-page footer{
+        padding-top:var(--mobile-section-spacing);
+      }
     }
 
   </style>
