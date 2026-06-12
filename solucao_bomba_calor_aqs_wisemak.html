@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="shared-header.css">
   <script src="shared-header.js" defer></script>
   <script src="shared-locations.js" defer></script>
+  <script src="wisemak-pricing.js"></script>
   <style>
     :root{
       --bg:#080808;
@@ -1252,14 +1253,7 @@
       }
     };
     const PORTUGAL_KWH_PRICE_WITH_VAT = 0.17;
-    const AQS_TABLE = {
-      bc: {
-        annual: [35,70,105,140,175,210,245,280,315,350],
-        maintenance: [20,20,20,20,20,20,20,20,20,20],
-        invest: [1500,1750,2000,2250,2500,2750,3000,3250,3500,3750],
-        total10: [2050,2650,3250,3850,4450,5050,5650,6250,6850,7450]
-      }
-    };
+    const AQS_TABLE = window.WISEMAK_PRICING.aqs;
 
     const guideState = {
       tipo_bomba: '',
