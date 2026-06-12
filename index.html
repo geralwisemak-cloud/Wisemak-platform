@@ -918,7 +918,51 @@
 
     .footer-brand img{width:auto;height:34px;display:block;object-fit:contain;margin-bottom:12px}
     footer{padding:34px 0 60px;color:var(--muted-2)}
-    .footer-line{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:none;padding-top:24px}
+    .institutional-logos{
+      display:grid;
+      grid-template-columns:.7fr 1.35fr 1.4fr 2.25fr 1.6fr 1.55fr;
+      align-items:center;
+      gap:clamp(18px,2.4vw,36px);
+      padding:32px 0;
+    }
+    .institutional-logo{
+      width:100%;
+      height:76px;
+      display:block;
+      object-fit:contain;
+    }
+    .institutional-logo--iefp{height:92px}
+    .institutional-logo--pessoas{height:72px}
+    .institutional-logo--pt2030{height:78px}
+    .institutional-logo--prr{height:82px}
+    .institutional-logo--republica{height:70px}
+    .institutional-eu{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .institutional-eu img{
+      width:104px;
+      height:70px;
+      flex:0 0 auto;
+      display:block;
+      object-fit:cover;
+      border:4px solid #fff;
+    }
+    .institutional-eu span{
+      color:#fff;
+      font-size:clamp(14px,1.35vw,19px);
+      line-height:1.28;
+    }
+    .footer-line{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.1);
+      padding-top:24px;
+    }
     .mobile-config-link,
     .mobile-config-gateway{display:none}
     .mobile-config-gateway{
@@ -1297,6 +1341,31 @@
       .cta-band .actions{justify-content:flex-start}
       .cta-band .actions .btn{width:100%}
       footer{padding-top:20px}
+      .institutional-logos{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:26px 22px;
+      }
+      .institutional-logo{height:64px}
+      .institutional-logo--iefp{height:84px}
+      .institutional-logo--pessoas{height:68px}
+      .institutional-logo--pt2030{height:72px}
+      .institutional-logo--prr{height:72px}
+      .institutional-logo--republica{height:62px}
+      .institutional-eu{justify-content:center}
+      .institutional-eu img{width:92px;height:62px}
+      .institutional-eu span{max-width:150px;font-size:14px}
+    }
+
+    @media (max-width:520px){
+      .institutional-logos{grid-template-columns:1fr;padding:26px 0}
+      .institutional-logo{height:70px}
+      .institutional-logo--iefp{height:94px}
+      .institutional-logo--pessoas{height:72px}
+      .institutional-logo--pt2030{height:76px}
+      .institutional-logo--prr{height:76px}
+      .institutional-logo--republica{height:66px}
+      .institutional-eu img{width:102px;height:68px}
+      .institutional-eu span{font-size:15px}
     }
 
     .car-configurator-page .hero{
@@ -3538,6 +3607,17 @@
   </main>
 
   <footer>
+    <div class="container institutional-logos" aria-label="Entidades institucionais e financiadoras">
+      <img class="institutional-logo institutional-logo--iefp" src="Logos institucionais/logo-IEFP sem fundo (1).png" alt="IEFP">
+      <img class="institutional-logo institutional-logo--pessoas" src="Logos institucionais/Logotipo-05.svg" alt="Pessoas 2030">
+      <img class="institutional-logo institutional-logo--pt2030" src="Logos institucionais/PT2030_BRANCO.png" alt="Portugal 2030">
+      <div class="institutional-eu">
+        <img src="Logos institucionais/normal-reproduction-high-resolution (1).jpg" alt="União Europeia">
+        <span>Cofinanciado Pela União Europeia</span>
+      </div>
+      <img class="institutional-logo institutional-logo--prr" src="Logos institucionais/PRR_Logotipos-white-hor.png" alt="PRR - Plano de Recuperação e Resiliência">
+      <img class="institutional-logo institutional-logo--republica" src="Logos institucionais/LOGO_REPUBLICA_PORTUGUESA_MONO-01-02.png" alt="República Portuguesa">
+    </div>
     <div class="container footer-line">
       <div class="footer-brand"><img src="Wisemak Logo.png" alt="Wisemak">Soluções AVAC com instalação completa.</div>
       <div>Configurar · Decidir · Instalar</div>
