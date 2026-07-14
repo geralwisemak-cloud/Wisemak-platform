@@ -6,7 +6,7 @@ Use estes snippets no elemento **Embed HTML** do Wix depois de publicar os fiche
 
 ```html
 <iframe
-  src="https://geralwisemak-cloud.github.io/Wisemak-platform/wix_embed_desktop_form.html"
+  src="https://geralwisemak-cloud.github.io/Wisemak-platform/wix_embed_desktop_form.html?v=74f9405"
   title="Configurador Wisemak desktop"
   style="width:100%;height:1400px;border:0;display:block;background:#EFECE5;"
   loading="lazy"
@@ -17,10 +17,9 @@ Use estes snippets no elemento **Embed HTML** do Wix depois de publicar os fiche
 
 ```html
 <iframe
-  src="https://geralwisemak-cloud.github.io/Wisemak-platform/wix_embed_mobile_form.html"
+  src="https://geralwisemak-cloud.github.io/Wisemak-platform/wix_embed_mobile_form.html?v=74f9405"
   title="Configurador Wisemak mobile"
   style="width:100%;height:920px;border:0;display:block;background:#EFECE5;"
-  loading="lazy"
 ></iframe>
 ```
 
