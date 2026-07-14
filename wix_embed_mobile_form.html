@@ -16,9 +16,9 @@
       --muted:rgba(255,255,255,.68);
       --soft:rgba(255,255,255,.10);
       --line:rgba(255,255,255,.10);
-      --blue:#60a5fa;
+      --blue:#405C5A;
       --green:#4ade80;
-      --yellow:#facc15;
+      --yellow:#405C5A;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -26,7 +26,7 @@
       margin:0;
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at 50% -8%, rgba(96,165,250,.18), transparent 32%),
+        radial-gradient(circle at 50% -8%, rgba(64,92,90,.18), transparent 32%),
         linear-gradient(180deg,#0b0b0b 0%,#090909 100%);
       color:var(--text);
       line-height:1.5;
@@ -124,7 +124,7 @@
       width:20%;
       height:100%;
       border-radius:999px;
-      background:linear-gradient(90deg,#ffffff,#93c5fd);
+      background:linear-gradient(90deg,#ffffff,#405C5A);
       transition:.28s ease;
     }
     .steps{
@@ -207,7 +207,7 @@
       outline:none;
     }
     .field input:invalid{
-      border-color:rgba(250,204,21,.46);
+      border-color:rgba(64,92,90,.46);
     }
     .field textarea{min-height:92px;resize:vertical}
     .choices{
@@ -386,7 +386,7 @@
       border:1px solid rgba(255,255,255,.09);
     }
     .price-summary-card .estimate-kicker{
-      color:#93c5fd;
+      color:#405C5A;
       font-size:11px;
       font-weight:900;
       letter-spacing:.13em;
@@ -554,8 +554,8 @@
       margin-top:10px;
       padding:12px;
       border-radius:14px;
-      background:rgba(250,204,21,.12);
-      border:1px solid rgba(250,204,21,.24);
+      background:rgba(64,92,90,.12);
+      border:1px solid rgba(64,92,90,.24);
       color:#fde68a;
       font-size:13px;
     }
@@ -589,13 +589,114 @@
         font-size:14px;
       }
     }
+    body.wisemak-wix-embed{
+      --bg:#EFECE5;
+      --panel:#FFFFFF;
+      --panel-2:#EFECE5;
+      --text:#323232;
+      --muted:rgba(50,50,50,.72);
+      --soft:rgba(50,50,50,.58);
+      --line:rgba(50,50,50,.22);
+      --blue:#405C5A;
+      --green:#405C5A;
+      --yellow:#405C5A;
+      width:100%;
+      min-height:100vh;
+      overflow-x:hidden;
+      background:#EFECE5;
+      color:#323232;
+    }
+    body.wisemak-wix-embed .topbar{
+      display:none!important;
+    }
+    body.wisemak-wix-embed .hero{
+      padding-top:22px;
+      background:#EFECE5;
+    }
+    body.wisemak-wix-embed .shell{
+      padding-top:0;
+      padding-bottom:22px;
+      background:#EFECE5;
+    }
+    body.wisemak-wix-embed h1,
+    body.wisemak-wix-embed h2,
+    body.wisemak-wix-embed h3,
+    body.wisemak-wix-embed p,
+    body.wisemak-wix-embed label,
+    body.wisemak-wix-embed span,
+    body.wisemak-wix-embed small{
+      color:#323232;
+    }
+    body.wisemak-wix-embed .progress-panel{
+      background:#EFECE5;
+      border-color:rgba(50,50,50,.18);
+    }
+    body.wisemak-wix-embed .step-card,
+    body.wisemak-wix-embed .choice-card,
+    body.wisemak-wix-embed .summary-box,
+    body.wisemak-wix-embed .solution-summary-card,
+    body.wisemak-wix-embed .lead-card,
+    body.wisemak-wix-embed .technical-panel,
+    body.wisemak-wix-embed .price-summary-card{
+      background:#FFFFFF;
+      border-color:rgba(50,50,50,.2);
+      box-shadow:none;
+      color:#323232;
+    }
+    body.wisemak-wix-embed .step-card.active,
+    body.wisemak-wix-embed .choice-card.active{
+      background:#EFECE5;
+      border-color:#405C5A;
+      color:#323232;
+    }
+    body.wisemak-wix-embed input,
+    body.wisemak-wix-embed select,
+    body.wisemak-wix-embed textarea{
+      background:#FFFFFF;
+      border-color:rgba(50,50,50,.28);
+      color:#323232;
+      box-shadow:none;
+    }
+    body.wisemak-wix-embed input::placeholder,
+    body.wisemak-wix-embed textarea::placeholder{
+      color:rgba(50,50,50,.58);
+      opacity:1;
+    }
+    body.wisemak-wix-embed .tag,
+    body.wisemak-wix-embed .choice-kicker,
+    body.wisemak-wix-embed .estimate-kicker,
+    body.wisemak-wix-embed .summary-row,
+    body.wisemak-wix-embed .tech-row,
+    body.wisemak-wix-embed .detail-row{
+      background:#EFECE5;
+      border-color:rgba(50,50,50,.18);
+      color:#323232;
+    }
+    body.wisemak-wix-embed .btn-light,
+    body.wisemak-wix-embed .btn-ghost{
+      background:#EFECE5;
+      border-color:#323232;
+      color:#323232;
+      box-shadow:none;
+    }
+    body.wisemak-wix-embed .btn-light:hover,
+    body.wisemak-wix-embed .btn-ghost:hover{
+      background:#FFFFFF;
+      border-color:#405C5A;
+      color:#323232;
+    }
+    body.wisemak-wix-embed .progress-fill,
+    body.wisemak-wix-embed .choice-card.active .choice-dot{
+      background:#405C5A;
+      border-color:#405C5A;
+    }
   </style>
 </head>
-<body>
+<body class="wisemak-wix-embed wisemak-wix-mobile-embed">
   <header class="topbar">
     <div class="shell topbar-inner">
-      <a class="logo" href="index.html" aria-label="Wisemak"><img src="Wisemak Logo.png" alt="Wisemak"></a>
-      <a class="back-link" href="index.html">Voltar ao site</a>
+      <a class="logo" href="#" aria-label="Wisemak"><img src="Wisemak Logo.png" alt="Wisemak"></a>
+      <a class="back-link" href="#">Voltar ao site</a>
     </div>
   </header>
 
@@ -1499,8 +1600,11 @@
         });
         const result = await response.json();
         if(result.success){
-          window.alert('Pedido recebido. A equipa Wisemak vai entrar em contacto consigo brevemente.');
-          window.location.href = 'index.html';
+          setLeadFeedback('Pedido enviado', 'A equipa Wisemak vai entrar em contacto consigo brevemente.');
+          document.getElementById('lead-name').value = '';
+          document.getElementById('lead-email').value = '';
+          document.getElementById('lead-phone').value = '';
+          document.getElementById('lead-note').value = '';
           return;
         }
         setLeadFeedback('Falha no envio', result.message || 'Não foi possível enviar o pedido neste momento.');
