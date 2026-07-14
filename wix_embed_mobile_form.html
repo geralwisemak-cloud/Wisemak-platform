@@ -590,8 +590,6 @@
       }
     }
     body.wisemak-wix-embed{
-      --embed-hero-height:252px;
-      --embed-progress-height:62px;
       --bg:#EFECE5;
       --panel:#FFFFFF;
       --panel-2:#EFECE5;
@@ -612,13 +610,8 @@
       display:none!important;
     }
     body.wisemak-wix-embed .hero{
-      position:fixed;
-      top:0;
-      left:50%;
-      z-index:31;
-      transform:translateX(-50%);
-      height:var(--embed-hero-height);
-      padding-bottom:14px;
+      position:static;
+      height:auto;
       padding-top:22px;
       background:#EFECE5;
     }
@@ -637,17 +630,13 @@
       color:#323232;
     }
     body.wisemak-wix-embed .progress-panel{
-      position:fixed;
-      top:var(--embed-hero-height);
-      left:0;
-      right:0;
-      z-index:30;
-      min-height:var(--embed-progress-height);
+      position:static;
+      z-index:auto;
       background:#EFECE5;
       border-color:rgba(50,50,50,.18);
     }
     body.wisemak-wix-embed .steps{
-      padding-top:calc(var(--embed-hero-height) + var(--embed-progress-height) + 18px);
+      padding-top:16px;
     }
     body.wisemak-wix-embed .step-card,
     body.wisemak-wix-embed .choice-card,
