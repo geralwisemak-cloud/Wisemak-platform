@@ -2957,6 +2957,49 @@
     body.wisemak-wix-embed .status-input.people-meta::before{
       background:#405C5A;
     }
+    body.wisemak-wix-embed .option,
+    body.wisemak-wix-embed .option.option-rich,
+    body.wisemak-wix-embed .climate-master-card,
+    body.wisemak-wix-embed .mode-card,
+    body.wisemak-wix-embed .central-result.choice-off,
+    body.wisemak-wix-embed .mini-option,
+    body.wisemak-wix-embed .status-card{
+      position:relative;
+      padding-right:56px !important;
+    }
+    body.wisemak-wix-embed .option-select-dot{
+      display:none;
+    }
+    body.wisemak-wix-embed .option::after,
+    body.wisemak-wix-embed .option.option-rich::after,
+    body.wisemak-wix-embed .climate-master-card::after,
+    body.wisemak-wix-embed .mode-card::after,
+    body.wisemak-wix-embed .central-result.choice-off::after,
+    body.wisemak-wix-embed .mini-option::after,
+    body.wisemak-wix-embed .status-card::after{
+      content:"";
+      position:absolute;
+      top:18px !important;
+      right:18px !important;
+      width:20px !important;
+      height:20px !important;
+      border-radius:999px;
+      border:2px solid rgba(50,50,50,.42) !important;
+      background:transparent !important;
+      box-shadow:inset 0 0 0 3px rgba(255,255,255,.68) !important;
+      transition:.25s ease;
+    }
+    body.wisemak-wix-embed .option.active::after,
+    body.wisemak-wix-embed .option.option-rich.active::after,
+    body.wisemak-wix-embed .climate-master-card.active::after,
+    body.wisemak-wix-embed .mode-card.active::after,
+    body.wisemak-wix-embed .central-result.choice-off.active::after,
+    body.wisemak-wix-embed .mini-option.active::after,
+    body.wisemak-wix-embed .status-card.active::after{
+      border-color:#323232 !important;
+      background:radial-gradient(circle at 35% 35%, #FFFFFF 0%, #EFECE5 52%, #323232 100%) !important;
+      box-shadow:0 0 0 5px rgba(50,50,50,.10) !important;
+    }
     body.wisemak-wix-embed .rating-dot.full,
     body.wisemak-wix-embed .choice-dot.active{
       background:#323232;
